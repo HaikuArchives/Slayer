@@ -1,6 +1,6 @@
 Slayer
 ===============================
-LICENSE: GPLv3
+LICENSE: GPLv3  
 Process controller (with extra features!) in a window.
 
 Author's comments: 
