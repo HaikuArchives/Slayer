@@ -1,0 +1,37 @@
+History
+
+version 1.0 (23.05.1999)
+------------------------
++ Right clicking on team/thread displays a pull down
+  menu where you can do the usual operations as well.
++ Menu & keyboard short-cuts for killing/suspending/resuming.
+  All other menu items have now short-cuts too.
++ Slayer doesn't anymore update teams & threads while
+  being minimized.
++ The biggest and most useful improvement is the ability
+  to dock Slayer to Deskbar. Slayer can be docked from
+  Settings, or automatically by launching Slayer with
+  parameter --deskbar (in Terminal: "$ Slayer --deskbar").
++ It's possible now to set which columns are shown
+  (only name & icon are mandatory).
++ About dialog is a bit nicer looking.
++ The memory usage is at last fixed to show correct
+  amounts. Unfortunately calculating memory usages is
+  a lot slower, so memory column is by default disabled.
+  It's however very fast to switch
+  on and off with command-m. 
++ The path for Slayer's settings is obtained correctly
+  with OS functions.
++ Added horizontal scroll bar for team view.
++ Removed usage restrictions. That's right, from now on
+  there is no usage limitations in Slayer. That means
+  you're now allowed to run Slayer in Windows95/98/NT too,
+  if you can. Of course I added some code that makes it
+  even more difficult to run this program in that operating
+  system ;).
+
+
+version 0.9 (07.01.1999)
+------------------------
+First public version!
+

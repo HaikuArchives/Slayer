@@ -1,0 +1,6 @@
+This library helps you to instantiate window archives.
+This library is capable of handling view variables (variables attached to views).
+You have several IEWindow methods which will ease your job,
+e.g. UpdateView("viewname"), UpdateVariable("viewname"), 
+UpdateAllViews(), UpdateAllVariables(), 
+SetViewVariable("viewname", variable_pointer, "variable_type"); 
