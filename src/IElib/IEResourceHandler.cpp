@@ -65,18 +65,17 @@ status_t IEResourceHandler::Error(void)
 	return errorcode;
 }
 
-// *AJ* added data_size
-void *IEResourceHandler::FindResource(char *rsrcname, uint32 rsrctype, size_t *data_size)
+
+void *IEResourceHandler::FindResource(char *rsrcname, uint32 rsrctype)
 {
 	BResources *rsc;
 	size_t datasize;
-
-	if (data_size == NULL) data_size = &datasize;	
+	
 	// in all resource files
 	for(int32 i=0;i<resource_list->CountItems();i++){
 		rsc=(BResources*)resource_list->ItemAt(i);
 		if(rsc->HasResource(rsrctype, rsrcname )){
-			return rsc->FindResource(rsrctype, rsrcname, data_size);
+			return rsc->FindResource(rsrctype, rsrcname, &datasize);
 		}
 	}
 	

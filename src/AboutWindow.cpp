@@ -24,7 +24,7 @@ AboutWindow::AboutWindow(void)
 		// Load the background picture from resources
 		// Using IE resources...
 		size_t data_size;
-		void *data = resourcehandler->FindResource("SLAYER_ABOUT", B_RAW_TYPE, &data_size);
+		void *data = resourcehandler->FindResource("SLAYER_ABOUT", data_size);
 		if (data) {
 			BTranslatorRoster *roster = BTranslatorRoster::Default();
 			if (roster) {

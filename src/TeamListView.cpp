@@ -32,7 +32,7 @@ void TeamListView::SelectionChanged()
 } */
 
 #include "TeamListView.h"
-#include "ColumnListView/CLVColumn.h"
+#include "CLVColumn.h"
 #include "SlayerApp.h"
 
 TeamListView::TeamListView(BRect frame, const char *name, BetterScrollView **s)

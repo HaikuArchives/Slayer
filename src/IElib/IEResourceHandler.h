@@ -21,8 +21,7 @@ public:
 	
 	void AddResourceFile(entry_ref rsrcfile);
 
-	// *AJ* added data_size
-	void *FindResource(char *rsrcname, uint32 type, size_t *data_size = NULL);
+	void *FindResource(char *rsrcname, uint32 type);
 	
 	void AddToWindowList(BWindow *window);
 	void RemoveFromWindowList(BWindow *window);

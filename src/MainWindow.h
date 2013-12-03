@@ -9,7 +9,7 @@
 #include "MainWindowDefs.h"
 #include "TeamItem.h"
 #include "TeamListView.h"
-#include "ColumnListView/CLVEasyItem.h"
+#include "CLVEasyItem.h"
 
 #include "Hashtable.h"
 #include "RefreshThread.h"

@@ -23,7 +23,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "TeamListView.h"
-#include "ColumnListView/CLVEasyItem.h"
+#include "CLVEasyItem.h"
 
 class ThreadItem : public CLVEasyItem {
 public:

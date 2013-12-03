@@ -22,10 +22,10 @@ TeamItemList::~TeamItemList()
 {
 }
 
-Team TeamItemList::AddItem(TeamItem *item)
+TeamItem* TeamItemList::AddItem(TeamItem *item)
 {
 	list.put(item->team, item);
-	return true;
+	return item;
 }
 
 

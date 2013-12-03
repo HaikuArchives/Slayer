@@ -20,8 +20,8 @@
 #define _TEAM_LIST_VIEW_H
 
 #include <InterfaceKit.h>
-#include "ColumnListView/ColumnListView.h"
-#include "ColumnListView/BetterScrollView.h"
+#include "ColumnListView.h"
+#include "BetterScrollView.h"
 
 #define TEAM_INV	'tein'
 #define SELECTION_CHANGED 'sech'

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <InterfaceKit.h>
 #include <stdlib.h>
-#include "ColumnListView/BetterScrollView.h"
+#include "BetterScrollView.h"
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
 #include "AboutWindow.h"

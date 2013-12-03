@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include "TeamListView.h"
 #include "ThreadItem.h"
-#include "ColumnListView/CLVEasyItem.h"
+#include "CLVEasyItem.h"
 #include "miscSlayer.h"
 #include "Hashtable.h"
 
