@@ -16,17 +16,17 @@ class _IMPEXP_OHLIB IEVariableHandler
 {
 public:
 	IEVariableHandler(BMessage *data=NULL);
-	virtual ~IEVariableHandler(void);
+	virtual ~IEVariableHandler(void) {};
 
 	void Archive(BMessage *data) const;		// archives the variable settings if they exist and valid
 
 	// methods for assigning/requesting the target variable
-	virtual void SetVariable(void *pointer, const char *type=NULL);	// leave type unchanged
-	virtual void *Variable(void);					// returns the variable pointer
+	virtual void SetVariable(void *pointer, const char *type=NULL) = 0;	// leave type unchanged
+	virtual void *Variable(void) = 0;					// returns the variable pointer
 
 	// methods for converting between the view and variable; the actual view must implement these hooks
-	virtual void UpdateView(void);					// updates the view according to the variable
-	virtual void UpdateVariable(void);				// updates the variable according to the view
+	virtual void UpdateView(void) = 0;					// updates the view according to the variable
+	virtual void UpdateVariable(void) = 0;				// updates the variable according to the view
 
 	// utility methods
 	BMessage *GetAvailableTypes(void);				// B_STRING_TYPE "type"

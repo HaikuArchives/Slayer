@@ -121,7 +121,8 @@ void IEWindow::SetViewVariable(char *viewname, void *variable, const char *varia
 	
 		BView *view=FindView(viewname);
 		if(view){
-			IEVariableHandler *variablehandlerview=(IEVariableHandler*)view;
+			IEVariableHandler *variablehandlerview
+				= dynamic_cast<IEVariableHandler*>(view);
 		
 			if(variablehandlerview){
 				variablehandlerview->SetVariable(variable, variabletype);
@@ -141,7 +142,8 @@ void IEWindow::UpdateView(char *viewname)
 	
 		BView *view=FindView(viewname);
 		if(view){
-			IEVariableHandler *variablehandlerview=(IEVariableHandler*)view;
+			IEVariableHandler *variablehandlerview
+				= dynamic_cast<IEVariableHandler*>(view);
 		
 			if(variablehandlerview){
 				variablehandlerview->UpdateView();
@@ -160,7 +162,8 @@ void IEWindow::UpdateVariable(char *viewname)
 	
 		BView *view=FindView(viewname);
 		if(view){
-			IEVariableHandler *variablehandlerview=(IEVariableHandler*)view;
+			IEVariableHandler *variablehandlerview
+				= dynamic_cast<IEVariableHandler*>(view);
 		
 			if(variablehandlerview){
 				variablehandlerview->UpdateVariable();
@@ -187,7 +190,8 @@ void IEWindow::UpdateAllViews(BView *parentview)
 			for(i=0;i<CountChildren();i++){
 				child=ChildAt(i);
 	
-				variablehandlerview=(IEVariableHandler*)child;
+				variablehandlerview
+					= dynamic_cast<IEVariableHandler*>(child);
 				if(variablehandlerview){
 					variablehandlerview->UpdateView();
 				}
@@ -201,7 +205,8 @@ void IEWindow::UpdateAllViews(BView *parentview)
 			for(i=0;i<parentview->CountChildren();i++){
 				child=parentview->ChildAt(i);
 	
-				variablehandlerview=(IEVariableHandler*)child;
+				variablehandlerview
+					= dynamic_cast<IEVariableHandler*>(child);
 				if(variablehandlerview){
 					variablehandlerview->UpdateView();
 				}
@@ -232,7 +237,8 @@ void IEWindow::UpdateAllVariables(BView *parentview)
 			for(i=0;i<CountChildren();i++){
 				child=ChildAt(i);
 	
-				variablehandlerview=(IEVariableHandler*)child;
+				variablehandlerview
+					= dynamic_cast<IEVariableHandler*>(child);
 				if(variablehandlerview){
 					variablehandlerview->UpdateVariable();
 				}
@@ -246,7 +252,8 @@ void IEWindow::UpdateAllVariables(BView *parentview)
 			for(i=0;i<parentview->CountChildren();i++){
 				child=parentview->ChildAt(i);
 	
-				variablehandlerview=(IEVariableHandler*)child;
+				variablehandlerview
+					= dynamic_cast<IEVariableHandler*>(child);
 				if(variablehandlerview){
 					variablehandlerview->UpdateVariable();
 				}
