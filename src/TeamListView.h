@@ -38,7 +38,7 @@ public:
 		areas_ndx = 6,
 		CPU_ndx = 7;
 	
-	TeamListView(BRect frame, const char *name, BetterScrollView **s);
+	TeamListView(BRect frame, const char *name, CLVContainerView **s);
 	
 	BPopUpMenu *operationMenu;
 	BMenu *priorityMenu;

@@ -35,7 +35,7 @@ void TeamListView::SelectionChanged()
 #include "CLVColumn.h"
 #include "SlayerApp.h"
 
-TeamListView::TeamListView(BRect frame, const char *name, BetterScrollView **s)
+TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	: ColumnListView(frame, s, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW|B_NAVIGABLE|B_FRAME_EVENTS,
 	B_MULTIPLE_SELECTION_LIST, true, true, true, false, B_FANCY_BORDER)
 {

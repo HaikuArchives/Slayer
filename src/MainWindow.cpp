@@ -21,7 +21,7 @@ MainWindow::MainWindow(void)
 	if (Lock()) {
 		BView *mainBack = FindView("MainBack");
 		BBox *scrollBox = (BBox *)FindView("MainTeamScrollerBox");
-		BetterScrollView *scrollView;
+		CLVContainerView *scrollView;
 		teamView = new TeamListView(scrollBox->Frame(), "MainTeamList", &scrollView);
 		mainBack->RemoveChild(scrollBox);
 		mainBack->AddChild(scrollView);
