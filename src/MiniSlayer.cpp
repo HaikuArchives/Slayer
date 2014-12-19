@@ -39,7 +39,7 @@ MiniSlayer::MiniSlayer(BMessage *msg)
 	// Oh well, we're instantiated from Deskbar.
 	// Find the mini icon for Slayer.
 	
-	miniIcon = new BBitmap(BRect(0.0,0.0,15.0,15.0), B_CMAP8);
+	miniIcon = new BBitmap(BRect(0.0,0.0,15.0,15.0), B_RGBA32);
 	if (!miniIcon) 
 		return;
 	

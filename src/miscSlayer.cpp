@@ -36,7 +36,7 @@ void get_app_info(team_id team, BBitmap **icon, char **name)
 	
 	file.SetTo(&info.ref, B_READ_ONLY);
 	afi.SetTo(&file);
-	*icon = new BBitmap(BRect(0.0,0.0,15.0,15.0), B_CMAP8);
+	*icon = new BBitmap(BRect(0.0,0.0,15.0,15.0), B_RGBA32);
 	if (!*icon) {return;}
 	if (afi.GetIcon(*icon, B_MINI_ICON) != B_NO_ERROR)
 		{*icon = NULL; return;}
