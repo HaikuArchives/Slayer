@@ -43,7 +43,7 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	AddColumn(new CLVColumn(NULL, 20.0, CLV_EXPANDER|CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
 	AddColumn(new CLVColumn(NULL, 20.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_RESIZABLE|
 		CLV_NOT_MOVABLE|CLV_MERGE_WITH_RIGHT));
-	AddColumn(new CLVColumn("Name", 100.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
+	AddColumn(new CLVColumn("Name", 220.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
 	AddColumn(new CLVColumn("Id", 40.0));
 	AddColumn(new CLVColumn("Priority", 50.0));
 	AddColumn(new CLVColumn("State", 60.0));
