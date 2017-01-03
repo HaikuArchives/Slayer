@@ -13,23 +13,13 @@ TABLE OF CONTENTS
 
 
 1. INTRODUCTION
-	Slayer is a program to manage BeOS teams and threads. It provides
+	Slayer is a program to manage Haiku teams and threads. It provides
 	basic functionality to kill, suspend and resume threads as well as
 	modifiying the priorities in simple and easy to use interface.
 	Slayer is freeware. You may use it and spread it freely.
 
-2 INSTALLING
-	Basic installation is easy. If you're reading this you've already unpacked
-	Slayer, and that's all there is to installing. It's ready to run.
-	Please notice that you should unpack Slayer to Be filesystem partition,
-	otherwise it's attributes won't be preserved and you're not able to
-	activate it into Deskbar.
-	If you want Slayer to start in Deskbar everytime BeOS is booted
-	you will have to edit /boot/home/config/boot/UserBootscript.
-	Add something similar to this into it:
-	<full_path>/Slayer --deskbar &
-	where <full_path> is of course the full path to the place where you
-	installed Slayer (for example /boot/home/apps/Slayer)
+2 INSTALLING/UNINSTALLING
+	The simplest way is to use HaikuDepot download and automatically install and uninstall Slayer .
 
 3. INTERFACE
 3.1 TEAM/THREAD LIST
@@ -37,7 +27,7 @@ TABLE OF CONTENTS
 	all the teams listed in a hierarchical view. Teams can be expanded
 	by clicking the arrow left to them and all the threads of that
 	team are then unveiled. You can select teams and threads in
-	standard BeOS fashion (multiple items can be selected in the list)
+	standard Haiku fashion (multiple items can be selected in the list)
 	and apply controlling operations to them (kill/suspend etc.).
 	The list is divided into columns which show various information
 	about the teams and threads. Each column, except name, can
@@ -161,9 +151,6 @@ I really do hate writing documents.
 	and see how long you can go.
 	- Giving high priorities to kernel_team's idle thread's is always a good thing
 	to do.
-	- Input server is a really unnecessary thing. We didn't have it in R3, so certainly
-	we don't need it in R4. So ya might as well kill it and get few extra CPU
-	cycles for some real work.
 
 7. LAST WORDS
 	If you tried all of the above mentioned you might not be reading this.
