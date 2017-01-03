@@ -16,10 +16,10 @@ TABLE OF CONTENTS
 	Slayer is a program to manage Haiku teams and threads. It provides
 	basic functionality to kill, suspend and resume threads as well as
 	modifiying the priorities in simple and easy to use interface.
-	Slayer is freeware. You may use it and spread it freely.
+	Slayer is distributed under the terms of GPLv3.
 
 2 INSTALLING/UNINSTALLING
-	The simplest way is to use HaikuDepot download and automatically install and uninstall Slayer .
+	Use HaikuDepot to download, install and uninstall Slayer.
 
 3. INTERFACE
 3.1 TEAM/THREAD LIST
@@ -121,8 +121,6 @@ TABLE OF CONTENTS
 		quits the currently running Slayer. Check chapter 4 for more 
 		information.
 
-I really do hate writing documents.
-
 5. SLAYER AS A DESKBAR REPLICANT
 	When Slayer is ran with --deskbar argument or you click "Dock to Deskbar"
 	button from Settings, Slayer is turned into a deskbar replicant. A red
@@ -140,19 +138,7 @@ I really do hate writing documents.
 	options for good, launch Slayer as a normal application and do the changes
 	you desire.
  
-6. SOME THINGS TO (NOT?) DO
-	I find doing these things nice and all, but not everyone might like doing
-	these. I still urge you to try them :):
-	- Give app_server team a priority of 0, and watch your lovely BeOS become
-	Windows NT 2020. You can get tomorrow's power today!
-	- Giving negative priority values to threads might give funny results too.
-	Especially if you give them to app_server or kernel_team.
-	- Try the app_server game: start killing/suspending threads from app_server
-	and see how long you can go.
-	- Giving high priorities to kernel_team's idle thread's is always a good thing
-	to do.
-
-7. LAST WORDS
+6. LAST WORDS
 	If you tried all of the above mentioned you might not be reading this.
 	But anyway, I'd like to thank two people for making possible for me to
 	come up with this program in reasonable time:
