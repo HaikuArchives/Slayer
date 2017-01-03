@@ -624,7 +624,7 @@ resource(2, "AboutWindow") #'ARCV' archive BWindow {
 			"_color" = 1532713728,
 			"_dmod" = 1,
 			"_ploc" = point { 203.004, 10.1699 },
-			"_text" = "BeOS R4. Use at your own risk.",
+			"_text" = "Haiku. Use at your own risk.",
 			"_align" = 0
 		},
 		"_views" = archive BStringView {
