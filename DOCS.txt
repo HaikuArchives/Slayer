@@ -118,7 +118,7 @@ TABLE OF CONTENTS
 		Workspace you want Slayer to open in.
 	Dock to Deskbar
 		Pressing this button immediately assigns Slayer into Deskbar and
-		quits the currently running Slayer. Check chapter 4 for more 
+		quits the currently running Slayer. Check chapter 5 for more 
 		information.
 
 5. SLAYER AS A DESKBAR REPLICANT
@@ -139,8 +139,7 @@ TABLE OF CONTENTS
 	you desire.
  
 6. LAST WORDS
-	If you tried all of the above mentioned you might not be reading this.
-	But anyway, I'd like to thank two people for making possible for me to
+	I'd like to thank two people for making possible for me to
 	come up with this program in reasonable time:
 	Brian Tietz. His excellent ColumnListView is used to display the columns.
 	Attila Mezei. Interface Elements is a must tool to create the interfaces.
