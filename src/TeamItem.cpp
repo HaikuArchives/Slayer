@@ -20,6 +20,7 @@
 #include "MainWindow.h"
 #include "RgbColor.h"
 #include <stdlib.h>
+#include <private/shared/StringForSize.h>
 
 TeamItem::TeamItem() : CLVEasyItem() { thread_items_list = 0; }
 	
@@ -57,10 +58,7 @@ TeamItem::TeamItem(team_info *info) : CLVEasyItem(0, true, true)
 	SetColumnContent(TeamListView::state_ndx, "-", false);
 
 	if (memory_usage <= 0) strcpy(str,"-");
-	else if (memory_usage >= 1024)
-		sprintf(str, "%ld kB", memory_usage / 1024);
-	else
-		sprintf(str, "%ld bytes", memory_usage);
+	else string_for_size(memory_usage, str, sizeof(str));
 
 	SetColumnContent(TeamListView::areas_ndx, str, false);
 
@@ -93,10 +91,7 @@ int32 TeamItem::update(team_info *info)
 			memory_usage = mem;
 		
 			char str[21];
-			if (memory_usage >= 1024)
-				sprintf(str, "%ld kB", memory_usage / 1024);
-			else
-				sprintf(str, "%ld bytes", memory_usage);
+			string_for_size(memory_usage, str, sizeof(str));
 	
 			SetColumnContent(TeamListView::areas_ndx, str, false);
 		
