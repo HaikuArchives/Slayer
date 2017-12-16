@@ -2,6 +2,7 @@ Slayer
 ===============================
 LICENSE: GPLv3  
 Process controller (with extra features!) in a window.
+![Slayer](slayer.png)
 
 Author's comments: 
 > The #defines for header files start with "_" which is bad practice. Well,
