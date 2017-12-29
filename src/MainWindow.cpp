@@ -61,7 +61,10 @@ MainWindow::MainWindow(void)
 
 		// Menu color hack to go around archiving bug(?) 
 		FixArchive();
-		
+
+		if (teamView != NULL)
+			teamView->MakeFocus();
+
 		refreshThread->Go();
 		Unlock();
 	}

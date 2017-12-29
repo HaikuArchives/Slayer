@@ -89,6 +89,27 @@ void TeamListView::SelectionChanged()
 	Window()->PostMessage(SELECTION_CHANGED);
 }
 
+
+void
+TeamListView::KeyDown(const char* bytes, int32 numBytes)
+{
+	TeamItem* item = (TeamItem*) ItemAt(CurrentSelection());
+
+	switch (bytes[0]) {
+		case B_LEFT_ARROW:
+			if (item != NULL && item->IsSuperItem() && item->IsExpanded())
+				Collapse(item);
+			break;
+		case B_RIGHT_ARROW:
+			if (item != NULL && item->IsSuperItem() && !item->IsExpanded())
+				Expand(item);
+			break;
+		default:
+			ColumnListView::KeyDown(bytes, numBytes);
+	}
+}
+
+
 void TeamListView::MouseDown(BPoint point)
 {
 	ColumnListView::MouseDown(point);
