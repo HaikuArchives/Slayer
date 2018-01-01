@@ -18,8 +18,11 @@
 **/
 #include "Options.h"
 #include <StorageKit.h>
+#include <Catalog.h>
 
 #define SETTINGS_FILE "Slayer_settings"
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "Options"
 
 Options::Options()
 {
@@ -36,17 +39,17 @@ Options::Options()
 void Options::Save()
 {
 	BPath path;
-	
+
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path, true) != B_OK) {
-		printf("Couldn't save options\n");
+		printf(B_TRANSLATE("Couldn't save options\n"));
 		return;
 	}
-	
+
 	path.SetTo(path.Path(), SETTINGS_FILE);
 
 	BFile node(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
 	if (node.InitCheck() != B_NO_ERROR) {
-		printf("Couldn't open file for saving\n");
+		printf(B_TRANSLATE("Couldn't open file for saving\n"));
 		return;
 	}
 
@@ -71,19 +74,19 @@ void Options::Save()
 void Options::Load()
 {
 	BPath path;
-	
+
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path, true)) {
-		printf("Couldn't load options (user settings dir not found)\n");
+		printf(B_TRANSLATE("Couldn't load options (user settings dir not found)\n"));
 		return;
 	}
 	path.SetTo(path.Path(), SETTINGS_FILE);
-	
+
 	BNode node(path.Path());
 	if (node.InitCheck() != B_NO_ERROR)
 		return;
 
 	char tmp;
-	
+
 	node.ReadAttr("refresh", B_INT32_TYPE, 0, &refresh, sizeof(int32));
 	node.ReadAttr("save_wind_pos", B_CHAR_TYPE, 0, &tmp,
 		sizeof(tmp)); save_wind_pos = tmp;
@@ -97,7 +100,7 @@ void Options::Load()
 		sizeof(wind_minimized)); wind_minimized = tmp;
 	node.ReadAttr("wind_rect", B_RECT_TYPE, 0, &wind_rect,
 		sizeof(wind_rect));
-		
+
 	node.ReadAttr("shown_columns", B_INT32_TYPE, 0, &shown_columns, sizeof(shown_columns));
 }
 
