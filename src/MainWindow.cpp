@@ -11,9 +11,12 @@
 #include "BetterScrollView.h"
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
-#include "AboutWindow.h"
 #include <AboutWindow.h>
 #include <Catalog.h>
+
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "MainWindow"
+extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
 	: IEWindow("MainWindow")
@@ -63,10 +66,7 @@ MainWindow::MainWindow(void)
 
 		// Menu color hack to go around archiving bug(?) 
 		FixArchive();
-
-		if (teamView != NULL)
-			teamView->MakeFocus();
-
+		
 		refreshThread->Go();
 		Unlock();
 	}
@@ -159,16 +159,15 @@ void MainWindow::MessageReceived(BMessage *message)
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_ABOUT_SLAYER___:    // "About…" is selected from menu…
 		{
-			BAboutWindow* fAboutWin = new BAboutWindow(B_TRANSLATE_SYSTEM_NAME("Slayer"), SLAYER_VERSION);
+			BAboutWindow* fAboutWin = new BAboutWindow(B_TRANSLATE_SYSTEM_NAME("Slayer"), slayer_signature);
 			fAboutWin->AddDescription(B_TRANSLATE("A thread manager for Haiku"));
 			fAboutWin->SetVersion(SLAYER_VERSION);
-			//fAboutWin->AddCopyright(2000, "Arto Jalkanen (GPL v3)");
+			fAboutWin->AddCopyright(1999, "Arto Jalkanen");
 			fAboutWin->AddText(B_TRANSLATE(
 				"Author:\nArto Jalkanen (ajalkane@cc.hut.fi)\n\n"
 				"Thanks to:\n"
 				"Attila Mezei for Interface Elements\n"
-				"Brian Tietz for ColumnListView"
-			));
+				"Brian Tietz for ColumnListView"));
 			fAboutWin->Show();
 		}
 			break;
@@ -339,7 +338,7 @@ void MainWindow::UpdateTeams()
 
 		}
 		total_CPU_diff += team_item->CPU_diff;
-		if (total_CPU_diff < 0) printf("Error. CPU diff out of bounds\n");
+		if (total_CPU_diff < 0) printf(B_TRANSLATE("Error. CPU diff out of bounds\n"));
 	}
 	total_CPU_diff += idle_CPU_diff;
 
@@ -698,5 +697,4 @@ void MainWindow::FixArchive()
 	BMenuField *Priority = (BMenuField *)FindView("MainPriorityField");
 	fix_menu(Priority->Menu(), &mi); // ->SetViewColor(mi.background_color);
 	Priority->MenuBar()->SetViewColor(mi.background_color);
-}
-
+}  
