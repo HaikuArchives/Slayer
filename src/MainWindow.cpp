@@ -12,6 +12,8 @@
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
 #include "AboutWindow.h"
+#include <AboutWindow.h>
+#include <Catalog.h>
 
 MainWindow::MainWindow(void)
 	: IEWindow("MainWindow")
@@ -157,13 +159,17 @@ void MainWindow::MessageReceived(BMessage *message)
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_ABOUT_SLAYER___:    // "About…" is selected from menu…
 		{
-			BWindow *about = slayer->FindWindow("About Slayer");
-			if (!about)
-				new AboutWindow();
-			else if (about->Lock()) {
-				about->Activate(true);
-				about->Unlock();
-			}
+			BAboutWindow* fAboutWin = new BAboutWindow(B_TRANSLATE_SYSTEM_NAME("Slayer"), SLAYER_VERSION);
+			fAboutWin->AddDescription(B_TRANSLATE("A thread manager for Haiku"));
+			fAboutWin->SetVersion(SLAYER_VERSION);
+			//fAboutWin->AddCopyright(2000, "Arto Jalkanen (GPL v3)");
+			fAboutWin->AddText(B_TRANSLATE(
+				"Author:\nArto Jalkanen (ajalkane@cc.hut.fi)\n\n"
+				"Thanks to:\n"
+				"Attila Mezei for Interface Elements\n"
+				"Brian Tietz for ColumnListView"
+			));
+			fAboutWin->Show();
 		}
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_QUIT:    // "Quit" is selected from menu…
