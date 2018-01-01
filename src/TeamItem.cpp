@@ -20,7 +20,7 @@
 #include "MainWindow.h"
 #include "RgbColor.h"
 #include <stdlib.h>
-#include <private/shared/StringForSize.h>
+#include <StringForSize.h>
 
 TeamItem::TeamItem() : CLVEasyItem() { thread_items_list = 0; }
 	
