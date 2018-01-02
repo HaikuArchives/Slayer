@@ -34,10 +34,6 @@ void TeamListView::SelectionChanged()
 #include "TeamListView.h"
 #include "CLVColumn.h"
 #include "SlayerApp.h"
-#include <Catalog.h>
-
-#undef B_TRANSLATION_CONTEXT
-#define B_TRANSLATION_CONTEXT "TeamListView"
 
 TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	: ColumnListView(frame, s, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW|B_NAVIGABLE|B_FRAME_EVENTS,
@@ -47,12 +43,12 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	AddColumn(new CLVColumn(NULL, 20.0, CLV_EXPANDER|CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
 	AddColumn(new CLVColumn(NULL, 20.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_RESIZABLE|
 		CLV_NOT_MOVABLE|CLV_MERGE_WITH_RIGHT));
-	AddColumn(new CLVColumn(B_TRANSLATE("Name"), 220.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
-	AddColumn(new CLVColumn(B_TRANSLATE("Id"), 40.0));
-	AddColumn(new CLVColumn(B_TRANSLATE("Priority"), 50.0));
-	AddColumn(new CLVColumn(B_TRANSLATE("State"), 60.0));
-	AddColumn(new CLVColumn(B_TRANSLATE("Memory"), 60.0));
-	AddColumn(new CLVColumn(B_TRANSLATE("CPU"), 60.0));
+	AddColumn(new CLVColumn("Name", 220.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
+	AddColumn(new CLVColumn("Id", 40.0));
+	AddColumn(new CLVColumn("Priority", 50.0));
+	AddColumn(new CLVColumn("State", 60.0));
+	AddColumn(new CLVColumn("Memory", 60.0));
+	AddColumn(new CLVColumn("CPU", 60.0));
 
 	SetInvocationMessage(new BMessage(TEAM_INV));
 
@@ -60,13 +56,13 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	BMenuItem *inv;
 
 	operationMenu = new BPopUpMenu("operationMenu", false, false);
-	operationMenu->AddItem((inv = new BMenuItem(B_TRANSLATE("Kill"),
+	operationMenu->AddItem((inv = new BMenuItem("Kill",
 		new BMessage(IE_MAINWINDOW_MAINKILL))));
 		inv->SetTarget(slayer->mainWindow);
-	operationMenu->AddItem((inv = new BMenuItem(B_TRANSLATE("Suspend"),
+	operationMenu->AddItem((inv = new BMenuItem("Suspend",
 		new BMessage(IE_MAINWINDOW_MAINSUSPEND))));
 		inv->SetTarget(slayer->mainWindow);
-	operationMenu->AddItem((inv = new BMenuItem(B_TRANSLATE("Resume"),
+	operationMenu->AddItem((inv = new BMenuItem("Resume",
 		new BMessage(IE_MAINWINDOW_MAINRESUME))));
 		inv->SetTarget(slayer->mainWindow);
 	operationMenu->AddSeparatorItem();
