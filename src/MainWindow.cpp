@@ -30,12 +30,12 @@ MainWindow::MainWindow(void)
 		teamView = new TeamListView(scrollBox->Frame(), "MainTeamList", &scrollView);
 		mainBack->RemoveChild(scrollBox);
 		mainBack->AddChild(scrollView);
-	
+
 		team_items_list = 0;
 		team_amount = 0;
 		iteration = 0;
 
-		refreshThread = new RefreshThread();		
+		refreshThread = new RefreshThread();
 		UpdateTeams();
 		SetButtonState();
 
@@ -50,10 +50,10 @@ MainWindow::MainWindow(void)
 			SetWorkspaces(B_ALL_WORKSPACES);
 		else if (slayer->options.workspace_activation == Options::saved_workspace)
 			SetWorkspaces(slayer->options.workspaces);
-			
+
 		if (slayer->options.wind_minimized)
 			Minimize(true);
-					
+
 		// Quitting has to be disabled if docked
 		if (slayer->docked) {
 			BMenu *menu = (BMenu *)FindView("MainMenu");
@@ -64,9 +64,12 @@ MainWindow::MainWindow(void)
 		// Set columns
 		SetColumn(slayer->options.shown_columns);
 
-		// Menu color hack to go around archiving bug(?) 
+		// Menu color hack to go around archiving bug(?)
 		FixArchive();
-		
+
+		if (teamView != NULL)
+			teamView->MakeFocus();
+
 		refreshThread->Go();
 		Unlock();
 	}
@@ -152,7 +155,7 @@ void MainWindow::MessageReceived(BMessage *message)
 			DoPriority();
 			UpdateTeams();
 			SetButtonState();
-			break;			
+			break;
 		case IE_MAINWINDOW_MAINUPDATE:
 			UpdateTeams();
 			SetButtonState();
@@ -182,7 +185,7 @@ void MainWindow::MessageReceived(BMessage *message)
 
 		case IE_MAINWINDOW_MAINMENU_EDIT_PASTE:    // "Paste" is selected from menu…
 			break;
-		
+
 		case IE_MAINWINDOW_MAINMENU_COLUMNS_ID:
 			SwitchColumn(Options::id_col, message->what);
 			break;
@@ -232,7 +235,7 @@ void MainWindow::Quit()
 	// the window with close button, or if Application wants to close
 	// all windows:
 	BMessage *msg = CurrentMessage();  // this is null if called outside BMessageReceived loop
-	                                   // -> message from application 
+	                                   // -> message from application
 	if (slayer->docked && msg != NULL)
 		Minimize(true);
 	else
@@ -243,7 +246,7 @@ void MainWindow::Minimize(bool minimize)
 {
 	minimized = minimize;
 	IEWindow::Minimize(minimize);
-	
+
 	// if window is minimized, remove update thread. If window un-minimized, restart it.
 	if (minimized && refreshThread != NULL) {
 		// Gotta get rid of the refresh thread
@@ -275,23 +278,23 @@ void MainWindow::UpdateTeams()
 
 	DisableUpdates();
 
-	if (!team_items_list) 
+	if (!team_items_list)
 		team_items_list = new Hashtable;
 
 	app_info inf;
 	thread_info thinf;
 	int32 th_cookie, te_cookie;
 	int32 i;
-	
+
 	team_info teinf;
-	
+
 	te_cookie = 0;
 
 	iteration = (iteration + 1) % 2;
 
 	total_CPU_diff = 0;
 	int idle_CPU_diff = 0;
-		
+
 	for (i = 0; get_next_team_info(&te_cookie, &teinf) == B_NO_ERROR; i++) {
 		if (!(team_item = (TeamItem *)team_items_list->get(teinf.team))) {
 			team_item = new TeamItem(&teinf);
@@ -299,7 +302,7 @@ void MainWindow::UpdateTeams()
 			team_item->SetExpanded(false);
 			team_items_list->put(teinf.team, team_item);
 			teamView->AddItem(team_item);
-				
+
 			team_item->CPU_diff = 0;
 			for (th_cookie = 0; get_next_thread_info(team_item->team, &th_cookie, &thinf) == B_OK;) {
 				thread_item = new ThreadItem(&thinf);
@@ -316,8 +319,8 @@ void MainWindow::UpdateTeams()
 		else {
 			team_item->update(&teinf);
 			team_item->refreshed = iteration;
-		
-			team_item->CPU_diff = 0;	
+
+			team_item->CPU_diff = 0;
 			for (th_cookie = 0; get_next_thread_info(team_item->team, &th_cookie, &thinf) == B_OK;) {
 				if (!(thread_item = (ThreadItem *)team_item->thread_items_list->get(thinf.thread))) {
 					thread_item = new ThreadItem(&thinf);
@@ -334,11 +337,11 @@ void MainWindow::UpdateTeams()
 					team_item->CPU_diff += thread_item->CPU_diff;
 				} else
 					idle_CPU_diff += thread_item->CPU_diff;
-			} 
+			}
 
 		}
 		total_CPU_diff += team_item->CPU_diff;
-		if (total_CPU_diff < 0) printf(B_TRANSLATE("Error. CPU diff out of bounds\n"));
+		if (total_CPU_diff < 0) printf("Error. CPU diff out of bounds\n");
 	}
 	total_CPU_diff += idle_CPU_diff;
 
@@ -352,7 +355,7 @@ void MainWindow::UpdateTeams()
 	EnableUpdates();
 }
 
-void MainWindow::RemoveProcessItems(BList *items) 
+void MainWindow::RemoveProcessItems(BList *items)
 {
 	CLVListItem **p = (CLVListItem **)items->Items();
 	int32 i;
@@ -368,7 +371,7 @@ void MainWindow::RemoveProcessItems(BList *items)
 			// can be null if the team is already taken away
 			if (team_item != NULL)
 				team_item->thread_items_list->del(((ThreadItem *)p[i])->thread);
-		
+
 			delete ((ThreadItem *)p[i]);
 		}
 	}
@@ -377,7 +380,7 @@ void MainWindow::RemoveProcessItems(BList *items)
 
 bool postlistproc(CLVListItem *item, void *_wnd)
 {
-	MainWindow *wnd = (MainWindow *)_wnd;	
+	MainWindow *wnd = (MainWindow *)_wnd;
 	if (!item->OutlineLevel()) {
 		if (((TeamItem *)item)->refreshed != wnd->iteration)
 			wnd->RemoveList.AddItem((void *)item);
@@ -397,16 +400,16 @@ bool postlistproc(CLVListItem *item, void *_wnd)
 				if (rect.right && rect.bottom) wnd->teamView->Invalidate(rect);
 			}
 			((TeamItem *)item)->changed = 0;
-			
+
 			float CPU = ((float)((TeamItem *)item)->CPU_diff) / wnd->total_CPU_diff;
 			if ((CPU != ((TeamItem *)item)->CPU) &&
 			    (slayer->options.shown_columns & Options::cpu_col)) {
-	
+
 				CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
 				((TeamItem *)item)->CPU = CPU;
 				item->DrawItemColumn(wnd->teamView, item->ItemColumnFrame(
 					TeamListView::CPU_ndx, wnd->teamView), TeamListView::CPU_ndx, true);
-			} 
+			}
 		}
 	}
 	else {
@@ -429,7 +432,7 @@ bool postlistproc(CLVListItem *item, void *_wnd)
 					ch &= ~(ThreadItem::state_chg);
 				}
 				else ch = 0;
-				
+
 				if (rect.right && rect.bottom) wnd->teamView->Invalidate(rect);
 			}
 			((ThreadItem *)item)->changed = 0;
@@ -443,17 +446,17 @@ bool postlistproc(CLVListItem *item, void *_wnd)
 				item->DrawItemColumn(wnd->teamView, item->ItemColumnFrame(
 					TeamListView::CPU_ndx, wnd->teamView), TeamListView::CPU_ndx, true);
 			}
-			
+
 		}
 	}
 	return false;
 }
 
-void MainWindow::DoKill(void) 
+void MainWindow::DoKill(void)
 {
 	BListItem 	*gItem;
 	int32		selected, i = 0;
-	
+
 	for (; (selected = teamView->CurrentSelection(i)) >= 0; i++) {
 		// is a team or thread?
 		gItem = teamView->ItemAt(selected);
@@ -468,7 +471,7 @@ void MainWindow::DoPriority(int32 priority)
 {
 	// BListItem 	*gItem;
 	CLVListItem	*gItem;
-	
+
 	int32		selected, i = 0;
 
 	for (; (selected = teamView->CurrentSelection(i)) >= 0; i++) {
@@ -480,10 +483,10 @@ void MainWindow::DoPriority(int32 priority)
 			// this is for ColumnListView
 			int32 ir = teamView->FullListIndexOf(gItem) + 1,
 				iu = teamView->FullListNumberOfSubitems(gItem) + ir;
-				
+
 			for (; ir < iu; ir++)
 				set_thread_priority(((ThreadItem *)teamView->FullListItemAt(ir))->thread,
-				                    priority);			    
+				                    priority);
 		}
 		else
 			set_thread_priority(((ThreadItem *)gItem)->thread, priority);
@@ -493,7 +496,7 @@ void MainWindow::DoPriority(int32 priority)
 void MainWindow::DoPriority()
 {
 	BTextControl *PriorityValue = (BTextControl *)FindView("MainPriorityValue");
-	if (strcmp("", PriorityValue->Text())) { 
+	if (strcmp("", PriorityValue->Text())) {
 		int32 value;
 		value = atoi(PriorityValue->Text());
 		DoPriority(value);
@@ -552,7 +555,7 @@ void MainWindow::SetButtonState()
 	BButton *Resume = (BButton *)FindView("MainResume");
 	int32 sel = teamView->CurrentSelection();
 	bool is_sel = (sel >= 0 ? true : false);
-	
+
 	Kill->SetEnabled(is_sel);
 	Suspend->SetEnabled(is_sel);
 	Resume->SetEnabled(is_sel);
@@ -564,7 +567,7 @@ void MainWindow::SetButtonState()
 	if (item) item->SetEnabled(is_sel);
 	item = menu->FindItem(IE_MAINWINDOW_MAINMENU_ACTION_RESUME);
 	if (item) item->SetEnabled(is_sel);
-		
+
 	SetPriorityState();
 }
 
@@ -576,13 +579,13 @@ void MainWindow::SetPriorityState()
 
 	Priority->SetEnabled((sel >= 0 ? true : false));
 	PriorityValue->SetEnabled((sel >= 0 ? true : false));
-	
+
 	if (sel >= 0) {
 		BListItem *gItem = teamView->ItemAt(sel);
 		int32 priority;
 		BMenuItem *it;
-		
-		// if single thread selected	
+
+		// if single thread selected
 		if (gItem->OutlineLevel() && teamView->CurrentSelection(1) < 0) {
 			char pr_text[10] = "";
 			priority = ((ThreadItem *)gItem)->priority;
@@ -590,8 +593,8 @@ void MainWindow::SetPriorityState()
 			// set only if the new value is different from the old
 			if (strcmp(pr_text, PriorityValue->Text()))
 				PriorityValue->SetText(pr_text);
-		
-			SetPriorityField(priority);	
+
+			SetPriorityField(priority);
 		}
 		else if ((it = Priority->Menu()->ItemAt(0))) {
 			if (strcmp("", PriorityValue->Text()))
@@ -599,9 +602,9 @@ void MainWindow::SetPriorityState()
 				PriorityValue->SetText("");
 
 			if (!it->IsMarked()) it->SetMarked(true);
-				
+
 		}
-	}	
+	}
 }
 
 void MainWindow::SetPriorityField(int32 priority)
@@ -610,7 +613,7 @@ void MainWindow::SetPriorityField(int32 priority)
 
 	int32 c = -1;
 	BMenuItem *it;
-	
+
 	if      (priority < B_NORMAL_PRIORITY)
 		c = IE_MAINWINDOW_MAINPRIORITYFIELD_LOW_PRIORITY;
 	else if (priority < B_DISPLAY_PRIORITY)
@@ -618,12 +621,12 @@ void MainWindow::SetPriorityField(int32 priority)
 	else if (priority < B_REAL_TIME_DISPLAY_PRIORITY)
 		c = IE_MAINWINDOW_MAINPRIORITYFIELD_DISPLAY_PRIORITY;
 	else if (priority < B_URGENT_PRIORITY)
-		c = IE_MAINWINDOW_MAINPRIORITYFIELD_REAL_TIME_DISPLAY_PRIORITY;	
+		c = IE_MAINWINDOW_MAINPRIORITYFIELD_REAL_TIME_DISPLAY_PRIORITY;
 	else if (priority < B_REAL_TIME_PRIORITY)
 		c = IE_MAINWINDOW_MAINPRIORITYFIELD_URGENT_PRIORITY;
 	else if (priority >= B_REAL_TIME_PRIORITY)
 		c = IE_MAINWINDOW_MAINPRIORITYFIELD_REAL_TIME_PRIORITY;
-	
+
 	it = Priority->Menu()->FindItem(c);
 	if (it && !it->IsMarked())
 		it->SetMarked(true);
@@ -634,7 +637,7 @@ void MainWindow::SwitchColumn(int32 col_id, int32 menuid)
 	BMenu *menu = (BMenu *)FindView("MainMenu");
 	BMenuItem *item = menu->FindItem(menuid);
 	bool marked = item->IsMarked();
-	
+
 	if (marked)
 		slayer->options.shown_columns &= ~col_id;
 	else
@@ -642,9 +645,9 @@ void MainWindow::SwitchColumn(int32 col_id, int32 menuid)
 
 //	slayer->options.shown_columns = (marked ? (slayer->options.shown_columns & ~col_id : slayer->options.shown_columns | col_id));
 	item->SetMarked(marked ? false : true);
-	
+
 	teamView->SetShownColumns(slayer->options.shown_columns);
-	
+
 	if (!marked) UpdateTeams();
 }
 
@@ -670,18 +673,18 @@ void MainWindow::SetColumn(int32 col_mask)
 	item = menu->FindItem(IE_MAINWINDOW_MAINMENU_COLUMNS_CPU);
 	item->SetMarked(col_mask & Options::cpu_col ? true : false);
 
-	teamView->SetShownColumns(slayer->options.shown_columns);		
+	teamView->SetShownColumns(slayer->options.shown_columns);
 }
 
-void fix_menu(BMenu *menu, menu_info *mi) 
+void fix_menu(BMenu *menu, menu_info *mi)
 {
 	int32 items = menu->CountItems();
 	int32 run = 0;
 	BMenu *sub;
 
 	menu->SetViewColor(mi->background_color);
-		
-	for (; run < items; run++) 
+
+	for (; run < items; run++)
 		if ((sub = menu->SubmenuAt(run)) != NULL)
 			fix_menu(sub, mi);
 }
@@ -690,11 +693,12 @@ void MainWindow::FixArchive()
 {
 	menu_info mi;
 	get_menu_info(&mi);
-	
+
 	BMenu *menu = (BMenu *)FindView("MainMenu");
 	fix_menu(menu, &mi);
-	
+
 	BMenuField *Priority = (BMenuField *)FindView("MainPriorityField");
 	fix_menu(Priority->Menu(), &mi); // ->SetViewColor(mi.background_color);
 	Priority->MenuBar()->SetViewColor(mi.background_color);
-}  
+}
+

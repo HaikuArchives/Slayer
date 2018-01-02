@@ -17,12 +17,15 @@
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
 **/
 #include "ThreadItem.h"
-
+#include <Catalog.h>
 #include "SlayerApp.h"
 #include "Options.h"
 
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "ThreadItem"
+
 ThreadItem::ThreadItem() : CLVEasyItem(1) {}
-	
+
 ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 {
 	thread = info->thread;
@@ -35,7 +38,7 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	CPU_diff = user_time + kernel_time;
 	CPU = 0.0;
 	strcpy(name, info->name);
-	
+
 	char str[21], *strp;
 	SetColumnContent(TeamListView::name_ndx, name,false);
 	sprintf(str, "%ld", thread);
@@ -44,19 +47,19 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	SetColumnContent(TeamListView::priority_ndx, str,false);
 	switch (state) {
 	case B_THREAD_RUNNING:
-		strp = "Running"; break;
+		strp = strdup(B_TRANSLATE("Running")); break;
 	case B_THREAD_READY:
-		strp = "Ready"; break;
+		strp = strdup(B_TRANSLATE("Ready")); break;
 	case B_THREAD_SUSPENDED:
-		strp = "Suspended"; break;
+		strp = strdup(B_TRANSLATE("Suspended")); break;
 	case B_THREAD_WAITING:
-		strp = "Waiting"; break;
+		strp = strdup(B_TRANSLATE("Waiting")); break;
 	case B_THREAD_RECEIVING:
-		strp = "Receiving"; break;
+		strp = strdup(B_TRANSLATE("Receiving")); break;
 	case B_THREAD_ASLEEP:
-		strp = "Sleeping"; break;
+		strp = strdup(B_TRANSLATE("Sleeping")); break;
 	default:
-		strp = "Undefined"; break;
+		strp = strdup(B_TRANSLATE("Undefined")); break;
 	}
 	SetColumnContent(TeamListView::state_ndx, strp, false);
 	SetColumnContent(TeamListView::areas_ndx, "-", false);
@@ -66,13 +69,13 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	changed = 0;
 }
 
-void ThreadItem::update(thread_info *info) 
+void ThreadItem::update(thread_info *info)
 {
 	char str[21], *strp;
 	CPU_diff = (info->user_time-user_time)+(info->kernel_time-kernel_time);
 	user_time = info->user_time;
 	kernel_time = info->kernel_time;
-	
+
 	if (strcmp(info->name, name) &&
 	    (slayer->options.shown_columns & Options::name_col)) {
 
@@ -95,24 +98,24 @@ void ThreadItem::update(thread_info *info)
 
 		switch (state) {
 		case B_THREAD_RUNNING:
-			strp = "Running"; break;
+			strp = strdup(B_TRANSLATE("Running")); break;
 		case B_THREAD_READY:
-			strp = "Ready"; break;
+			strp = strdup(B_TRANSLATE("Ready")); break;
 		case B_THREAD_SUSPENDED:
-			strp = "Suspended"; break;
+			strp = strdup(B_TRANSLATE("Suspended")); break;
 		case B_THREAD_WAITING:
-			strp = "Waiting"; break;
+			strp = strdup(B_TRANSLATE("Waiting")); break;
 		case B_THREAD_RECEIVING:
-			strp = "Receiving"; break;
+			strp = strdup(B_TRANSLATE("Receiving")); break;
 		case B_THREAD_ASLEEP:
-			strp = "Sleeping"; break;
+			strp = strdup(B_TRANSLATE("Sleeping")); break;
 		default:
-			strp = "Undefined"; break;
+			strp = strdup(B_TRANSLATE("Undefined")); break;
 		}
 		SetColumnContent(TeamListView::state_ndx, strp, false);
 		changed |= state_chg;
 	}
-}		
+}
 
 void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 		columnIndex, bool complete = false)
@@ -120,7 +123,7 @@ void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 	if (columnIndex != TeamListView::CPU_ndx)
 		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
 			complete);
-			
+
 	BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
 	float sright = colRect.right;
 	colRect.bottom -= 1.0;
