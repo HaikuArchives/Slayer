@@ -88,7 +88,7 @@ LIBPATHS=
 #	thes use the form: #include <header>
 #	source file directories are NOT auto-included here
 SYSTEM_INCLUDE_PATHS = /system/develop/headers/private/interface/ \
-					   /system/develop/headers/private/shared/
+		       /system/develop/headers/private/shared/
 
 #	additional paths to look for local headers
 #	thes use the form: #include "header"
