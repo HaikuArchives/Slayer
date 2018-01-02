@@ -68,7 +68,7 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	operationMenu->AddSeparatorItem();
 	priorityMenu = new BMenu("PriorityMenu");
 	BMenuItem *pr = new BMenuItem(priorityMenu); //, new BMessage('tmpj'));
-	pr->SetLabel(B_TRANSLATE("Set priority"));
+	pr->SetLabel("Set priority");
 	operationMenu->AddItem(pr);
 	ItemsToPopUpPriorityMenu();
 
