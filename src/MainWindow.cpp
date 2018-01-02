@@ -12,10 +12,7 @@
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
 #include <AboutWindow.h>
-#include <Catalog.h>
 
-#undef B_TRANSLATION_CONTEXT
-#define B_TRANSLATION_CONTEXT "MainWindow"
 extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
@@ -162,15 +159,15 @@ void MainWindow::MessageReceived(BMessage *message)
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_ABOUT_SLAYER___:    // "About…" is selected from menu…
 		{
-			BAboutWindow* fAboutWin = new BAboutWindow(B_TRANSLATE_SYSTEM_NAME("Slayer"), slayer_signature);
-			fAboutWin->AddDescription(B_TRANSLATE("A thread manager for Haiku"));
+			BAboutWindow* fAboutWin = new BAboutWindow("Slayer", slayer_signature);
+			fAboutWin->AddDescription("A thread manager for Haiku");
 			fAboutWin->SetVersion(SLAYER_VERSION);
 			fAboutWin->AddCopyright(1999, "Arto Jalkanen");
-			fAboutWin->AddText(B_TRANSLATE(
+			fAboutWin->AddText(
 				"Author:\nArto Jalkanen (ajalkane@cc.hut.fi)\n\n"
 				"Thanks to:\n"
 				"Attila Mezei for Interface Elements\n"
-				"Brian Tietz for ColumnListView"));
+				"Brian Tietz for ColumnListView");
 			fAboutWin->Show();
 		}
 			break;
