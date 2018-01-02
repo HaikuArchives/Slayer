@@ -17,12 +17,8 @@
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
 **/
 #include "ThreadItem.h"
-#include <Catalog.h>
 #include "SlayerApp.h"
 #include "Options.h"
-
-#undef B_TRANSLATION_CONTEXT
-#define B_TRANSLATION_CONTEXT "ThreadItem"
 
 ThreadItem::ThreadItem() : CLVEasyItem(1) {}
 
@@ -47,19 +43,19 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	SetColumnContent(TeamListView::priority_ndx, str,false);
 	switch (state) {
 	case B_THREAD_RUNNING:
-		strp = strdup(B_TRANSLATE("Running")); break;
+		strp = "Running"; break;
 	case B_THREAD_READY:
-		strp = strdup(B_TRANSLATE("Ready")); break;
+		strp = "Ready"; break;
 	case B_THREAD_SUSPENDED:
-		strp = strdup(B_TRANSLATE("Suspended")); break;
+		strp = "Suspended"; break;
 	case B_THREAD_WAITING:
-		strp = strdup(B_TRANSLATE("Waiting")); break;
+		strp = "Waiting"; break;
 	case B_THREAD_RECEIVING:
-		strp = strdup(B_TRANSLATE("Receiving")); break;
+		strp = "Receiving"; break;
 	case B_THREAD_ASLEEP:
-		strp = strdup(B_TRANSLATE("Sleeping")); break;
+		strp = "Sleeping"; break;
 	default:
-		strp = strdup(B_TRANSLATE("Undefined")); break;
+		strp = "Undefined"; break;
 	}
 	SetColumnContent(TeamListView::state_ndx, strp, false);
 	SetColumnContent(TeamListView::areas_ndx, "-", false);
@@ -98,19 +94,19 @@ void ThreadItem::update(thread_info *info)
 
 		switch (state) {
 		case B_THREAD_RUNNING:
-			strp = strdup(B_TRANSLATE("Running")); break;
+			strp = "Running"; break;
 		case B_THREAD_READY:
-			strp = strdup(B_TRANSLATE("Ready")); break;
+			strp = "Ready"; break;
 		case B_THREAD_SUSPENDED:
-			strp = strdup(B_TRANSLATE("Suspended")); break;
+			strp = "Suspended"; break;
 		case B_THREAD_WAITING:
-			strp = strdup(B_TRANSLATE("Waiting")); break;
+			strp = "Waiting"; break;
 		case B_THREAD_RECEIVING:
-			strp = strdup(B_TRANSLATE("Receiving")); break;
+			strp = "Receiving"; break;
 		case B_THREAD_ASLEEP:
-			strp = strdup(B_TRANSLATE("Sleeping")); break;
+			strp = "Sleeping"; break;
 		default:
-			strp = strdup(B_TRANSLATE("Undefined")); break;
+			strp = "Undefined"; break;
 		}
 		SetColumnContent(TeamListView::state_ndx, strp, false);
 		changed |= state_chg;
