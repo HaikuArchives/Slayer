@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
 **/
-#include "ThreadItem.h"
-#include "SlayerApp.h"
 #include "Options.h"
+#include "SlayerApp.h"
+#include "ThreadItem.h"
 
 ThreadItem::ThreadItem() : CLVEasyItem(1) {}
 
