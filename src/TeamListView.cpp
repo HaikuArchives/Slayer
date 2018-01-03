@@ -31,8 +31,8 @@ void TeamListView::SelectionChanged()
 	Window()->PostMessage(SELECTION_CHANGED);
 } */
 
-#include "TeamListView.h"
 #include "CLVColumn.h"
+#include "TeamListView.h"
 #include "SlayerApp.h"
 
 TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
