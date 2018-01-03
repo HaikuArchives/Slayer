@@ -49,7 +49,7 @@ resource(0, "MainWindow") #'ARCV' archive BWindow {
 					"_msg" = message(5)
 				},
 				"_items" = archive BMenuItem {
-					"_label" = "Documentations",
+					"_label" = "Documentation",
 					"_shortcut" = 68,
 					"_mods" = 2,
 					"_msg" = message(7)
