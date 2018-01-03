@@ -169,8 +169,9 @@ void MainWindow::MessageReceived(BMessage *message)
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_DOCS__:
 		{
-			// system("sh -c \"/boot/system/apps/WebPositive https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt &\"");
-			be_roster->Launch("text/html","https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt");
+			BMessage message(B_REFS_RECEIVED);
+			message.AddString("url", ProjectWebsite);
+			be_roster->Launch("text/html", &message);
 		}
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_QUIT:    // "Quit" is selected from menu…
