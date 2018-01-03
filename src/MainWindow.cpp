@@ -11,9 +11,8 @@
 #include "BetterScrollView.h"
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
-
 #include <AboutWindow.h>
-#include "Roster.h"
+
 extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
