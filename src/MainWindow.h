@@ -16,6 +16,7 @@
 
 bool saveitemstatus(CLVListItem *, void *);
 bool postlistproc(CLVListItem *, void *);
+static const BString ProjectWebsite = "https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt"; 
 
 class MainWindow : public IEWindow {
 public:

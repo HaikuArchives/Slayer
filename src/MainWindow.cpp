@@ -12,6 +12,7 @@
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
 #include "AboutWindow.h"
+#include "Roster.h"
 
 MainWindow::MainWindow(void)
 	: IEWindow("MainWindow")
@@ -164,6 +165,13 @@ void MainWindow::MessageReceived(BMessage *message)
 				about->Activate(true);
 				about->Unlock();
 			}
+		}
+			break;
+		case IE_MAINWINDOW_MAINMENU_FILE_DOCS__:
+		{
+			BMessage message(B_REFS_RECEIVED);
+			message.AddString("url", ProjectWebsite);
+			be_roster->Launch("text/html", &message);
 		}
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_QUIT:    // "Quit" is selected from menu…
@@ -693,4 +701,3 @@ void MainWindow::FixArchive()
 	fix_menu(Priority->Menu(), &mi); // ->SetViewColor(mi.background_color);
 	Priority->MenuBar()->SetViewColor(mi.background_color);
 }
-
