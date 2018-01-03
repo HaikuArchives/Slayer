@@ -11,8 +11,9 @@
 #include "BetterScrollView.h"
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
-#include <AboutWindow.h>
 
+#include <AboutWindow.h>
+#include "Roster.h"
 extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
@@ -169,6 +170,13 @@ void MainWindow::MessageReceived(BMessage *message)
 				"Attila Mezei for Interface Elements\n"
 				"Brian Tietz for ColumnListView");
 			fAboutWin->Show();
+		}
+			break;
+		case IE_MAINWINDOW_MAINMENU_FILE_DOCS__:
+		{
+			BMessage message(B_REFS_RECEIVED);
+			message.AddString("url", ProjectWebsite);
+			be_roster->Launch("text/html", &message);
 		}
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_QUIT:    // "Quit" is selected from menu…
@@ -698,4 +706,3 @@ void MainWindow::FixArchive()
 	fix_menu(Priority->Menu(), &mi); // ->SetViewColor(mi.background_color);
 	Priority->MenuBar()->SetViewColor(mi.background_color);
 }
-
