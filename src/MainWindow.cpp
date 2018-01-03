@@ -12,6 +12,7 @@
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
 #include "AboutWindow.h"
+#include "Roster.h"
 
 MainWindow::MainWindow(void)
 	: IEWindow("MainWindow")
@@ -168,8 +169,8 @@ void MainWindow::MessageReceived(BMessage *message)
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_DOCS__:
 		{
-			// Open a new WebPositive Window
-			system("sh -c \"/boot/system/apps/WebPositive https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt &\"");
+			// system("sh -c \"/boot/system/apps/WebPositive https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt &\"");
+			be_roster->Launch("text/html","https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt");
 		}
 			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_QUIT:    // "Quit" is selected from menu…
