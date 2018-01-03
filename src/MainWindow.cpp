@@ -166,6 +166,12 @@ void MainWindow::MessageReceived(BMessage *message)
 			}
 		}
 			break;
+		case IE_MAINWINDOW_MAINMENU_FILE_DOCS__:
+		{
+			// Open a new WebPositive Window
+			system("sh -c \"/boot/system/apps/WebPositive https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt &\"");
+		}
+			break;
 		case IE_MAINWINDOW_MAINMENU_FILE_QUIT:    // "Quit" is selected from menu…
 			be_app->PostMessage(B_QUIT_REQUESTED);
 			break;
@@ -693,4 +699,3 @@ void MainWindow::FixArchive()
 	fix_menu(Priority->Menu(), &mi); // ->SetViewColor(mi.background_color);
 	Priority->MenuBar()->SetViewColor(mi.background_color);
 }
-
