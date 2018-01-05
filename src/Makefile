@@ -34,7 +34,8 @@ APP_MIME_SIG=
 #	if two source files with the same name (source.c or source.cpp)
 #	are included from different directories.  Also note that spaces
 #	in folder names do not work well with this makefile.
-SRCS= AboutWindow.cpp Hashtable.cpp MainWindow.cpp miscSlayer.cpp MiniSlayer.cpp \
+
+SRCS= Hashtable.cpp MainWindow.cpp miscSlayer.cpp MiniSlayer.cpp \
 Options.cpp RefreshThread.cpp SettingsWindow.cpp SlayerApp.cpp \
 TeamItem.cpp TeamItemList.cpp TeamListView.cpp ThreadItem.cpp ThreadItemList.cpp \
 IElib/IEApplication.cpp IElib/IEResourceHandler.cpp IElib/IEWindow.cpp \
@@ -86,7 +87,8 @@ LIBPATHS=
 #	additional paths to look for system headers
 #	thes use the form: #include <header>
 #	source file directories are NOT auto-included here
-SYSTEM_INCLUDE_PATHS = 
+SYSTEM_INCLUDE_PATHS = /system/develop/headers/private/interface/ \
+		       /system/develop/headers/private/shared/
 
 #	additional paths to look for local headers
 #	thes use the form: #include "header"

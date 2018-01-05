@@ -16,13 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
 **/
+#include "Options.h"
+#include "SlayerApp.h"
 #include "ThreadItem.h"
 
-#include "SlayerApp.h"
-#include "Options.h"
-
 ThreadItem::ThreadItem() : CLVEasyItem(1) {}
-	
+
 ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 {
 	thread = info->thread;
@@ -35,7 +34,7 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	CPU_diff = user_time + kernel_time;
 	CPU = 0.0;
 	strcpy(name, info->name);
-	
+
 	char str[21], *strp;
 	SetColumnContent(TeamListView::name_ndx, name,false);
 	sprintf(str, "%ld", thread);
@@ -66,13 +65,13 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	changed = 0;
 }
 
-void ThreadItem::update(thread_info *info) 
+void ThreadItem::update(thread_info *info)
 {
 	char str[21], *strp;
 	CPU_diff = (info->user_time-user_time)+(info->kernel_time-kernel_time);
 	user_time = info->user_time;
 	kernel_time = info->kernel_time;
-	
+
 	if (strcmp(info->name, name) &&
 	    (slayer->options.shown_columns & Options::name_col)) {
 
@@ -112,7 +111,7 @@ void ThreadItem::update(thread_info *info)
 		SetColumnContent(TeamListView::state_ndx, strp, false);
 		changed |= state_chg;
 	}
-}		
+}
 
 void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 		columnIndex, bool complete = false)
@@ -120,7 +119,7 @@ void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 	if (columnIndex != TeamListView::CPU_ndx)
 		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
 			complete);
-			
+
 	BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
 	float sright = colRect.right;
 	colRect.bottom -= 1.0;

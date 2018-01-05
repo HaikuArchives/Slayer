@@ -23,7 +23,7 @@ TeamListView::TeamListView(BRect frame, const char *name)
 	  B_FOLLOW_ALL_SIDES)
 {
 	SetInvocationMessage(new BMessage(TEAM_INV));
-	
+
 }
 
 void TeamListView::SelectionChanged()
@@ -49,12 +49,12 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	AddColumn(new CLVColumn("State", 60.0));
 	AddColumn(new CLVColumn("Memory", 60.0));
 	AddColumn(new CLVColumn("CPU", 60.0));
-	
+
 	SetInvocationMessage(new BMessage(TEAM_INV));
-	
+
 	// create the PopUpMenu
 	BMenuItem *inv;
-	
+
 	operationMenu = new BPopUpMenu("operationMenu", false, false);
 	operationMenu->AddItem((inv = new BMenuItem("Kill",
 		new BMessage(IE_MAINWINDOW_MAINKILL))));
@@ -81,14 +81,13 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 
 void TeamListView::MakeFocus(bool focused)
 {
-	ColumnListView::MakeFocus(focused);	
+	ColumnListView::MakeFocus(focused);
 }
 
 void TeamListView::SelectionChanged()
 {
 	Window()->PostMessage(SELECTION_CHANGED);
 }
-
 
 void
 TeamListView::KeyDown(const char* bytes, int32 numBytes)
@@ -109,11 +108,10 @@ TeamListView::KeyDown(const char* bytes, int32 numBytes)
 	}
 }
 
-
 void TeamListView::MouseDown(BPoint point)
 {
 	ColumnListView::MouseDown(point);
-	
+
 	int32 buttons = 0;
 	Window()->CurrentMessage()->FindInt32("buttons", &buttons);
 	if (buttons & B_SECONDARY_MOUSE_BUTTON) {
@@ -138,7 +136,7 @@ void TeamListView::MouseDown(BPoint point)
 			PriorityMenu->MoveTo(-1, -1);
 			// remove "Select priority" & separator
 			PriorityMenu->RemoveItem((int32)0);
-			PriorityMenu->RemoveItem((int32)0); 
+			PriorityMenu->RemoveItem((int32)0);
 			BMenuItem *pr = new BMenuItem(PriorityMenu, new BMessage('tmpj'));
 			pr->SetLabel("Set priority");
 			operationMenu->AddItem(pr);
@@ -168,7 +166,7 @@ void TeamListView::ItemsToPopUpPriorityMenu()
 				add->Command()));
 		else
 			newItem = new BSeparatorItem();
-			
+
 		newItem->SetTarget(slayer->mainWindow);
 		priorityMenu->AddItem(newItem);
 	}
