@@ -20,8 +20,9 @@
 #define _TEAM_LIST_VIEW_H
 
 #include <InterfaceKit.h>
-#include "ColumnListView.h"
-#include "BetterScrollView.h"
+
+#include <santa/ColumnListView.h>
+#include <santa/BetterScrollView.h>
 
 #define TEAM_INV	'tein'
 #define SELECTION_CHANGED 'sech'
@@ -48,7 +49,7 @@ public:
 	virtual void MakeFocus(bool focused = true);
 	
 	virtual void SelectionChanged(void);
-	virtual void TeamListView::KeyDown(const char* bytes, int32 numBytes);
+	virtual void KeyDown(const char* bytes, int32 numBytes);
 	virtual void MouseDown(BPoint point);
 	
 	void SetShownColumns(int32 mask);

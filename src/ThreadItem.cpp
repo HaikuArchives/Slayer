@@ -114,7 +114,7 @@ void ThreadItem::update(thread_info *info)
 }
 
 void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
-		columnIndex, bool complete = false)
+		columnIndex, bool complete)
 {
 	if (columnIndex != TeamListView::CPU_ndx)
 		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,

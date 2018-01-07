@@ -20,9 +20,11 @@
 #define _TEAM_ITEM_H
 
 #include <stdio.h>
+
+#include <santa/CLVEasyItem.h>
+
 #include "TeamListView.h"
 #include "ThreadItem.h"
-#include "CLVEasyItem.h"
 #include "miscSlayer.h"
 #include "Hashtable.h"
 

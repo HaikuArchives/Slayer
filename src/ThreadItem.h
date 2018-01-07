@@ -19,11 +19,14 @@
 #ifndef _THREAD_ITEM_H
 #define _THREAD_ITEM_H
 
-#include <InterfaceKit.h>
 #include <string.h>
 #include <stdio.h>
+
+#include <InterfaceKit.h>
+
+#include <santa/CLVEasyItem.h>
+
 #include "TeamListView.h"
-#include "CLVEasyItem.h"
 
 class ThreadItem : public CLVEasyItem {
 public:

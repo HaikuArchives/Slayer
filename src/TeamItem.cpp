@@ -103,7 +103,7 @@ int32 TeamItem::update(team_info *info)
 
 size_t TeamItem::CountMemory() {
 	area_info info;
-	int32 cookie = 0;
+	int64 cookie = 0;
 	size_t mem = 0;
 
 	while (get_next_area_info(team, &cookie, &info) == B_OK)
@@ -119,7 +119,7 @@ void TeamItem::Update(BView *owner, const BFont *font)
 }
 
 void TeamItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
-		columnIndex, bool complete = false)
+		columnIndex, bool complete)
 {
 	if (columnIndex != TeamListView::CPU_ndx)
 		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,

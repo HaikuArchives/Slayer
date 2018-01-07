@@ -5,11 +5,12 @@
 #ifndef _MAINWINDOW_H_
 #define _MAINWINDOW_H_
 
+#include <santa/CLVEasyItem.h>
+
 #include "IEWindow.h"
 #include "MainWindowDefs.h"
 #include "TeamItem.h"
 #include "TeamListView.h"
-#include "CLVEasyItem.h"
 
 #include "Hashtable.h"
 #include "RefreshThread.h"
