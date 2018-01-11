@@ -31,6 +31,9 @@ void TeamListView::SelectionChanged()
 	Window()->PostMessage(SELECTION_CHANGED);
 } */
 
+#include <Font.h>
+#include <View.h>
+
 #include <santa/CLVColumn.h>
 
 #include "SlayerApp.h"
