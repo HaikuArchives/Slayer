@@ -13,12 +13,14 @@
 
 #include <AboutWindow.h>
 #include <Bitmap.h>
+#include <Catalog.h>
 #include <ColumnTypes.h>
 #include <IconUtils.h>
 #include <InterfaceKit.h>
 #include <LayoutBuilder.h>
 
-#define B_TRANSLATE(x) x
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "MainWindow"
 
 extern const char *slayer_signature;
 

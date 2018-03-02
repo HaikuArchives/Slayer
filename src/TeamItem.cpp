@@ -38,8 +38,7 @@ TeamItem::TeamItem(team_info *info) : BRow()
 		memory_usage = CountMemory();
 	else
 		memory_usage = 0;
-	
-	char str[21];
+
 	get_app_info(team, &team_icon, &name);
 	if (name == NULL) {
 		// if couldn't get app name from BRoster, use args
@@ -50,26 +49,11 @@ TeamItem::TeamItem(team_info *info) : BRow()
 			if (*tmp == '/') name = tmp + 1;
 	}
 	else args[0] = 0;
-	/*
-	SetColumnContent(TeamListView::icon_ndx, team_icon, 2.0, false);
-	SetColumnContent(TeamListView::name_ndx, name, false);
-	sprintf(str, "%ld", team);
-	SetColumnContent(TeamListView::id_ndx, str, false);
-	SetColumnContent(TeamListView::priority_ndx, "-", false);
-	SetColumnContent(TeamListView::state_ndx, "-", false);
-
-	if (memory_usage <= 0) strcpy(str,"-");
-	else string_for_size(memory_usage, str, sizeof(str));
-
-	SetColumnContent(TeamListView::areas_ndx, str, false);
-
-	SetColumnContent(TeamListView::CPU_ndx, "-", false); */
 
 	int32 i = 0;
 	SetField(new BBitmapField(team_icon), i++);
 	SetField(new BStringField(name), i++);
-	sprintf(str, "%ld", team);
-	SetField(new BStringField(str), i++);
+	SetField(new BIntegerField(team), i++);
 	SetField(new BStringField("-"), i++);
 	SetField(new BStringField("-"), i++);
 	SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), i++);
@@ -115,8 +99,6 @@ int32 TeamItem::update(team_info *info)
 		}
 	}
 
-	//SetField(new BIntegerField(CPU * 100), 6);
-	//((BIntegerField*)GetField(6))->SetValue(CPU*100);
 	return changed;
 }
 

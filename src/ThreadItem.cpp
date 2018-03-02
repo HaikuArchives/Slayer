@@ -21,7 +21,12 @@
 #include "SlayerApp.h"
 #include "Options.h"
 
+#include <Catalog.h>
 #include <ColumnTypes.h>
+
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "ThreadItem"
+
 ThreadItem::ThreadItem() : BRow() {}
 
 ThreadItem::ThreadItem(thread_info *info) : BRow()
@@ -37,7 +42,8 @@ ThreadItem::ThreadItem(thread_info *info) : BRow()
 	CPU = 0.0;
 	strcpy(name, info->name);
 
-	char str[21], *strp;
+	char str[21];
+	const char *strp;
 /*	SetColumnContent(TeamListView::name_ndx, name,false);
 	sprintf(str, "%ld", thread);
 	SetColumnContent(TeamListView::id_ndx, str,false);
@@ -45,19 +51,19 @@ ThreadItem::ThreadItem(thread_info *info) : BRow()
 	SetColumnContent(TeamListView::priority_ndx, str,false);*/
 	switch (state) {
 	case B_THREAD_RUNNING:
-		strp = "Running"; break;
+		strp = B_TRANSLATE("Running"); break;
 	case B_THREAD_READY:
-		strp = "Ready"; break;
+		strp = B_TRANSLATE("Ready"); break;
 	case B_THREAD_SUSPENDED:
-		strp = "Suspended"; break;
+		strp = B_TRANSLATE("Suspended"); break;
 	case B_THREAD_WAITING:
-		strp = "Waiting"; break;
+		strp = B_TRANSLATE("Waiting"); break;
 	case B_THREAD_RECEIVING:
-		strp = "Receiving"; break;
+		strp = B_TRANSLATE("Receiving"); break;
 	case B_THREAD_ASLEEP:
-		strp = "Sleeping"; break;
+		strp = B_TRANSLATE("Sleeping"); break;
 	default:
-		strp = "Undefined"; break;
+		strp = B_TRANSLATE("Undefined"); break;
 	}
 /*	SetColumnContent(TeamListView::state_ndx, strp, false);
 	SetColumnContent(TeamListView::areas_ndx, "-", false);
@@ -67,8 +73,7 @@ ThreadItem::ThreadItem(thread_info *info) : BRow()
 	int32 i = 0;
 	SetField(new BBitmapField(NULL), i++);
 	SetField(new BStringField(name), i++);
-	sprintf(str, "%ld", thread);
-	SetField(new BStringField(str), i++);
+	SetField(new BIntegerField(thread), i++);
 	sprintf(str, "%ld", priority);
 	SetField(new BStringField(str), i++);
 	SetField(new BStringField(strp), i++);
