@@ -22,11 +22,12 @@
 #include <AppMisc.h>
 
 
-void get_app_info(team_id team, BBitmap **a_icon, char **name)
+void get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName)
 {
 	// code from the debugger
 	app_info appInfo;
     *name = NULL;
+    *fullName = NULL;
 	status_t status = be_roster->GetRunningAppInfo(team,
 		&appInfo);
 	if (status != B_OK) {
@@ -59,7 +60,13 @@ void get_app_info(team_id team, BBitmap **a_icon, char **name)
 	if (status != B_OK) {
 		delete icon;
 		icon = NULL;
-	} else 	*name = strdup(appInfo.ref.name);
-
+	} else 	{
+		*name = strdup(appInfo.ref.name);
+		BPath appFullName(&appInfo.ref);
+		if (appFullName.InitCheck() == B_OK)
+		{
+			*fullName = strdup(appFullName.Path());
+		}
+	}
 	*a_icon = icon;
 }

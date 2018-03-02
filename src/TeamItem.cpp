@@ -39,7 +39,7 @@ TeamItem::TeamItem(team_info *info) : BRow()
 	else
 		memory_usage = 0;
 
-	get_app_info(team, &team_icon, &name);
+	get_app_info(team, &team_icon, &name, &fullName);
 	if (name == NULL) {
 		// if couldn't get app name from BRoster, use args
 		strcpy(args, info->args);
@@ -58,7 +58,7 @@ TeamItem::TeamItem(team_info *info) : BRow()
 	SetField(new BStringField("-"), i++);
 	SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), i++);
 	SetField(new BIntegerField(0), i++);
-	
+	SetField(new BStringField(fullName), i++);
 	changed = 0;
 }
 

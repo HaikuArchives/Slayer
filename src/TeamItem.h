@@ -35,6 +35,7 @@ public:
 	team_id		team;
 	char args[64];	
 	char *name;
+	char *fullName;
 	int32 area_count;
 	size_t memory_usage;
 	bigtime_t CPU_diff;
