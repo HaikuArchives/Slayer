@@ -48,7 +48,7 @@ public:
 	virtual void MakeFocus(bool focused = true);
 	
 	virtual void SelectionChanged(void);
-	virtual void TeamListView::KeyDown(const char* bytes, int32 numBytes);
+	virtual void KeyDown(const char* bytes, int32 numBytes);
 	virtual void MouseDown(BPoint point);
 	void FullListDoForEach(bool (*func)(BRow*, void*), void* data);
 };
