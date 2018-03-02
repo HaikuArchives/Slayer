@@ -31,7 +31,7 @@ TeamListView::TeamListView(const char *name)
 	: BColumnListView("fileListView", B_FRAME_EVENTS|B_NAVIGABLE)
 {
 	// add Columns...
-
+	BColumn* column;
 	int32 i = 0;
 	AddColumn(new BBitmapColumn(B_TRANSLATE("Icon"), 16, 16, 16, B_ALIGN_CENTER), i++);
 	AddColumn(new BStringColumn(B_TRANSLATE("Name"), 180, 10, 600, 0), i++);
@@ -40,6 +40,8 @@ TeamListView::TeamListView(const char *name)
 	AddColumn(new BStringColumn(B_TRANSLATE("State"), 70, 10, 600, 0), i++);
 	AddColumn(new SizeColumn(B_TRANSLATE("Memory"), 80, 10, 600), i++);
 	AddColumn(new GraphColumn(B_TRANSLATE("CPU"), 80.0, 10, 100.0), i++);
+	AddColumn(column = new BStringColumn(B_TRANSLATE("Full name"), 180, 10, 600, 0), i++);
+	column->SetVisible(false);
 
 	SetInvocationMessage(new BMessage(TEAM_INV));
 

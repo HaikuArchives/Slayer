@@ -79,7 +79,7 @@ ThreadItem::ThreadItem(thread_info *info) : BRow()
 	SetField(new BStringField(strp), i++);
 	SetField(new BSizeField(0), i++);
 	SetField(new BIntegerField(0), i++);
-
+	SetField(new BStringField(name), i++);
 	changed = 0;
 }
 
