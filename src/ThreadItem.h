@@ -19,16 +19,12 @@
 #ifndef _THREAD_ITEM_H
 #define _THREAD_ITEM_H
 
+#include <InterfaceKit.h>
 #include <string.h>
 #include <stdio.h>
-
-#include <InterfaceKit.h>
-
-#include <santa/CLVEasyItem.h>
-
 #include "TeamListView.h"
 
-class ThreadItem : public CLVEasyItem {
+class ThreadItem : public BRow {
 public:
 	int32 refreshed;
 	int32 changed;
@@ -55,36 +51,5 @@ public:
 	virtual void DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 		columnIndex, bool complete = false);
 };
-/*
-class ThreadItem : public BStringItem {
-public:
-	thread_id	thread;
-	team_id		team;
-	thread_state state;
-	int32		priority;
-	sem_id		sem;
-	bigtime_t	user_time;
-	bigtime_t	kernel_time;
-	
-	ThreadItem() : BStringItem("") {}
-	
-	ThreadItem(const char *text, uint32 level = 0, bool expanded = true)
-		: BStringItem(text, level, expanded)
-		{}
-		
-	ThreadItem(thread_info *info) : BStringItem("")
-	{
-		thread = info->thread;
-		team = info->team;
-		state = info->state;
-		priority = info->priority;
-		sem = info->sem;
-		user_time = info->user_time;
-		kernel_time = info->kernel_time;
-	
-		SetText(info->name);	
-	}
-		
-};
-*/
+
 #endif

@@ -5,8 +5,6 @@
 #ifndef _MAINWINDOW_H_
 #define _MAINWINDOW_H_
 
-#include <santa/CLVEasyItem.h>
-
 #include "IEWindow.h"
 #include "MainWindowDefs.h"
 #include "TeamItem.h"
@@ -15,11 +13,14 @@
 #include "Hashtable.h"
 #include "RefreshThread.h"
 
-bool saveitemstatus(CLVListItem *, void *);
-bool postlistproc(CLVListItem *, void *);
+#include <ToolBar.h>
+/*
+bool saveitemstatus(CLVListItem *, void *);*/
+bool postlistproc(BRow*, void*);
+
 static const BString ProjectWebsite = "https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt"; 
 
-class MainWindow : public IEWindow {
+class MainWindow : public BWindow {
 public:
 	// true if window minimized
 	bool minimized;
@@ -60,9 +61,9 @@ public:
 	void SetButtonState();
 	void SetPriorityState();
 	void SetPriorityField(int32 priority);
-	void SwitchColumn(int32 col_id, int32 menuid);
-	void SetColumn(int32 col_mask);
-	void FixArchive();
+	BBitmap *ResourceVectorToBitmap(const char *resName, float iconSize = 24.0);
+
+	BToolBar* fToolBar;
 };
 
 #endif

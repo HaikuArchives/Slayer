@@ -34,25 +34,20 @@ APP_MIME_SIG=
 #	if two source files with the same name (source.c or source.cpp)
 #	are included from different directories.  Also note that spaces
 #	in folder names do not work well with this makefile.
-
-SRCS= Cursors.cpp \
-	Hashtable.cpp \
-	IElib/IEApplication.cpp \
-	IElib/IEResourceHandler.cpp \
-	IElib/IEWindow.cpp \
-	MainWindow.cpp \
-	MiniSlayer.cpp \
-	miscSlayer.cpp \
-	NewStrings.cpp \
-	Options.cpp \
-	RefreshThread.cpp \
-	SettingsWindow.cpp \
-	SlayerApp.cpp \
-	TeamItem.cpp \
-	TeamItemList.cpp \
-	TeamListView.cpp \
-	ThreadItem.cpp \
-	ThreadItemList.cpp
+SRCS= 	Hashtable.cpp \
+		MainWindow.cpp \
+		MiniSlayer.cpp \
+		miscSlayer.cpp \
+		Options.cpp \
+		RefreshThread.cpp \
+		SettingsWindow.cpp \
+		SlayerApp.cpp \
+		TeamItem.cpp \
+		TeamItemList.cpp \
+		TeamListView.cpp \
+		ThreadItem.cpp\
+		ThreadItemList.cpp \
+		IElib/IEResourceHandler.cpp
 
 #	specify the resource definition files to use
 #	full path or a relative path to the resource file can be used.
@@ -84,7 +79,7 @@ RSRCS=
 #		naming scheme you need to specify the path to the library
 #		and it's name
 #		library: my_lib.a entry: my_lib.a or path/my_lib.a
-LIBS= $(STDCPPLIBS) be translation shared santa
+LIBS= be columnlistview translation shared
 
 #	specify additional paths to directories following the standard
 #	libXXX.so or libXXX.a naming scheme.  You can specify full paths
@@ -97,13 +92,13 @@ LIBPATHS=
 #	additional paths to look for system headers
 #	thes use the form: #include <header>
 #	source file directories are NOT auto-included here
-SYSTEM_INCLUDE_PATHS = /system/develop/headers/private/interface/ \
-		       /system/develop/headers/private/shared/
-
+SYSTEM_INCLUDE_PATHS = 	$(shell findpaths -e B_FIND_PATH_HEADERS_DIRECTORY private/interface) \
+						$(shell findpaths -e B_FIND_PATH_HEADERS_DIRECTORY private/shared) \
+						$(shell findpaths -e B_FIND_PATH_HEADERS_DIRECTORY private/app)
 #	additional paths to look for local headers
 #	thes use the form: #include "header"
 #	source file directories are automatically included
-LOCAL_INCLUDE_PATHS = SGB IElib
+LOCAL_INCLUDE_PATHS = IElib
 
 #	specify the level of optimization that you desire
 #	NONE, SOME, FULL
@@ -138,7 +133,7 @@ SYMBOLS =
 #	specify debug settings
 #	if TRUE will allow application to be run from a source-level
 #	debugger.  Note that this will disable all optimzation.
-DEBUGGER = 
+DEBUGGER =
 
 #	specify additional compiler flags for all files
 COMPILER_FLAGS =

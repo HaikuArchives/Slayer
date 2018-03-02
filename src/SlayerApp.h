@@ -34,7 +34,7 @@ public:
 	bool docked;
 };
 
-class SlayerApp : public IEApplication, public SlayerOpt {
+class SlayerApp : public BApplication, public SlayerOpt {
 public:
 	SlayerApp(bool dock = false);
 	virtual ~SlayerApp();
