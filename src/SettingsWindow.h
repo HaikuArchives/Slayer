@@ -5,12 +5,11 @@
 #ifndef _SETTINGSWINDOW_H_
 #define _SETTINGSWINDOW_H_
 
-#include "IEWindow.h"
 #include "SettingsWindowDefs.h"
 #include "Options.h"
 #include <InterfaceKit.h>
 
-class SettingsWindow : public IEWindow
+class SettingsWindow : public BWindow
 {
 	BTextControl *refresh;
 	BCheckBox	*save_window;

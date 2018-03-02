@@ -16,13 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
 **/
-#include "Options.h"
-#include "SlayerApp.h"
 #include "ThreadItem.h"
 
-ThreadItem::ThreadItem() : CLVEasyItem(1) {}
+#include "SlayerApp.h"
+#include "Options.h"
 
-ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
+#include <ColumnTypes.h>
+ThreadItem::ThreadItem() : BRow() {}
+
+ThreadItem::ThreadItem(thread_info *info) : BRow()
 {
 	thread = info->thread;
 	team = info->team;
@@ -36,11 +38,11 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	strcpy(name, info->name);
 
 	char str[21], *strp;
-	SetColumnContent(TeamListView::name_ndx, name,false);
+/*	SetColumnContent(TeamListView::name_ndx, name,false);
 	sprintf(str, "%ld", thread);
 	SetColumnContent(TeamListView::id_ndx, str,false);
 	sprintf(str, "%ld", priority);
-	SetColumnContent(TeamListView::priority_ndx, str,false);
+	SetColumnContent(TeamListView::priority_ndx, str,false);*/
 	switch (state) {
 	case B_THREAD_RUNNING:
 		strp = "Running"; break;
@@ -57,10 +59,21 @@ ThreadItem::ThreadItem(thread_info *info) : CLVEasyItem(1)
 	default:
 		strp = "Undefined"; break;
 	}
-	SetColumnContent(TeamListView::state_ndx, strp, false);
+/*	SetColumnContent(TeamListView::state_ndx, strp, false);
 	SetColumnContent(TeamListView::areas_ndx, "-", false);
 
 	SetColumnContent(TeamListView::CPU_ndx, "-", false);
+*/
+	int32 i = 0;
+	SetField(new BBitmapField(NULL), i++);
+	SetField(new BStringField(name), i++);
+	sprintf(str, "%ld", thread);
+	SetField(new BStringField(str), i++);
+	sprintf(str, "%ld", priority);
+	SetField(new BStringField(str), i++);
+	SetField(new BStringField(strp), i++);
+	SetField(new BSizeField(0), i++);
+	SetField(new BIntegerField(0), i++);
 
 	changed = 0;
 }
@@ -76,7 +89,8 @@ void ThreadItem::update(thread_info *info)
 	    (slayer->options.shown_columns & Options::name_col)) {
 
 		strcpy(name, info->name);
-		SetColumnContent(TeamListView::name_ndx, name, false);
+//		SetField(new BStringField(name), 1);
+		((BStringField*)GetField(1))->SetString(name);
 		changed |= name_chg;
 	}
 	if ((priority != info->priority) &&
@@ -84,7 +98,9 @@ void ThreadItem::update(thread_info *info)
 
 		priority = info->priority;
 		sprintf(str, "%ld", priority);
-		SetColumnContent(TeamListView::priority_ndx, str, false);
+		//SetColumnContent(TeamListView::priority_ndx, str, false);
+		////SetField(new BStringField(str), 3);
+		((BStringField*)GetField(3))->SetString(str);
 		changed |= priority_chg;
 	}
 	if ((state != info->state) &&
@@ -108,14 +124,19 @@ void ThreadItem::update(thread_info *info)
 		default:
 			strp = "Undefined"; break;
 		}
-		SetColumnContent(TeamListView::state_ndx, strp, false);
+		//SetColumnContent(TeamListView::state_ndx, strp, false);
+		SetField(new BStringField(strp), 4);
+		((BStringField*)GetField(4))->SetString(strp);
 		changed |= state_chg;
 	}
+	//SetField(new BIntegerField(CPU * 100.0), 6);
+//TODO	//((BIntegerField*)GetField(6))->SetValue(CPU*100);
 }
 
 void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
-		columnIndex, bool complete)
+		columnIndex, bool complete = false)
 {
+/*
 	if (columnIndex != TeamListView::CPU_ndx)
 		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
 			complete);
@@ -131,4 +152,5 @@ void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 		owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright, colRect.bottom) &
 			itemColumnRect);
 	}
+*/
 }

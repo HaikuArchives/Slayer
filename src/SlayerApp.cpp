@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-SlayerApp::SlayerApp(bool dock) : IEApplication(slayer_signature)
+SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature)
 {
 	slayer = this;
 	docked = false;

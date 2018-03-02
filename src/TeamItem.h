@@ -20,15 +20,12 @@
 #define _TEAM_ITEM_H
 
 #include <stdio.h>
-
-#include <santa/CLVEasyItem.h>
-
 #include "TeamListView.h"
 #include "ThreadItem.h"
 #include "miscSlayer.h"
 #include "Hashtable.h"
 
-class TeamItem : public CLVEasyItem {
+class TeamItem : public BRow {
 public:
 	int32 refreshed;
 	int32 changed;

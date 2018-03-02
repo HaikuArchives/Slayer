@@ -16,34 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
 **/
-/*#include "TeamListView.h"
 
-TeamListView::TeamListView(BRect frame, const char *name)
-	: BOutlineListView(frame, name, B_MULTIPLE_SELECTION_LIST,
-	  B_FOLLOW_ALL_SIDES)
-{
-	SetInvocationMessage(new BMessage(TEAM_INV));
-
-}
-
-void TeamListView::SelectionChanged()
-{
-	Window()->PostMessage(SELECTION_CHANGED);
-} */
-
-#include <Font.h>
-#include <View.h>
-
-#include <santa/CLVColumn.h>
-
-#include "SlayerApp.h"
 #include "TeamListView.h"
+#include <ColumnListView.h>
+#include <ColumnTypes.h>
+#include "SlayerApp.h"
 
-TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
-	: ColumnListView(frame, s, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW|B_NAVIGABLE|B_FRAME_EVENTS,
-	B_MULTIPLE_SELECTION_LIST, true, true, true, false, B_FANCY_BORDER)
+TeamListView::TeamListView(const char *name)
+	: BColumnListView("fileListView", B_FRAME_EVENTS|B_NAVIGABLE)
 {
 	// add Columns...
+/*
 	AddColumn(new CLVColumn(NULL, 20.0, CLV_EXPANDER|CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
 	AddColumn(new CLVColumn(NULL, 20.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_RESIZABLE|
 		CLV_NOT_MOVABLE|CLV_MERGE_WITH_RIGHT));
@@ -53,12 +36,21 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	AddColumn(new CLVColumn("State", 60.0));
 	AddColumn(new CLVColumn("Memory", 60.0));
 	AddColumn(new CLVColumn("CPU", 60.0));
+*/
+	int32 i = 0;
+	AddColumn(new BBitmapColumn("Icon", 16, 16, 16, B_ALIGN_CENTER), i++);
+	AddColumn(new BStringColumn("Name", 220, 10, 600, 0), i++);
+	AddColumn(new BStringColumn("Id", 40, 10, 600,0), i++);
+	AddColumn(new BStringColumn("Priority", 50, 10, 600, 0), i++);
+	AddColumn(new BStringColumn("State", 60, 10, 600, 0), i++);
+	AddColumn(new BSizeColumn("Memory", 60, 10, 600), i++);
+	AddColumn(new GraphColumn("CPU", 60.0, 10, 100.0), i++);
+	//AddColumn(new BIntegerColumn("CPU", 60.0, 10, 100.0), i++);
 
 	SetInvocationMessage(new BMessage(TEAM_INV));
 
 	// create the PopUpMenu
 	BMenuItem *inv;
-
 	operationMenu = new BPopUpMenu("operationMenu", false, false);
 	operationMenu->AddItem((inv = new BMenuItem("Kill",
 		new BMessage(IE_MAINWINDOW_MAINKILL))));
@@ -69,14 +61,21 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 	operationMenu->AddItem((inv = new BMenuItem("Resume",
 		new BMessage(IE_MAINWINDOW_MAINRESUME))));
 		inv->SetTarget(slayer->mainWindow);
-	operationMenu->AddSeparatorItem();
-	priorityMenu = new BMenu("PriorityMenu");
-	BMenuItem *pr = new BMenuItem(priorityMenu); //, new BMessage('tmpj'));
-	pr->SetLabel("Set priority");
-	operationMenu->AddItem(pr);
-	ItemsToPopUpPriorityMenu();
+	// TODO add priority to the menu
 
-//	MakeFocus(true);
+	//operationMenu->AddSeparatorItem();
+	//priorityMenu = new BMenu("PriorityMenu");
+	//BMenuItem *pr = new BMenuItem(priorityMenu); //, new BMessage('tmpj'));
+	//pr->SetLabel("Set priority");
+	//operationMenu->AddItem(pr);
+	//ItemsToPopUpPriorityMenu();
+
+	//SetSelectionMessage(new BMessage(TEAM_INV));
+	BMessage* selected = new BMessage(SELECTION_CHANGED);
+	selected->AddInt32("buttons",0);
+	SetSelectionMessage(selected);
+
+	MakeFocus(true);
 //	 = new BMenu("Set priority");
 //	operationMenu->AddItem(setPriorityMenu);
 
@@ -85,36 +84,34 @@ TeamListView::TeamListView(BRect frame, const char *name, CLVContainerView **s)
 
 void TeamListView::MakeFocus(bool focused)
 {
-	ColumnListView::MakeFocus(focused);
+	BColumnListView::MakeFocus(focused);
 }
 
 void TeamListView::SelectionChanged()
 {
-	Window()->PostMessage(SELECTION_CHANGED);
+	uint32 buttons;
+
+	BMessage *msg = Window()->CurrentMessage();
+
+	if(msg)
+		msg->FindInt32("buttons", (int32 *)&buttons);
+
+	SelectionMessage()->ReplaceInt32("buttons",buttons);
+
+	BColumnListView::SelectionChanged();
 }
+
 
 void
 TeamListView::KeyDown(const char* bytes, int32 numBytes)
 {
-	TeamItem* item = (TeamItem*) ItemAt(CurrentSelection());
-
-	switch (bytes[0]) {
-		case B_LEFT_ARROW:
-			if (item != NULL && item->IsSuperItem() && item->IsExpanded())
-				Collapse(item);
-			break;
-		case B_RIGHT_ARROW:
-			if (item != NULL && item->IsSuperItem() && !item->IsExpanded())
-				Expand(item);
-			break;
-		default:
-			ColumnListView::KeyDown(bytes, numBytes);
-	}
+	BColumnListView::KeyDown(bytes, numBytes);
 }
 
+// TODO this is never called
 void TeamListView::MouseDown(BPoint point)
 {
-	ColumnListView::MouseDown(point);
+	BColumnListView::MouseDown(point);
 
 	int32 buttons = 0;
 	Window()->CurrentMessage()->FindInt32("buttons", &buttons);
@@ -157,6 +154,12 @@ void TeamListView::MouseDown(BPoint point)
 	}
 }
 
+BPopUpMenu *
+TeamListView::ActionMenu()
+{
+	return operationMenu;
+};
+
 void TeamListView::ItemsToPopUpPriorityMenu()
 {
 	BMenuField *Priority = (BMenuField *)slayer->mainWindow->FindView("MainPriorityField");
@@ -189,25 +192,15 @@ void TeamListView::UpdatePopUpPriorityMenu()
 	}
 }
 
-void TeamListView::SetShownColumns(int32 mask)
+void TeamListView::FullListDoForEach(bool (*func)(BRow*, void*), void* data)
 {
-	CLVColumn *col;
-	col = ColumnAt(name_ndx);
-	col->SetShown(mask & Options::name_col);
-
-	col = ColumnAt(id_ndx);
-	col->SetShown(mask & Options::id_col);
-
-	col = ColumnAt(state_ndx);
-	col->SetShown(mask & Options::state_col);
-
-	col = ColumnAt(priority_ndx);
-	col->SetShown(mask & Options::priority_col);
-
-	col = ColumnAt(areas_ndx);
-	col->SetShown(mask & Options::memory_col);
-
-	col = ColumnAt(CPU_ndx);
-	col->SetShown(mask & Options::cpu_col);
+	for(int i = 0; i < CountRows(); i++) {
+		func(RowAt(i), data);
+		//printf("%s\n", ((BStringField*)(RowAt(i)->GetField(1)))->String());
+//		if (RowAt(i)->IsExpanded())
+		for (int j = 0; j < CountRows(RowAt(i)); j++) {
+			//printf("%s\n", ((BStringField*)(RowAt(j, RowAt(i))->GetField(1)))->String());
+			func(RowAt(j, RowAt(i)), data);
+		}
+	}
 }
-

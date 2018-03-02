@@ -21,10 +21,11 @@
 #include "RgbColor.h"
 #include <stdlib.h>
 #include <private/shared/StringForSize.h>
+#include <ColumnTypes.h>
 
-TeamItem::TeamItem() : CLVEasyItem() { thread_items_list = 0; }
+TeamItem::TeamItem() : BRow() { thread_items_list = 0; }
 	
-TeamItem::TeamItem(team_info *info) : CLVEasyItem(0, true, true)
+TeamItem::TeamItem(team_info *info) : BRow()
 {
 	team_icon = NULL;
 //	thread_items_list = new ThreadItemList;
@@ -49,7 +50,7 @@ TeamItem::TeamItem(team_info *info) : CLVEasyItem(0, true, true)
 			if (*tmp == '/') name = tmp + 1;
 	}
 	else args[0] = 0;
-	
+	/*
 	SetColumnContent(TeamListView::icon_ndx, team_icon, 2.0, false);
 	SetColumnContent(TeamListView::name_ndx, name, false);
 	sprintf(str, "%ld", team);
@@ -62,7 +63,17 @@ TeamItem::TeamItem(team_info *info) : CLVEasyItem(0, true, true)
 
 	SetColumnContent(TeamListView::areas_ndx, str, false);
 
-	SetColumnContent(TeamListView::CPU_ndx, "-", false);
+	SetColumnContent(TeamListView::CPU_ndx, "-", false); */
+
+	int32 i = 0;
+	SetField(new BBitmapField(team_icon), i++);
+	SetField(new BStringField(name), i++);
+	sprintf(str, "%ld", team);
+	SetField(new BStringField(str), i++);
+	SetField(new BStringField("-"), i++);
+	SetField(new BStringField("-"), i++);
+	SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), i++);
+	SetField(new BIntegerField(0), i++);
 	
 	changed = 0;
 }
@@ -89,21 +100,29 @@ int32 TeamItem::update(team_info *info)
 	
 			area_count = info->area_count;
 			memory_usage = mem;
-		
+/*
 			char str[21];
 			string_for_size(memory_usage, str, sizeof(str));
 	
 			SetColumnContent(TeamListView::areas_ndx, str, false);
-		
-			changed |= areas_chg;
+*/
+			//SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), 5);
+			BSizeField* memoryField = (BSizeField*)GetField(5);
+			if (memoryField->Size() != memory_usage) {
+				memoryField->SetSize(memory_usage < 0 ? 0 : memory_usage);
+				changed |= areas_chg;
+			}
 		}
 	}
+
+	//SetField(new BIntegerField(CPU * 100), 6);
+	//((BIntegerField*)GetField(6))->SetValue(CPU*100);
 	return changed;
 }
 
 size_t TeamItem::CountMemory() {
 	area_info info;
-	int64 cookie = 0;
+	ssize_t cookie = 0;
 	size_t mem = 0;
 
 	while (get_next_area_info(team, &cookie, &info) == B_OK)
@@ -114,13 +133,12 @@ size_t TeamItem::CountMemory() {
 
 void TeamItem::Update(BView *owner, const BFont *font)
 {
-	CLVEasyItem::Update(owner, font);
-	if (team_icon != NULL) SetHeight(16.0);
+
 }
 
 void TeamItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
-		columnIndex, bool complete)
-{
+		columnIndex, bool complete = false)
+{ /*
 	if (columnIndex != TeamListView::CPU_ndx)
 		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
 			complete);
@@ -135,7 +153,7 @@ void TeamItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 		owner->SetHighColor(255, 255, 255);
 		owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright, colRect.bottom) &
 			itemColumnRect);
-	}
+	} */
 }
 
 TeamItem::~TeamItem() {

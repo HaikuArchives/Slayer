@@ -20,14 +20,12 @@
 #define _TEAM_LIST_VIEW_H
 
 #include <InterfaceKit.h>
-
-#include <santa/ColumnListView.h>
-#include <santa/BetterScrollView.h>
+#include <ColumnListView.h>
 
 #define TEAM_INV	'tein'
 #define SELECTION_CHANGED 'sech'
 
-class TeamListView : public ColumnListView {
+class TeamListView : public BColumnListView {
 public:
 	static const int
 		expander_ndx = 0,
@@ -39,19 +37,19 @@ public:
 		areas_ndx = 6,
 		CPU_ndx = 7;
 	
-	TeamListView(BRect frame, const char *name, CLVContainerView **s);
+	TeamListView(const char *name);
 	
 	BPopUpMenu *operationMenu;
 	BMenu *priorityMenu;
 	
+	BPopUpMenu *ActionMenu();
 	void ItemsToPopUpPriorityMenu();
 	void UpdatePopUpPriorityMenu();
 	virtual void MakeFocus(bool focused = true);
 	
 	virtual void SelectionChanged(void);
-	virtual void KeyDown(const char* bytes, int32 numBytes);
+	virtual void TeamListView::KeyDown(const char* bytes, int32 numBytes);
 	virtual void MouseDown(BPoint point);
-	
-	void SetShownColumns(int32 mask);
+	void FullListDoForEach(bool (*func)(BRow*, void*), void* data);
 };
 #endif
