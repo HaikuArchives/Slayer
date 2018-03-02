@@ -18,47 +18,41 @@
 **/
 
 #include "TeamListView.h"
+#include <Catalog.h>
 #include <ColumnListView.h>
 #include <ColumnTypes.h>
 #include "SlayerApp.h"
+#include "SizeColumn.h"
+
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "TeamListView"
 
 TeamListView::TeamListView(const char *name)
 	: BColumnListView("fileListView", B_FRAME_EVENTS|B_NAVIGABLE)
 {
 	// add Columns...
-/*
-	AddColumn(new CLVColumn(NULL, 20.0, CLV_EXPANDER|CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
-	AddColumn(new CLVColumn(NULL, 20.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_RESIZABLE|
-		CLV_NOT_MOVABLE|CLV_MERGE_WITH_RIGHT));
-	AddColumn(new CLVColumn("Name", 220.0, CLV_LOCK_AT_BEGINNING|CLV_NOT_MOVABLE));
-	AddColumn(new CLVColumn("Id", 40.0));
-	AddColumn(new CLVColumn("Priority", 50.0));
-	AddColumn(new CLVColumn("State", 60.0));
-	AddColumn(new CLVColumn("Memory", 60.0));
-	AddColumn(new CLVColumn("CPU", 60.0));
-*/
+
 	int32 i = 0;
-	AddColumn(new BBitmapColumn("Icon", 16, 16, 16, B_ALIGN_CENTER), i++);
-	AddColumn(new BStringColumn("Name", 220, 10, 600, 0), i++);
-	AddColumn(new BStringColumn("Id", 40, 10, 600,0), i++);
-	AddColumn(new BStringColumn("Priority", 50, 10, 600, 0), i++);
-	AddColumn(new BStringColumn("State", 60, 10, 600, 0), i++);
-	AddColumn(new BSizeColumn("Memory", 60, 10, 600), i++);
-	AddColumn(new GraphColumn("CPU", 60.0, 10, 100.0), i++);
-	//AddColumn(new BIntegerColumn("CPU", 60.0, 10, 100.0), i++);
+	AddColumn(new BBitmapColumn(B_TRANSLATE("Icon"), 16, 16, 16, B_ALIGN_CENTER), i++);
+	AddColumn(new BStringColumn(B_TRANSLATE("Name"), 180, 10, 600, 0), i++);
+	AddColumn(new BIntegerColumn(B_TRANSLATE("Id"), 50, 10, 100/*, B_ALIGN_RIGHT*/), i++);
+	AddColumn(new BStringColumn(B_TRANSLATE("Priority"), 60, 10, 600, 0), i++);
+	AddColumn(new BStringColumn(B_TRANSLATE("State"), 70, 10, 600, 0), i++);
+	AddColumn(new SizeColumn(B_TRANSLATE("Memory"), 80, 10, 600), i++);
+	AddColumn(new GraphColumn(B_TRANSLATE("CPU"), 80.0, 10, 100.0), i++);
 
 	SetInvocationMessage(new BMessage(TEAM_INV));
 
 	// create the PopUpMenu
 	BMenuItem *inv;
 	operationMenu = new BPopUpMenu("operationMenu", false, false);
-	operationMenu->AddItem((inv = new BMenuItem("Kill",
+	operationMenu->AddItem((inv = new BMenuItem(B_TRANSLATE("Kill"),
 		new BMessage(IE_MAINWINDOW_MAINKILL))));
 		inv->SetTarget(slayer->mainWindow);
-	operationMenu->AddItem((inv = new BMenuItem("Suspend",
+	operationMenu->AddItem((inv = new BMenuItem(B_TRANSLATE("Suspend"),
 		new BMessage(IE_MAINWINDOW_MAINSUSPEND))));
 		inv->SetTarget(slayer->mainWindow);
-	operationMenu->AddItem((inv = new BMenuItem("Resume",
+	operationMenu->AddItem((inv = new BMenuItem(B_TRANSLATE("Resume"),
 		new BMessage(IE_MAINWINDOW_MAINRESUME))));
 		inv->SetTarget(slayer->mainWindow);
 	// TODO add priority to the menu

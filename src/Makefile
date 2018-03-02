@@ -41,6 +41,7 @@ SRCS= 	Hashtable.cpp \
 		Options.cpp \
 		RefreshThread.cpp \
 		SettingsWindow.cpp \
+		SizeColumn.cpp \
 		SlayerApp.cpp \
 		TeamItem.cpp \
 		TeamItemList.cpp \
@@ -79,7 +80,7 @@ RSRCS=
 #		naming scheme you need to specify the path to the library
 #		and it's name
 #		library: my_lib.a entry: my_lib.a or path/my_lib.a
-LIBS= $(STDCPPLIBS) be columnlistview translation shared
+LIBS= $(STDCPPLIBS) be columnlistview localestub shared translation
 
 #	specify additional paths to directories following the standard
 #	libXXX.so or libXXX.a naming scheme.  You can specify full paths
