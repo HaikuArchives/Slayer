@@ -44,10 +44,8 @@ SRCS= 	Hashtable.cpp \
 		SizeColumn.cpp \
 		SlayerApp.cpp \
 		TeamItem.cpp \
-		TeamItemList.cpp \
 		TeamListView.cpp \
 		ThreadItem.cpp\
-		ThreadItemList.cpp \
 		IElib/IEResourceHandler.cpp
 
 #	specify the resource definition files to use
