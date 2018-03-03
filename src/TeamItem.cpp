@@ -18,7 +18,6 @@
 **/
 #include "TeamItem.h"
 #include "MainWindow.h"
-#include "RgbColor.h"
 #include <stdlib.h>
 #include <private/shared/StringForSize.h>
 #include <ColumnTypes.h>
