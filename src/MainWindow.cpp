@@ -44,6 +44,11 @@ MainWindow::MainWindow(void)
 		menu->AddItem(new BMenuItem(B_TRANSLATE("Kill"), new BMessage(IE_MAINWINDOW_MAINKILL), 'K'));
 		menu->AddItem(new BMenuItem(B_TRANSLATE("Suspend"), new BMessage(IE_MAINWINDOW_MAINSUSPEND), 'S'));
 		menu->AddItem(new BMenuItem(B_TRANSLATE("Resume"), new BMessage(IE_MAINWINDOW_MAINRESUME), 'R'));
+		menu->AddSeparatorItem();
+		priorityMenu = new PriorityMenu(teamView);
+		menu->AddItem(priorityMenu);
+		priorityMenu->BuildMenu();
+
 		menuBar->AddItem(menu);
 
 		menu = new BMenu(B_TRANSLATE("Window"));
@@ -110,6 +115,22 @@ MainWindow::MainWindow(void)
 }
 
 
+void
+MainWindow::MenusBeginning()
+{
+	BRow* sel = teamView->CurrentSelection();
+	bool is_sel = (sel != NULL);
+	BMenu *menu = (BMenu *)FindView("MenuBar");
+	BMenuItem *item = menu->FindItem(IE_MAINWINDOW_MAINKILL);
+	if (item) item->SetEnabled(is_sel);
+	item = menu->FindItem(IE_MAINWINDOW_MAINSUSPEND);
+	if (item) item->SetEnabled(is_sel);
+	item = menu->FindItem(IE_MAINWINDOW_MAINRESUME);
+	if (item) item->SetEnabled(is_sel);
+	priorityMenu->SetEnabled(is_sel);
+	priorityMenu->Update();
+}
+
 MainWindow::~MainWindow(void)
 {
 	slayer->mainWindow = NULL;
@@ -166,36 +187,13 @@ void MainWindow::MessageReceived(BMessage *message)
 			UpdateTeams();
 			SetButtonState();
 			break;
-		case IE_MAINWINDOW_MAINPRIORITYFIELD_LOW_PRIORITY:
-			DoPriority(B_LOW_PRIORITY);
+		case SET_PRIORITY: {
+			int32 priority = message->FindInt32("priority");
+			DoPriority(priority);
 			UpdateTeams();
 			SetButtonState();
 			break;
-		case IE_MAINWINDOW_MAINPRIORITYFIELD_NORMAL_PRIORITY:
-			DoPriority(B_NORMAL_PRIORITY);
-			UpdateTeams();
-			SetButtonState();
-			break;
-		case IE_MAINWINDOW_MAINPRIORITYFIELD_DISPLAY_PRIORITY:
-			DoPriority(B_DISPLAY_PRIORITY);
-			UpdateTeams();
-			SetButtonState();
-			break;
-		case IE_MAINWINDOW_MAINPRIORITYFIELD_REAL_TIME_DISPLAY_PRIORITY:
-			DoPriority(B_REAL_TIME_DISPLAY_PRIORITY);
-			UpdateTeams();
-			SetButtonState();
-			break;
-		case IE_MAINWINDOW_MAINPRIORITYFIELD_URGENT_PRIORITY:
-			DoPriority(B_URGENT_PRIORITY);
-			UpdateTeams();
-			SetButtonState();
-			break;
-		case IE_MAINWINDOW_MAINPRIORITYFIELD_REAL_TIME_PRIORITY:
-			DoPriority(B_REAL_TIME_PRIORITY);
-			UpdateTeams();
-			SetButtonState();
-			break;
+		}
 		case IE_MAINWINDOW_MAINPRIORITYVALUE:
 			// takes priority from text field
 			DoPriority();
@@ -564,76 +562,7 @@ void MainWindow::SetButtonState()
 	fToolBar->FindButton(IE_MAINWINDOW_MAINSUSPEND)->SetEnabled(is_sel);
 	fToolBar->FindButton(IE_MAINWINDOW_MAINRESUME)->SetEnabled(is_sel);
 
-	BMenu *menu = (BMenu *)FindView("MenuBar");
-	BMenuItem *item = menu->FindItem(IE_MAINWINDOW_MAINKILL);
-	if (item) item->SetEnabled(is_sel);
-	item = menu->FindItem(IE_MAINWINDOW_MAINSUSPEND);
-	if (item) item->SetEnabled(is_sel);
-	item = menu->FindItem(IE_MAINWINDOW_MAINRESUME);
-	if (item) item->SetEnabled(is_sel);
 
-// TODO	SetPriorityState();
-}
-
-void MainWindow::SetPriorityState()
-{
-	BTextControl *PriorityValue = (BTextControl *)FindView("MainPriorityValue");
-	BMenuField *Priority = (BMenuField *)FindView("MainPriorityField");
-/*	int32 sel = teamView->CurrentSelection();
-
-	Priority->SetEnabled((sel >= 0 ? true : false));
-	PriorityValue->SetEnabled((sel >= 0 ? true : false));
-
-	if (sel >= 0) {
-		BListItem *gItem = teamView->ItemAt(sel);
-		int32 priority;
-		BMenuItem *it;
-
-		// if single thread selected
-		if (gItem->OutlineLevel() && teamView->CurrentSelection(1) < 0) {
-			char pr_text[10] = "";
-			priority = ((ThreadItem *)gItem)->priority;
-			sprintf(pr_text, "%ld", priority);
-			// set only if the new value is different from the old
-			if (strcmp(pr_text, PriorityValue->Text()))
-				PriorityValue->SetText(pr_text);
-
-			SetPriorityField(priority);
-		}
-		else if ((it = Priority->Menu()->ItemAt(0))) {
-			if (strcmp("", PriorityValue->Text()))
-				// assume the first item is "Select"
-				PriorityValue->SetText("");
-
-			if (!it->IsMarked()) it->SetMarked(true);
-
-		}
-	} */
-}
-
-void MainWindow::SetPriorityField(int32 priority)
-{
-	BMenuField *Priority = (BMenuField *)FindView("MainPriorityField");
-
-	int32 c = -1;
-	BMenuItem *it;
-/*
-	if      (priority < B_NORMAL_PRIORITY)
-		c = IE_MAINWINDOW_MAINPRIORITYFIELD_LOW_PRIORITY;
-	else if (priority < B_DISPLAY_PRIORITY)
-		c = IE_MAINWINDOW_MAINPRIORITYFIELD_NORMAL_PRIORITY;
-	else if (priority < B_REAL_TIME_DISPLAY_PRIORITY)
-		c = IE_MAINWINDOW_MAINPRIORITYFIELD_DISPLAY_PRIORITY;
-	else if (priority < B_URGENT_PRIORITY)
-		c = IE_MAINWINDOW_MAINPRIORITYFIELD_REAL_TIME_DISPLAY_PRIORITY;
-	else if (priority < B_REAL_TIME_PRIORITY)
-		c = IE_MAINWINDOW_MAINPRIORITYFIELD_URGENT_PRIORITY;
-	else if (priority >= B_REAL_TIME_PRIORITY)
-		c = IE_MAINWINDOW_MAINPRIORITYFIELD_REAL_TIME_PRIORITY;
-
-	it = Priority->Menu()->FindItem(c);
-	if (it && !it->IsMarked())
-		it->SetMarked(true);*/
 }
 
 
