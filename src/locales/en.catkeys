@@ -1,4 +1,4 @@
-1	English	application/x-vnd.AJ-Slayer2	2206410706
+1	English	application/x-vnd.AJ-Slayer2	1593750570
 Suspend	TeamListView		Suspend
 Id	TeamListView		Id
 Forced reload	MainWindow		Forced reload
@@ -39,12 +39,12 @@ Slayer	System name		Slayer
 Low priority	PriorityMenu		Low priority
 Real-time priority	PriorityMenu		Real-time priority
 Action	MainWindow		Action
-Settings	SettingsWindow		Settings
 Custom priority	PriorityMenu		Custom priority
 Memory	TeamListView		Memory
 Open window in all workspaces	SettingsWindow		Open window in all workspaces
 Kill	TeamListView		Kill
 State	TeamListView		State
+Settings	MainWindow		Settings
 Suspended	ThreadItem		Suspended
 Waiting	ThreadItem		Waiting
 Set priority	PriorityMenu		Set priority
