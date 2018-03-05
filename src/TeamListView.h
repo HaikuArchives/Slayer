@@ -22,8 +22,11 @@
 #include <InterfaceKit.h>
 #include <ColumnListView.h>
 
+
+
 #define TEAM_INV	'tein'
 #define SELECTION_CHANGED 'sech'
+#define SET_PRIORITY 'pset'
 
 class TeamListView : public BColumnListView {
 public:
@@ -36,20 +39,15 @@ public:
 		state_ndx = 5,
 		areas_ndx = 6,
 		CPU_ndx = 7;
-	
+
 	TeamListView(const char *name);
-	
+
 	BPopUpMenu *operationMenu;
-	BMenu *priorityMenu;
-	
+	BMenu* priorityMenu;
+
 	BPopUpMenu *ActionMenu();
-	void ItemsToPopUpPriorityMenu();
-	void UpdatePopUpPriorityMenu();
 	virtual void MakeFocus(bool focused = true);
-	
 	virtual void SelectionChanged(void);
-	virtual void KeyDown(const char* bytes, int32 numBytes);
-	virtual void MouseDown(BPoint point);
 	void FullListDoForEach(bool (*func)(BRow*, void*), void* data);
 };
 #endif

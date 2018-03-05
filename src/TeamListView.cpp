@@ -21,6 +21,7 @@
 #include <Catalog.h>
 #include <ColumnListView.h>
 #include <ColumnTypes.h>
+#include "PriorityMenu.h"
 #include "SlayerApp.h"
 #include "SizeColumn.h"
 
@@ -57,25 +58,17 @@ TeamListView::TeamListView(const char *name)
 	operationMenu->AddItem((inv = new BMenuItem(B_TRANSLATE("Resume"),
 		new BMessage(IE_MAINWINDOW_MAINRESUME))));
 		inv->SetTarget(slayer->mainWindow);
-	// TODO add priority to the menu
 
-	//operationMenu->AddSeparatorItem();
-	//priorityMenu = new BMenu("PriorityMenu");
-	//BMenuItem *pr = new BMenuItem(priorityMenu); //, new BMessage('tmpj'));
-	//pr->SetLabel("Set priority");
-	//operationMenu->AddItem(pr);
-	//ItemsToPopUpPriorityMenu();
+	operationMenu->AddSeparatorItem();
+	priorityMenu = new PriorityMenu(this);
+	operationMenu->AddItem(priorityMenu);
+	((PriorityMenu*)priorityMenu)->BuildMenu();
 
-	//SetSelectionMessage(new BMessage(TEAM_INV));
 	BMessage* selected = new BMessage(SELECTION_CHANGED);
 	selected->AddInt32("buttons",0);
 	SetSelectionMessage(selected);
 
 	MakeFocus(true);
-//	 = new BMenu("Set priority");
-//	operationMenu->AddItem(setPriorityMenu);
-
-//	operationMenu->AddSeparator
 }
 
 void TeamListView::MakeFocus(bool focused)
@@ -97,95 +90,11 @@ void TeamListView::SelectionChanged()
 	BColumnListView::SelectionChanged();
 }
 
-
-void
-TeamListView::KeyDown(const char* bytes, int32 numBytes)
-{
-	BColumnListView::KeyDown(bytes, numBytes);
-}
-
-// TODO this is never called
-void TeamListView::MouseDown(BPoint point)
-{
-	BColumnListView::MouseDown(point);
-
-	int32 buttons = 0;
-	Window()->CurrentMessage()->FindInt32("buttons", &buttons);
-	if (buttons & B_SECONDARY_MOUSE_BUTTON) {
-		// let's show the pop-up menu
-		uint32 buttons = 0;
-		GetMouse(&point, &buttons);
-		ConvertToScreen(&point);
-		// gotta set the priority menu
-		// Select priority has to be updated
-		if (slayer->mainWindow->Lock()) {
-			slayer->mainWindow->SetPriorityState();
-			UpdatePopUpPriorityMenu();
-			slayer->mainWindow->Unlock();
-		}
-/*		if (slayer->mainWindow->Lock()) {
-
-			BMenuField *Priority = (BMenuField *)slayer->mainWindow->FindView("MainPriorityField");
-			printf("priorityfield: %o\n", Priority);
-			BMessage arc;
-			Priority->Menu()->Archive(&arc);
-			BMenu *PriorityMenu = (BMenu *)instantiate_object(&arc);
-			PriorityMenu->MoveTo(-1, -1);
-			// remove "Select priority" & separator
-			PriorityMenu->RemoveItem((int32)0);
-			PriorityMenu->RemoveItem((int32)0);
-			BMenuItem *pr = new BMenuItem(PriorityMenu, new BMessage('tmpj'));
-			pr->SetLabel("Set priority");
-			operationMenu->AddItem(pr);
-			slayer->mainWindow->Unlock();
-		} */
-		operationMenu->Go(point, true, true, true);
-	/*	BMenuItem *jack = operationMenu->Go(point);
-		if (jack) {
-			jack->Message()->PrintToStream();
-			BLooper *looper;
-			BHandler *target = jack->Target(&looper);
-			Window()->PostMessage(jack->Message());
-		} */
-	}
-}
-
 BPopUpMenu *
 TeamListView::ActionMenu()
 {
+	((PriorityMenu*)priorityMenu)->Update();
 	return operationMenu;
-};
-
-void TeamListView::ItemsToPopUpPriorityMenu()
-{
-	BMenuField *Priority = (BMenuField *)slayer->mainWindow->FindView("MainPriorityField");
-	BMenu *menu = Priority->Menu();
-	BMenuItem *add;
-	int32 i;
-	for (i = 2; (add = menu->ItemAt(i)); i++) {
-		BMenuItem *newItem;
-		if (add->Label() && add->Label()[0])
-			newItem = new BMenuItem(add->Label(), new BMessage(
-				add->Command()));
-		else
-			newItem = new BSeparatorItem();
-
-		newItem->SetTarget(slayer->mainWindow);
-		priorityMenu->AddItem(newItem);
-	}
-		// priorityMenu->AddItem(add);
-}
-
-void TeamListView::UpdatePopUpPriorityMenu()
-{
-	BMenuField *Priority = (BMenuField *)slayer->mainWindow->FindView("MainPriorityField");
-	BMenu *menu = Priority->Menu();
-	BMenuItem *item;
-	int32 i;
-	for (i = 2; (item = menu->ItemAt(i)); i++) {
-		priorityMenu->ItemAt(i-2)->SetMarked(item->IsMarked());
-		priorityMenu->ItemAt(i-2)->SetEnabled(item->IsEnabled());
-	}
 }
 
 void TeamListView::FullListDoForEach(bool (*func)(BRow*, void*), void* data)

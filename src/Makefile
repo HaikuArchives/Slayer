@@ -39,6 +39,7 @@ SRCS= 	Hashtable.cpp \
 		MiniSlayer.cpp \
 		miscSlayer.cpp \
 		Options.cpp \
+		PriorityMenu.cpp \
 		RefreshThread.cpp \
 		SettingsWindow.cpp \
 		SizeColumn.cpp \

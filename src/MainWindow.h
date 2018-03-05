@@ -12,6 +12,7 @@
 
 #include "Hashtable.h"
 #include "RefreshThread.h"
+#include "PriorityMenu.h"
 
 #include <ToolBar.h>
 /*
@@ -49,7 +50,8 @@ public:
 	virtual void Quit();
 	virtual void Minimize(bool minimize);
 	virtual void WindowActivated(bool active);
-		
+	virtual	void MenusBeginning();
+
 	void UpdateTeams();
 	void RemoveProcessItems(BList *);
 	void SaveStatus();
@@ -59,10 +61,10 @@ public:
 	void DoSuspend();
 	void DoResume();
 	void SetButtonState();
-	void SetPriorityState();
-	void SetPriorityField(int32 priority);
+
 	BBitmap *ResourceVectorToBitmap(const char *resName, float iconSize = 24.0);
 
+	PriorityMenu* priorityMenu;
 	BToolBar* fToolBar;
 };
 
