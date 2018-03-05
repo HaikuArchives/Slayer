@@ -30,7 +30,7 @@
 #define B_TRANSLATION_CONTEXT "PriorityMenu"
 
 PriorityMenu::PriorityMenu(TeamListView* teamListView)
-	: BMenu(B_TRANSLATE("SetPriority")),
+	: BMenu(B_TRANSLATE("Set priority")),
 	fTeamListView(teamListView),
 	fPriority(-2),
 	fEnabled(false)
