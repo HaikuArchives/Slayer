@@ -1,4 +1,4 @@
-1	English	application/x-vnd.AJ-Slayer2	1097298290
+1	Italian	application/x-vnd.AJ-Slayer2	2206410706
 Suspend	TeamListView		Sospendi
 Id	TeamListView		Id
 Forced reload	MainWindow		Aggiornamento forzato
@@ -46,7 +46,6 @@ Open window in all workspaces	SettingsWindow		Apri la finestra in tutti i worksp
 Kill	TeamListView		Uccidi
 State	TeamListView		Stato
 Suspended	ThreadItem		Sospeso
-SetPriority	PriorityMenu		Imposta priorità
 Waiting	ThreadItem		In attesa
+Set priority	PriorityMenu		Imposta priorità
 Sleeping	ThreadItem		Dormendo
-o
