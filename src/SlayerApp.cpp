@@ -19,10 +19,7 @@
 #define _INIT_SLAYER_APP_H
 #include "SlayerApp.h"
 #undef _INIT_SLAYER_APP_H
-#include "IEResourceHandler.h"
 #include "MiniSlayer.h"
-
-IEResourceHandler *resourcehandler;
 
 const char *slayer_signature = "application/x-vnd.AJ-Slayer2";
 

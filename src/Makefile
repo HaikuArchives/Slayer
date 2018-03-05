@@ -46,8 +46,7 @@ SRCS= 	Hashtable.cpp \
 		SlayerApp.cpp \
 		TeamItem.cpp \
 		TeamListView.cpp \
-		ThreadItem.cpp\
-		IElib/IEResourceHandler.cpp
+		ThreadItem.cpp
 
 #	specify the resource definition files to use
 #	full path or a relative path to the resource file can be used.
@@ -98,7 +97,7 @@ SYSTEM_INCLUDE_PATHS = 	$(shell findpaths -e B_FIND_PATH_HEADERS_DIRECTORY priva
 #	additional paths to look for local headers
 #	thes use the form: #include "header"
 #	source file directories are automatically included
-LOCAL_INCLUDE_PATHS = IElib
+LOCAL_INCLUDE_PATHS =
 
 #	specify the level of optimization that you desire
 #	NONE, SOME, FULL

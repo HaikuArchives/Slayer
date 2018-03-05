@@ -30,7 +30,7 @@ SettingsWindow::SettingsWindow(const char *title)
 
 	BBox* top = new BBox("top");
 	top->AddChild(workspaceBox->View());
-	top->SetLabel( B_TRANSLATE("Worspace"));
+	top->SetLabel( B_TRANSLATE("Workspace"));
 	refresh = new BTextControl("SettingsRefresh", B_TRANSLATE("Refresh display (seconds)"), "0.5", NULL);
 
 	save_window = new BCheckBox("SettingsSaveWindow", B_TRANSLATE("Save window position on exit"), new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWINDOW));

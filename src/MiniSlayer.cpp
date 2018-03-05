@@ -88,19 +88,6 @@ void MiniSlayer::AttachedToWindow()
 
 	BView::AttachedToWindow();
 	
-	// IE resource init
-	app_info info;
-	be_roster->FindApp(signature, &info.ref);
-	
-	// create resource handler
-	resourcehandler=new IEResourceHandler(info.ref, be_app);
-
-	if(resourcehandler->Error()!=B_NO_ERROR){
-	//	errorcode=B_ERROR;
-	//	be_app-PostMessage(IE_SHUTDOWN_APP);
-		return;
-	}
-	
 	slayer = new SlayerOpt;
 	slayer->docked = true;
 	slayer->options.Load();

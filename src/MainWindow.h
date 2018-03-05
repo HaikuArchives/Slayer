@@ -5,7 +5,6 @@
 #ifndef _MAINWINDOW_H_
 #define _MAINWINDOW_H_
 
-#include "IEWindow.h"
 #include "MainWindowDefs.h"
 #include "TeamItem.h"
 #include "TeamListView.h"
@@ -15,8 +14,7 @@
 #include "PriorityMenu.h"
 
 #include <ToolBar.h>
-/*
-bool saveitemstatus(CLVListItem *, void *);*/
+
 bool postlistproc(BRow*, void*);
 
 static const BString ProjectWebsite = "https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt"; 
@@ -30,7 +28,6 @@ public:
 	float    barPos;
 	
 	int32 team_amount;
-	// TeamItemList *team_items_list;
 	Hashtable *team_items_list;	
 	BList RemoveList;
 
