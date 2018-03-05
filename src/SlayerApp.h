@@ -19,7 +19,6 @@
 #ifndef _SLAYER_APP_H
 #define _SLAYER_APP_H
 
-#include "IEApplication.h"
 #include "MainWindow.h"
 #include "Options.h"
 

@@ -206,15 +206,15 @@ void MainWindow::MessageReceived(BMessage *message)
 			break;
 		case B_ABOUT_REQUESTED:    // "About…" is selected from menu…
 		{
-			BAboutWindow* fAboutWin = new BAboutWindow("Slayer", slayer_signature);
-			fAboutWin->AddDescription("A thread manager for Haiku");
+			BAboutWindow* fAboutWin = new BAboutWindow(B_TRANSLATE_SYSTEM_NAME("Slayer"), slayer_signature);
+			fAboutWin->AddDescription(B_TRANSLATE("A thread manager for Haiku"));
 			fAboutWin->SetVersion(SLAYER_VERSION);
 			fAboutWin->AddCopyright(1999, "Arto Jalkanen");
-			fAboutWin->AddText(
-				"Author:\nArto Jalkanen (ajalkane@cc.hut.fi)\n\n"
-				"Thanks to:\n"
-				"Attila Mezei for Interface Elements\n"
-				"Brian Tietz for ColumnListView");
+			const char* authors[] = {
+				"Arto Jalkanen (ajalkane@cc.hut.fi)",
+				NULL
+			};
+			fAboutWin->AddAuthors(authors);
 			fAboutWin->Show();
 		}
 			break;
