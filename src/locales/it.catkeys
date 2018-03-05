@@ -1,0 +1,52 @@
+1	English	application/x-vnd.AJ-Slayer2	1097298290
+Suspend	TeamListView		Sospendi
+Id	TeamListView		Id
+Forced reload	MainWindow		Aggiornamento forzato
+Settings...	MainWindow		Impostazioni...
+Open window in current workspace	SettingsWindow		Apri la finestra nel workspace corrente
+Real-time display priority	PriorityMenu		Priorità video in tempo reale
+Refresh display (seconds)	SettingsWindow		Aggiornamento dati (in secondi)
+About Slayer...	MainWindow		Informazioni su Slayer...
+Display priority	PriorityMenu		Priorità visualizzazione
+Resume	MainWindow		Ripristina
+Full name	TeamListView		Nome completo
+CPU	TeamListView		CPU
+Lowest active priority	PriorityMenu		Priorità più bassa attiva
+Priority	TeamListView		Priorità
+Window	MainWindow		Finestra
+File	MainWindow		File
+Receiving	ThreadItem		Ricevendo
+Urgent display priority	PriorityMenu		Priorità video urgente
+Kill	MainWindow		Uccidi
+Undefined	ThreadItem		Indefinito
+Save window position on exit	SettingsWindow		Salva la posizione della finestra all'uscita
+Normal priority	PriorityMenu		Priorità normale
+Ready	ThreadItem		Pronto
+Quit	MainWindow		Esci
+Open window in saved workspace	SettingsWindow		Apri la finesta nel workspace salvato
+Name	TeamListView		Nome
+Revert	SettingsWindow		Ripristina
+Dock to deskbar	SettingsWindow		Ancora alla deskbar
+Suspend	MainWindow		Sospendi
+Running	ThreadItem		In esecuzione
+Worspace	SettingsWindow		Worspace
+Icon	TeamListView		Icona
+Idle priority	PriorityMenu		Priorità inattivo
+Save workspace	SettingsWindow		Salva workspace
+Urgent priority	PriorityMenu		Priorità urgente
+Resume	TeamListView		Ripristina
+Slayer	System name		Slayer
+Low priority	PriorityMenu		Bassa priorità
+Real-time priority	PriorityMenu		Priorità in tempo reale
+Action	MainWindow		Azione
+Settings	SettingsWindow		Impostazioni
+Custom priority	PriorityMenu		Priorità personalizzata
+Memory	TeamListView		Memoria
+Open window in all workspaces	SettingsWindow		Apri la finestra in tutti i workspace
+Kill	TeamListView		Uccidi
+State	TeamListView		Stato
+Suspended	ThreadItem		Sospeso
+SetPriority	PriorityMenu		Imposta priorità
+Waiting	ThreadItem		In attesa
+Sleeping	ThreadItem		Dormendo
+o

@@ -1,0 +1,51 @@
+1	English	application/x-vnd.AJ-Slayer2	1097298290
+Suspend	TeamListView		Suspend
+Id	TeamListView		Id
+Forced reload	MainWindow		Forced reload
+Settings...	MainWindow		Settings...
+Open window in current workspace	SettingsWindow		Open window in current workspace
+Real-time display priority	PriorityMenu		Real-time display priority
+Refresh display (seconds)	SettingsWindow		Refresh display (seconds)
+About Slayer...	MainWindow		About Slayer...
+Display priority	PriorityMenu		Display priority
+Resume	MainWindow		Resume
+Full name	TeamListView		Full name
+CPU	TeamListView		CPU
+Lowest active priority	PriorityMenu		Lowest active priority
+Priority	TeamListView		Priority
+Window	MainWindow		Window
+File	MainWindow		File
+Receiving	ThreadItem		Receiving
+Urgent display priority	PriorityMenu		Urgent display priority
+Kill	MainWindow		Kill
+Undefined	ThreadItem		Undefined
+Save window position on exit	SettingsWindow		Save window position on exit
+Normal priority	PriorityMenu		Normal priority
+Ready	ThreadItem		Ready
+Quit	MainWindow		Quit
+Open window in saved workspace	SettingsWindow		Open window in saved workspace
+Name	TeamListView		Name
+Revert	SettingsWindow		Revert
+Dock to deskbar	SettingsWindow		Dock to deskbar
+Suspend	MainWindow		Suspend
+Running	ThreadItem		Running
+Worspace	SettingsWindow		Worspace
+Icon	TeamListView		Icon
+Idle priority	PriorityMenu		Idle priority
+Save workspace	SettingsWindow		Save workspace
+Urgent priority	PriorityMenu		Urgent priority
+Resume	TeamListView		Resume
+Slayer	System name		Slayer
+Low priority	PriorityMenu		Low priority
+Real-time priority	PriorityMenu		Real-time priority
+Action	MainWindow		Action
+Settings	SettingsWindow		Settings
+Custom priority	PriorityMenu		Custom priority
+Memory	TeamListView		Memory
+Open window in all workspaces	SettingsWindow		Open window in all workspaces
+Kill	TeamListView		Kill
+State	TeamListView		State
+Suspended	ThreadItem		Suspended
+SetPriority	PriorityMenu		SetPriority
+Waiting	ThreadItem		Waiting
+Sleeping	ThreadItem		Sleeping

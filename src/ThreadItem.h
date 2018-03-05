@@ -50,6 +50,7 @@ public:
 	void update(thread_info *info);
 	virtual void DrawItemColumn(BView *owner, BRect itemColumnRect, int32
 		columnIndex, bool complete = false);
+	const char* RetrieveStateString(thread_state state);
 };
 
 #endif
