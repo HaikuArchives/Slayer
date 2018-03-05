@@ -230,9 +230,10 @@ void MainWindow::MessageReceived(BMessage *message)
 			break;
 		case IE_MAINWINDOW_MAINMENU_WINDOWS_SETTINGS:
 		{
-			BWindow *settings = slayer->FindWindow("Settings");
+			const char* windowSettingsTitle = B_TRANSLATE("Settings");
+			BWindow *settings = slayer->FindWindow(windowSettingsTitle);
 			if (!settings)
-				new SettingsWindow();
+				new SettingsWindow(windowSettingsTitle);
 			else if (settings->Lock()) {
 				settings->Activate(true);
 				settings->Unlock();

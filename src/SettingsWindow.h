@@ -21,7 +21,7 @@ class SettingsWindow : public BWindow
 	void OptionsToDialog();
 	void SetRefreshDelay();
 public:
-	SettingsWindow(void);
+	SettingsWindow(const char* title);
 	~SettingsWindow(void);
 
 	virtual void MessageReceived(BMessage *message);
