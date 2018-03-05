@@ -25,7 +25,7 @@
 extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
-	: BWindow(BRect(100,100,400,400), "Slayer", B_TITLED_WINDOW, 0)
+	: BWindow(BRect(100,100,400,400), B_TRANSLATE_SYSTEM_NAME("Slayer"), B_TITLED_WINDOW, 0)
 {
 	slayer->mainWindow = this;
 	refreshThread = NULL;

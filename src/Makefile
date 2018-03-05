@@ -18,7 +18,7 @@ TYPE= APP
 
 # 	if you plan to use localization features 
 # 	specify the application MIME siganture
-APP_MIME_SIG= 
+APP_MIME_SIG=application/x-vnd.AJ-Slayer2
 
 #	add support for new Pe and Eddie features
 #	to fill in generic makefile
@@ -110,7 +110,7 @@ OPTIMIZE= FULL
 # 	locales/en.catkeys file. Use it as template for creating other
 # 	languages catkeys. All localization files must be placed
 # 	in "locales" sub-directory.
-LOCALES=
+LOCALES= en it
 
 #	specify any preprocessor symbols to be defined.  The symbols will not
 #	have their values set automatically; you must supply the value (if any)

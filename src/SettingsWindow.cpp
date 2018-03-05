@@ -15,7 +15,7 @@
 #define B_TRANSLATION_CONTEXT "SettingsWindow"
 
 SettingsWindow::SettingsWindow(void)
-	: BWindow(BRect(200,200,300,300), "Settings", B_TITLED_WINDOW, B_NOT_ZOOMABLE | B_NOT_RESIZABLE |B_AUTO_UPDATE_SIZE_LIMITS )
+	: BWindow(BRect(200,200,300,300), B_TRANSLATE("Settings"), B_TITLED_WINDOW, B_NOT_ZOOMABLE | B_NOT_RESIZABLE |B_AUTO_UPDATE_SIZE_LIMITS )
 {
 	current_workspace = new BRadioButton("SettingsCurrentWorkspace", B_TRANSLATE("Open window in current workspace"), new BMessage(IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE));
 	all_workspaces = new BRadioButton("SettingsAllWorkspaces", B_TRANSLATE("Open window in all workspaces"), new BMessage(IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES));

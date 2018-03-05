@@ -43,40 +43,13 @@ ThreadItem::ThreadItem(thread_info *info) : BRow()
 	strcpy(name, info->name);
 
 	char str[21];
-	const char *strp;
-/*	SetColumnContent(TeamListView::name_ndx, name,false);
-	sprintf(str, "%ld", thread);
-	SetColumnContent(TeamListView::id_ndx, str,false);
-	sprintf(str, "%ld", priority);
-	SetColumnContent(TeamListView::priority_ndx, str,false);*/
-	switch (state) {
-	case B_THREAD_RUNNING:
-		strp = B_TRANSLATE("Running"); break;
-	case B_THREAD_READY:
-		strp = B_TRANSLATE("Ready"); break;
-	case B_THREAD_SUSPENDED:
-		strp = B_TRANSLATE("Suspended"); break;
-	case B_THREAD_WAITING:
-		strp = B_TRANSLATE("Waiting"); break;
-	case B_THREAD_RECEIVING:
-		strp = B_TRANSLATE("Receiving"); break;
-	case B_THREAD_ASLEEP:
-		strp = B_TRANSLATE("Sleeping"); break;
-	default:
-		strp = B_TRANSLATE("Undefined"); break;
-	}
-/*	SetColumnContent(TeamListView::state_ndx, strp, false);
-	SetColumnContent(TeamListView::areas_ndx, "-", false);
-
-	SetColumnContent(TeamListView::CPU_ndx, "-", false);
-*/
 	int32 i = 0;
 	SetField(new BBitmapField(NULL), i++);
 	SetField(new BStringField(name), i++);
 	SetField(new BIntegerField(thread), i++);
 	sprintf(str, "%ld", priority);
 	SetField(new BStringField(str), i++);
-	SetField(new BStringField(strp), i++);
+	SetField(new BStringField(RetrieveStateString(state)), i++);
 	SetField(new BSizeField(0), i++);
 	SetField(new BIntegerField(0), i++);
 	SetField(new BStringField(name), i++);
@@ -112,30 +85,36 @@ void ThreadItem::update(thread_info *info)
 	    (slayer->options.shown_columns & Options::state_col)) {
 
 		state = info->state;
-
-		switch (state) {
-		case B_THREAD_RUNNING:
-			strp = "Running"; break;
-		case B_THREAD_READY:
-			strp = "Ready"; break;
-		case B_THREAD_SUSPENDED:
-			strp = "Suspended"; break;
-		case B_THREAD_WAITING:
-			strp = "Waiting"; break;
-		case B_THREAD_RECEIVING:
-			strp = "Receiving"; break;
-		case B_THREAD_ASLEEP:
-			strp = "Sleeping"; break;
-		default:
-			strp = "Undefined"; break;
-		}
 		//SetColumnContent(TeamListView::state_ndx, strp, false);
-		SetField(new BStringField(strp), 4);
-		((BStringField*)GetField(4))->SetString(strp);
+		//SetField(new BStringField(strp), 4);
+		((BStringField*)GetField(4))->SetString(RetrieveStateString(state));
 		changed |= state_chg;
 	}
 	//SetField(new BIntegerField(CPU * 100.0), 6);
 //TODO	//((BIntegerField*)GetField(6))->SetValue(CPU*100);
+}
+
+const char*
+ThreadItem::RetrieveStateString(thread_state state)
+{
+	const char *strp;
+	switch (state) {
+	case B_THREAD_RUNNING:
+		strp = B_TRANSLATE("Running"); break;
+	case B_THREAD_READY:
+		strp = B_TRANSLATE("Ready"); break;
+	case B_THREAD_SUSPENDED:
+		strp = B_TRANSLATE("Suspended"); break;
+	case B_THREAD_WAITING:
+		strp = B_TRANSLATE("Waiting"); break;
+	case B_THREAD_RECEIVING:
+		strp = B_TRANSLATE("Receiving"); break;
+	case B_THREAD_ASLEEP:
+		strp = B_TRANSLATE("Sleeping"); break;
+	default:
+		strp = B_TRANSLATE("Undefined"); break;
+	}
+	return strp;
 }
 
 void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
