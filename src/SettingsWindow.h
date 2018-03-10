@@ -17,6 +17,7 @@ class SettingsWindow : public BWindow
 	BRadioButton *current_workspace,
 		*all_workspaces,
 		*saved_workspace;
+	BMenuField* workspaces_field;
 	Options saved_options;
 	void OptionsToDialog();
 	void SetRefreshDelay();
