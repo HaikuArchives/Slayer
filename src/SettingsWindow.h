@@ -7,11 +7,12 @@
 
 #include "SettingsWindowDefs.h"
 #include "Options.h"
+#include <DecimalSpinner.h>
 #include <InterfaceKit.h>
 
 class SettingsWindow : public BWindow
 {
-	BTextControl *refresh;
+	BDecimalSpinner *refresh;
 	BCheckBox	*save_window;
 	BCheckBox	*save_workspace;
 	BRadioButton *current_workspace,

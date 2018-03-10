@@ -23,7 +23,7 @@
 
 Options::Options()
 {
-	refresh = 200;
+	refresh = 250;
 	save_wind_pos = true;
 	save_workspace = true;
 	workspace_activation = current_workspace;

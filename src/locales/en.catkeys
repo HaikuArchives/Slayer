@@ -1,4 +1,4 @@
-1	English	application/x-vnd.AJ-Slayer2	3387393906
+1	English	application/x-vnd.AJ-Slayer2	4271565088
 Suspend	TeamListView		Suspend
 Id	TeamListView		Id
 Forced reload	MainWindow		Forced reload
@@ -9,7 +9,6 @@ Refresh display (seconds)	SettingsWindow		Refresh display (seconds)
 About Slayer...	MainWindow		About Slayer...
 Display priority	PriorityMenu		Display priority
 Resume	MainWindow		Resume
-Full name	TeamListView		Full name
 CPU	TeamListView		CPU
 A thread manager for Haiku	MainWindow		A thread manager for Haiku
 Lowest active priority	PriorityMenu		Lowest active priority
@@ -24,10 +23,8 @@ Save window position on exit	SettingsWindow		Save window position on exit
 Normal priority	PriorityMenu		Normal priority
 Ready	ThreadItem		Ready
 Quit	MainWindow		Quit
-Open window in saved workspace	SettingsWindow		Open window in saved workspace
 Name	TeamListView		Name
 Revert	SettingsWindow		Revert
-Dock to deskbar	SettingsWindow		Dock to deskbar
 Suspend	MainWindow		Suspend
 Running	ThreadItem		Running
 Icon	TeamListView		Icon
@@ -40,7 +37,9 @@ Low priority	PriorityMenu		Low priority
 Real-time priority	PriorityMenu		Real-time priority
 Action	MainWindow		Action
 Custom priority	PriorityMenu		Custom priority
+Path	TeamListView		Path
 Memory	TeamListView		Memory
+Open window in workspace	SettingsWindow		Open window in workspace
 Open window in all workspaces	SettingsWindow		Open window in all workspaces
 Workspace	SettingsWindow		Workspace
 Kill	TeamListView		Kill
