@@ -34,10 +34,12 @@ MainWindow::MainWindow(void)
 		// Menü
 		BMenuBar* menuBar = new BMenuBar("MenuBar");
 		BMenu* menu;
-		menu = new BMenu(B_TRANSLATE("File"));
+		menu = new BMenu(B_TRANSLATE_SYSTEM_NAME("Slayer"));
 		menuBar->AddItem(menu);
 		menu->AddItem(new BMenuItem(B_TRANSLATE("About Slayer..."), new BMessage(B_ABOUT_REQUESTED)));
-			menu->AddSeparatorItem();
+		menu->AddSeparatorItem();
+		menu->AddItem(new BMenuItem(B_TRANSLATE("Settings..."), new BMessage(IE_MAINWINDOW_MAINMENU_WINDOWS_SETTINGS)));
+		menu->AddSeparatorItem();
 		menu->AddItem(new BMenuItem(B_TRANSLATE("Quit"), new BMessage(B_QUIT_REQUESTED), 'Q'));
 
 		menu = new BMenu(B_TRANSLATE("Action"));
@@ -51,9 +53,7 @@ MainWindow::MainWindow(void)
 
 		menuBar->AddItem(menu);
 
-		menu = new BMenu(B_TRANSLATE("Window"));
-		menuBar->AddItem(menu);
-		menu->AddItem(new BMenuItem(B_TRANSLATE("Settings..."), new BMessage(IE_MAINWINDOW_MAINMENU_WINDOWS_SETTINGS)));
+
 		fToolBar = new BToolBar(B_HORIZONTAL);
 
 
