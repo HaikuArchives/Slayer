@@ -23,11 +23,11 @@
 
 Options::Options()
 {
-	refresh = 200;
+	refresh = 250;
 	save_wind_pos = true;
-	save_workspace = false;
+	save_workspace = true;
 	workspace_activation = current_workspace;
-	workspaces = B_CURRENT_WORKSPACE;
+	workspaces = 1;
 	wind_minimized = false;
 	wind_rect.Set(1.0, 1.0, 0.0, 0.0);
 	shown_columns = id_col|priority_col|state_col|cpu_col|name_col;

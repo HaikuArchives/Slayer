@@ -25,7 +25,7 @@
 extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
-	: BWindow(BRect(100,100,400,400), B_TRANSLATE_SYSTEM_NAME("Slayer"), B_TITLED_WINDOW, 0)
+	: BWindow(BRect(200,200,800,750), B_TRANSLATE_SYSTEM_NAME("Slayer"), B_TITLED_WINDOW, 0)
 {
 	slayer->mainWindow = this;
 	refreshThread = NULL;
@@ -82,7 +82,7 @@ MainWindow::MainWindow(void)
 		if (slayer->options.workspace_activation == Options::all_workspaces)
 			SetWorkspaces(B_ALL_WORKSPACES);
 		else if (slayer->options.workspace_activation == Options::saved_workspace)
-			SetWorkspaces(slayer->options.workspaces);
+		    SetWorkspaces(0x1UL << (slayer->options.workspaces -1 ));
 
 		if (slayer->options.wind_minimized)
 			Minimize(true);
@@ -255,8 +255,8 @@ void MainWindow::Quit()
 		slayer->options.wind_rect = Frame();
 		slayer->options.wind_minimized = minimized;
 	}
-	if (slayer->options.save_workspace)
-		slayer->options.workspaces = Workspaces();
+/*	if (slayer->options.save_workspace)
+		slayer->options.workspaces = Workspaces();*/
 
 	// What follows is a really ugly hack to detect if the user closed
 	// the window with close button, or if Application wants to close

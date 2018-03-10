@@ -7,16 +7,18 @@
 
 #include "SettingsWindowDefs.h"
 #include "Options.h"
+#include <DecimalSpinner.h>
 #include <InterfaceKit.h>
 
 class SettingsWindow : public BWindow
 {
-	BTextControl *refresh;
+	BDecimalSpinner *refresh;
 	BCheckBox	*save_window;
 	BCheckBox	*save_workspace;
 	BRadioButton *current_workspace,
 		*all_workspaces,
 		*saved_workspace;
+	BMenuField* workspaces_field;
 	Options saved_options;
 	void OptionsToDialog();
 	void SetRefreshDelay();
