@@ -1,11 +1,11 @@
-1	English	application/x-vnd.AJ-Slayer2	4271565088
+1	English	application/x-vnd.AJ-Slayer2	2827055809
 Suspend	TeamListView		Suspend
 Id	TeamListView		Id
 Forced reload	MainWindow		Forced reload
 Settings...	MainWindow		Settings...
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Refresh display (seconds):
 Open window in current workspace	SettingsWindow		Open window in current workspace
 Real-time display priority	PriorityMenu		Real-time display priority
-Refresh display (seconds)	SettingsWindow		Refresh display (seconds)
 About Slayer...	MainWindow		About Slayer...
 Display priority	PriorityMenu		Display priority
 Resume	MainWindow		Resume
@@ -13,13 +13,10 @@ CPU	TeamListView		CPU
 A thread manager for Haiku	MainWindow		A thread manager for Haiku
 Lowest active priority	PriorityMenu		Lowest active priority
 Priority	TeamListView		Priority
-Window	MainWindow		Window
-File	MainWindow		File
 Receiving	ThreadItem		Receiving
 Urgent display priority	PriorityMenu		Urgent display priority
 Kill	MainWindow		Kill
 Undefined	ThreadItem		Undefined
-Save window position on exit	SettingsWindow		Save window position on exit
 Normal priority	PriorityMenu		Normal priority
 Ready	ThreadItem		Ready
 Quit	MainWindow		Quit
@@ -29,7 +26,6 @@ Suspend	MainWindow		Suspend
 Running	ThreadItem		Running
 Icon	TeamListView		Icon
 Idle priority	PriorityMenu		Idle priority
-Save workspace	SettingsWindow		Save workspace
 Urgent priority	PriorityMenu		Urgent priority
 Resume	TeamListView		Resume
 Slayer	System name		Slayer
@@ -37,9 +33,9 @@ Low priority	PriorityMenu		Low priority
 Real-time priority	PriorityMenu		Real-time priority
 Action	MainWindow		Action
 Custom priority	PriorityMenu		Custom priority
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Open window in workspace:
 Path	TeamListView		Path
 Memory	TeamListView		Memory
-Open window in workspace	SettingsWindow		Open window in workspace
 Open window in all workspaces	SettingsWindow		Open window in all workspaces
 Workspace	SettingsWindow		Workspace
 Kill	TeamListView		Kill

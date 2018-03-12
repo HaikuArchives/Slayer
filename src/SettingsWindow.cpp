@@ -60,10 +60,6 @@ SettingsWindow::SettingsWindow(const char *title)
 	refresh->SetStep(0.250);
 	refresh->SetRange(0, 60);
 
-	save_window = new BCheckBox("SettingsSaveWindow", B_TRANSLATE("Save window position on exit"), new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWINDOW));
-	save_workspace = new BCheckBox("SettingsSaveWorkspace", B_TRANSLATE("Save workspace"), new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE));
-
-
 	BButton* deskbarButton;
 	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_SMALL_INSETS)
 		.SetInsets(B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS,
@@ -109,10 +105,6 @@ void SettingsWindow::MessageReceived(BMessage *message)
 			slayer->options.workspace_activation = Options::saved_workspace; workspaces_field->SetEnabled(true); break;
 		case IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES:
 			slayer->options.workspace_activation = Options::all_workspaces; workspaces_field->SetEnabled(false); break;
-		case IE_SETTINGSWINDOW_SETTINGSSAVEWINDOW:	// 'SettingsSaveWindow' is pressed...
-			slayer->options.save_wind_pos = 
-				save_window->Value() ? true : false;
-			break;
 		case IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE:	// 'SettingsSaveWorkspace' is pressed...
 			message->FindInt32("workspace_number", &slayer->options.workspaces);
 			slayer->options.save_workspace = true;
@@ -156,14 +148,7 @@ void SettingsWindow::Quit()
 void SettingsWindow::OptionsToDialog()
 {
 	refresh->SetValue(((float)slayer->options.refresh)/1000);
-	
-	if (slayer->options.save_wind_pos)
-		save_window->SetValue(1);
-	else
-		save_window->SetValue(0);
-		
-	save_workspace->SetValue(slayer->options.save_workspace ? 1 : 0);
-	
+
 	switch (slayer->options.workspace_activation) {
 	case Options::current_workspace:
 		current_workspace->SetValue(1); workspaces_field->SetEnabled(false); break;
