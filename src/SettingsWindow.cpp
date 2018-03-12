@@ -17,10 +17,16 @@
 SettingsWindow::SettingsWindow(const char *title)
 	: BWindow(BRect(300,300,400,400), title, B_TITLED_WINDOW_LOOK, B_MODAL_APP_WINDOW_FEEL, B_NOT_ZOOMABLE | B_NOT_RESIZABLE |B_AUTO_UPDATE_SIZE_LIMITS )
 {
-	current_workspace = new BRadioButton("SettingsCurrentWorkspace", B_TRANSLATE("Open window in current workspace"), new BMessage(IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE));
-	all_workspaces = new BRadioButton("SettingsAllWorkspaces", B_TRANSLATE("Open window in all workspaces"), new BMessage(IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES));
-	saved_workspace = new BRadioButton("SettingsSavedWorkspace", B_TRANSLATE("Open window in workspace"), new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEDWORKSPACE));
-
+	current_workspace = new BRadioButton("SettingsCurrentWorkspace",
+		B_TRANSLATE("Open window in current workspace"),
+		new BMessage(IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE));
+	all_workspaces = new BRadioButton("SettingsAllWorkspaces",
+		B_TRANSLATE("Open window in all workspaces"),
+		new BMessage(IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES));
+	saved_workspace = new BRadioButton("SettingsSavedWorkspace",
+		B_TRANSLATE_COMMENT("Open window in workspace:",
+			"After 'workspace' follows a popup menu with the workspace number"),
+		new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEDWORKSPACE));
 
 	BPopUpMenu* workspaces_list = new BPopUpMenu("Workspace");
 
@@ -49,7 +55,8 @@ SettingsWindow::SettingsWindow(const char *title)
 	BBox* top = new BBox("top");
 	top->AddChild(workspaceBox->View());
 	top->SetLabel( B_TRANSLATE("Workspace"));
-	refresh = new BDecimalSpinner(NULL, B_TRANSLATE("Refresh display (seconds)"), NULL);
+	refresh = new BDecimalSpinner(NULL, B_TRANSLATE_COMMENT("Refresh display (seconds):",
+		"After 'seconds' follows a text field and spinner widget to set the number of seconds"), NULL);
 	refresh->SetStep(0.250);
 	refresh->SetRange(0, 60);
 
