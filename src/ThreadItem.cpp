@@ -47,8 +47,7 @@ ThreadItem::ThreadItem(thread_info *info) : BRow()
 	SetField(new BBitmapField(NULL), i++);
 	SetField(new BStringField(name), i++);
 	SetField(new BIntegerField(thread), i++);
-	sprintf(str, "%ld", priority);
-	SetField(new BStringField(str), i++);
+	SetField(new BIntegerField(priority), i++);
 	SetField(new BStringField(RetrieveStateString(state)), i++);
 	SetField(new BSizeField(0), i++);
 	SetField(new BIntegerField(0), i++);
@@ -74,8 +73,7 @@ void ThreadItem::update(thread_info *info)
 		(slayer->options.shown_columns & Options::priority_col) */) {
 
 		priority = info->priority;
-		sprintf(str, "%ld", priority);
-		((BStringField*)GetField(3))->SetString(str);
+		((BIntegerField*)GetField(3))->SetValue(priority);
 		changed |= priority_chg;
 	}
 	if ((state != info->state) /*&&

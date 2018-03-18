@@ -53,7 +53,7 @@ TeamItem::TeamItem(team_info *info) : BRow()
 	SetField(new BBitmapField(team_icon), i++);
 	SetField(new BStringField(name), i++);
 	SetField(new BIntegerField(team), i++);
-	SetField(new BStringField("-"), i++);
+	SetField(new BIntegerField(-1), i++);
 	SetField(new BStringField("-"), i++);
 	SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), i++);
 	SetField(new BIntegerField(0), i++);
