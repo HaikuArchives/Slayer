@@ -63,30 +63,25 @@ void ThreadItem::update(thread_info *info)
 	user_time = info->user_time;
 	kernel_time = info->kernel_time;
 
-	if (strcmp(info->name, name) &&
-	    (slayer->options.shown_columns & Options::name_col)) {
+	if (strcmp(info->name, name) /* &&
+	    (slayer->options.shown_columns & Options::name_col) */) {
 
 		strcpy(name, info->name);
-//		SetField(new BStringField(name), 1);
 		((BStringField*)GetField(1))->SetString(name);
 		changed |= name_chg;
 	}
-	if ((priority != info->priority) &&
-		(slayer->options.shown_columns & Options::priority_col)) {
+	if ((priority != info->priority) /* &&
+		(slayer->options.shown_columns & Options::priority_col) */) {
 
 		priority = info->priority;
 		sprintf(str, "%ld", priority);
-		//SetColumnContent(TeamListView::priority_ndx, str, false);
-		////SetField(new BStringField(str), 3);
 		((BStringField*)GetField(3))->SetString(str);
 		changed |= priority_chg;
 	}
-	if ((state != info->state) &&
-	    (slayer->options.shown_columns & Options::state_col)) {
+	if ((state != info->state) /*&&
+	    (slayer->options.shown_columns & Options::state_col)*/) {
 
 		state = info->state;
-		//SetColumnContent(TeamListView::state_ndx, strp, false);
-		//SetField(new BStringField(strp), 4);
 		((BStringField*)GetField(4))->SetString(RetrieveStateString(state));
 		changed |= state_chg;
 	}

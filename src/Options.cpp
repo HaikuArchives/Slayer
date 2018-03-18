@@ -24,13 +24,11 @@
 Options::Options()
 {
 	refresh = 250;
-	save_wind_pos = true;
-	save_workspace = true;
 	workspace_activation = current_workspace;
 	workspaces = 1;
 	wind_minimized = false;
 	wind_rect.Set(1.0, 1.0, 0.0, 0.0);
-	shown_columns = id_col|priority_col|state_col|cpu_col|name_col;
+//	shown_columns = id_col|priority_col|state_col|cpu_col|name_col;
 }
 
 void Options::Save()
@@ -41,31 +39,21 @@ void Options::Save()
 		printf("Couldn't save options\n");
 		return;
 	}
-	
 	path.SetTo(path.Path(), SETTINGS_FILE);
-
-	BFile node(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
-	if (node.InitCheck() != B_NO_ERROR) {
+	BFile file(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
+	if (file.InitCheck() != B_NO_ERROR) {
 		printf("Couldn't open file for saving\n");
 		return;
 	}
+	BMessage message;
 
-	char tmp;
-	node.WriteAttr("refresh", B_INT32_TYPE, 0, &refresh, sizeof(int32));
-	node.WriteAttr("save_wind_pos", B_CHAR_TYPE, 0, &(tmp = save_wind_pos),
-		sizeof(tmp));
-	node.WriteAttr("save_workspace", B_CHAR_TYPE, 0, &(tmp = save_workspace),
-		sizeof(tmp));
-	node.WriteAttr("workspace_activation", B_INT32_TYPE, 0, &workspace_activation,
-		sizeof(workspace_activation));
-	node.WriteAttr("workspaces", B_INT32_TYPE, 0, &workspaces,
-		sizeof(workspaces));
-	node.WriteAttr("wind_minimized", B_CHAR_TYPE, 0, &(tmp = wind_minimized),
-		sizeof(wind_minimized));
-	node.WriteAttr("wind_rect", B_RECT_TYPE, 0, &wind_rect,
-		sizeof(wind_rect));
-	node.WriteAttr("shown_columns", B_INT32_TYPE, 0, &shown_columns,
-		sizeof(shown_columns));
+	message.AddInt32("refresh", refresh);
+	message.AddRect("wind_rect", wind_rect);
+	message.AddMessage("columnsState", &columnsState);
+	message.AddInt8("workspace_activation", workspace_activation);
+	message.AddInt32("workspaces", workspaces);
+
+	message.Flatten(&file);
 }
 
 void Options::Load()
@@ -78,27 +66,22 @@ void Options::Load()
 	}
 	path.SetTo(path.Path(), SETTINGS_FILE);
 	
-	BNode node(path.Path());
-	if (node.InitCheck() != B_NO_ERROR)
+	BFile file(path.Path(), B_READ_ONLY);
+	if (file.InitCheck() != B_NO_ERROR)
 		return;
 
-	char tmp;
-	
-	node.ReadAttr("refresh", B_INT32_TYPE, 0, &refresh, sizeof(int32));
-	node.ReadAttr("save_wind_pos", B_CHAR_TYPE, 0, &tmp,
-		sizeof(tmp)); save_wind_pos = tmp;
-	node.ReadAttr("save_workspace", B_CHAR_TYPE, 0, &tmp,
-		sizeof(tmp)); save_workspace = tmp;
-	node.ReadAttr("workspace_activation", B_INT32_TYPE, 0, &workspace_activation,
-		sizeof(workspace_activation));
-	node.ReadAttr("workspaces", B_INT32_TYPE, 0, &workspaces,
-		sizeof(workspaces));
-	node.ReadAttr("wind_minimized", B_CHAR_TYPE, 0, &tmp,
-		sizeof(wind_minimized)); wind_minimized = tmp;
-	node.ReadAttr("wind_rect", B_RECT_TYPE, 0, &wind_rect,
-		sizeof(wind_rect));
-		
-	node.ReadAttr("shown_columns", B_INT32_TYPE, 0, &shown_columns, sizeof(shown_columns));
+	BMessage message;
+	message.Unflatten(&file);
+
+	if (message.FindInt32("refresh", &refresh) != B_OK)
+		refresh = 250;
+	message.FindRect("wind_rect", &wind_rect);
+	message.FindMessage("columnsState", &columnsState);
+	int8 tmp;
+	if (message.FindInt8("workspace_activation", &((int8)workspace_activation)) != B_OK)
+		workspace_activation = current_workspace;
+	if (message.FindInt32("workspaces", &workspaces) != B_OK)
+		workspaces = 1;
 }
 
 /*

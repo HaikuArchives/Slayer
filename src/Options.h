@@ -24,8 +24,6 @@
 
 struct Options {
 	int32 refresh;
-	bool save_wind_pos;
-	bool save_workspace;
 	enum {
 		current_workspace,
 		all_workspaces,
@@ -42,7 +40,8 @@ struct Options {
 		cpu_col = 0x10,
 		name_col = 0x20
 	};
-	int32 shown_columns;	
+//	int32 shown_columns;
+	BMessage columnsState;
 		
 /*
 public:

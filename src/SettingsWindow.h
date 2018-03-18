@@ -13,8 +13,7 @@
 class SettingsWindow : public BWindow
 {
 	BDecimalSpinner *refresh;
-	BCheckBox	*save_window;
-	BCheckBox	*save_workspace;
+
 	BRadioButton *current_workspace,
 		*all_workspaces,
 		*saved_workspace;

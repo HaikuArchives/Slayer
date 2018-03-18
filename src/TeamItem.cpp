@@ -33,10 +33,10 @@ TeamItem::TeamItem(team_info *info) : BRow()
 	team = info->team;
 	area_count = info->area_count;
 	// memory_usage = 0;
-	if (slayer->options.shown_columns & Options::memory_col)
+//	if (slayer->options.shown_columns & Options::memory_col)
 		memory_usage = CountMemory();
-	else
-		memory_usage = 0;
+//	else
+//		memory_usage = 0;
 
 	get_app_info(team, &team_icon, &name, &fullName);
 	if (name == NULL) {
@@ -77,7 +77,7 @@ int32 TeamItem::update(team_info *info)
 	} */
 	
 	// no updating unless necessary
-	if (slayer->options.shown_columns & Options::memory_col) {
+//	if (slayer->options.shown_columns & Options::memory_col) {
 		size_t mem = CountMemory();
 		if (mem != memory_usage) {
 	
@@ -96,7 +96,7 @@ int32 TeamItem::update(team_info *info)
 				changed |= areas_chg;
 			}
 		}
-	}
+//	}
 
 	return changed;
 }

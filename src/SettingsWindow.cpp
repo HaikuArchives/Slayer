@@ -107,7 +107,6 @@ void SettingsWindow::MessageReceived(BMessage *message)
 			slayer->options.workspace_activation = Options::all_workspaces; workspaces_field->SetEnabled(false); break;
 		case IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE:	// 'SettingsSaveWorkspace' is pressed...
 			message->FindInt32("workspace_number", &slayer->options.workspaces);
-			slayer->options.save_workspace = true;
 			break;
 		case IE_SETTINGSWINDOW_SETTINGSREFRESH:	// Enter is pressed in 'SettingsRefresh'...
 			SetRefreshDelay();

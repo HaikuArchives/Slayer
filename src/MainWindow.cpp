@@ -53,9 +53,7 @@ MainWindow::MainWindow(void)
 
 		menuBar->AddItem(menu);
 
-
 		fToolBar = new BToolBar(B_HORIZONTAL);
-
 
 		BGroupLayout *topBox = BLayoutBuilder::Group<>(this,B_VERTICAL, 0)
 			.Add(menuBar)
@@ -64,13 +62,14 @@ MainWindow::MainWindow(void)
 			.SetInsets(B_USE_WINDOW_INSETS, 0, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS)
 			.Add(teamView);
 
+		teamView->LoadState(&(slayer->options.columnsState));
+
 		team_items_list = 0;
 		team_amount = 0;
 		iteration = 0;
 
 		refreshThread = new RefreshThread();
 		UpdateTeams();
-
 
 		if (slayer->options.wind_rect.IsValid()) {
 			MoveTo(slayer->options.wind_rect.left,
@@ -250,13 +249,9 @@ void MainWindow::MessageReceived(BMessage *message)
 
 void MainWindow::Quit()
 {
-
-	if (slayer->options.save_wind_pos) {
-		slayer->options.wind_rect = Frame();
-		slayer->options.wind_minimized = minimized;
-	}
-/*	if (slayer->options.save_workspace)
-		slayer->options.workspaces = Workspaces();*/
+	slayer->options.wind_rect = Frame();
+	teamView->SaveState(&slayer->options.columnsState);
+//	slayer->options.wind_minimized = minimized;
 
 	// What follows is a really ugly hack to detect if the user closed
 	// the window with close button, or if Application wants to close
