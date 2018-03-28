@@ -24,7 +24,7 @@
 
 struct Options {
 	int32 refresh;
-	enum {
+	enum workspace_type {
 		current_workspace,
 		all_workspaces,
 		saved_workspace

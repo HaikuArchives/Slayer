@@ -78,7 +78,9 @@ void Options::Load()
 	message.FindRect("wind_rect", &wind_rect);
 	message.FindMessage("columnsState", &columnsState);
 	int8 tmp;
-	if (message.FindInt8("workspace_activation", &((int8)workspace_activation)) != B_OK)
+	if (message.FindInt8("workspace_activation", &tmp) == B_OK)
+		workspace_activation = static_cast<workspace_type>(tmp);
+	else
 		workspace_activation = current_workspace;
 	if (message.FindInt32("workspaces", &workspaces) != B_OK)
 		workspaces = 1;
