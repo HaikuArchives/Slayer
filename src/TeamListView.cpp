@@ -110,3 +110,28 @@ void TeamListView::FullListDoForEach(bool (*func)(BRow*, void*), void* data)
 		}
 	}
 }
+
+
+void TeamListView::KeyDown(const char *bytes, int32 numBytes)
+{
+	if (numBytes <= 0) return;
+
+	int indexOfLastRow = this->CountRows() -1 ;
+
+	switch (bytes[0]) {
+		case B_HOME:
+			this->DeselectAll();
+			this->SetFocusRow(this->RowAt(0), true);
+			this->ScrollTo(this->RowAt(0));
+			break;
+		case B_END:
+			this->DeselectAll();
+			this->SetFocusRow(this->RowAt(indexOfLastRow), true);
+			this->ScrollTo(this->RowAt(indexOfLastRow));
+			break;
+			break;
+		default: {
+			BColumnListView::KeyDown(bytes, numBytes);
+		}
+	}
+}

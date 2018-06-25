@@ -49,5 +49,6 @@ public:
 	virtual void MakeFocus(bool focused = true);
 	virtual void SelectionChanged(void);
 	void FullListDoForEach(bool (*func)(BRow*, void*), void* data);
+	void KeyDown(const char *bytes, int32 numBytes);
 };
 #endif
