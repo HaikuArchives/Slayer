@@ -129,7 +129,6 @@ void TeamListView::KeyDown(const char *bytes, int32 numBytes)
 			this->SetFocusRow(this->RowAt(indexOfLastRow), true);
 			this->ScrollTo(this->RowAt(indexOfLastRow));
 			break;
-			break;
 		default: {
 			BColumnListView::KeyDown(bytes, numBytes);
 		}
