@@ -121,13 +121,13 @@ void TeamListView::KeyDown(const char *bytes, int32 numBytes)
 	switch (bytes[0]) {
 		case B_HOME:
 			this->DeselectAll();
-			this->SetFocusRow(this->RowAt(0), true);
 			this->ScrollTo(this->RowAt(0));
+			this->SetFocusRow(this->RowAt(0), true);
 			break;
 		case B_END:
 			this->DeselectAll();
-			this->SetFocusRow(this->RowAt(indexOfLastRow), true);
 			this->ScrollTo(this->RowAt(indexOfLastRow));
+			this->SetFocusRow(this->RowAt(indexOfLastRow), true);
 			break;
 		default: {
 			BColumnListView::KeyDown(bytes, numBytes);
