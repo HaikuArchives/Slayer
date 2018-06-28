@@ -16,13 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
 **/
+
 #ifndef _TEAM_LIST_VIEW_H
 #define _TEAM_LIST_VIEW_H
 
 #include <InterfaceKit.h>
 #include <ColumnListView.h>
-
-
 
 #define TEAM_INV	'tein'
 #define SELECTION_CHANGED 'sech'
@@ -50,5 +49,6 @@ public:
 	virtual void SelectionChanged(void);
 	void FullListDoForEach(bool (*func)(BRow*, void*), void* data);
 	void KeyDown(const char *bytes, int32 numBytes);
+	void MoveToRow(int RowIndex);
 };
 #endif

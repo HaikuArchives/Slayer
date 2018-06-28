@@ -405,38 +405,16 @@ bool postlistproc(BRow *item, void *_wnd)
 	if (item->HasLatch()) {
 		if (((TeamItem *)item)->refreshed != wnd->iteration)
 			wnd->RemoveList.AddItem((void *)item);
-		else {/*
-			int32 ch = ((TeamItem *)item)->changed;
-			while (ch) {
-				BRect rect(0.0, 0.0, 0.0, 0.0);
-				if (ch & TeamItem::name_chg) {
-					rect = item->ItemColumnFrame(TeamListView::name_ndx, wnd->teamView);
-					ch &= ~(TeamItem::name_chg);
-				}
-				else if (ch & TeamItem::areas_chg) {
-					rect = item->ItemColumnFrame(TeamListView::areas_ndx, wnd->teamView);
-					ch &= ~(TeamItem::areas_chg);
-				}
-				else ch = 0;
-				if (rect.right && rect.bottom) wnd->teamView->Invalidate(rect);
-			}
-			((TeamItem *)item)->changed = 0;*/
-
+		else {
 			float CPU = ((float)((TeamItem *)item)->CPU_diff) / wnd->total_CPU_diff;
-			if ((CPU != ((TeamItem *)item)->CPU) // && wnd->teamView->IsColumnVisible(6)
-			    /*(slayer->options.shown_columns & Options::cpu_col)*/) {
-
+			if ((CPU != ((TeamItem *)item)->CPU)) {
 				CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
 				((TeamItem *)item)->CPU = CPU;
-				/*
-				item->DrawItemColumn(wnd->teamView, item->ItemColumnFrame(
-					TeamListView::CPU_ndx, wnd->teamView), TeamListView::CPU_ndx, true); */
 				((BIntegerField*)(item->GetField(6)))->SetValue(CPU*100);
 				((TeamItem *)item)->changed++;
 			}
 			if (((TeamItem *)item)->changed != 0) {
 				wnd->teamView->UpdateRow(item);
-				//item->Invalidate();
 			}
 			((TeamItem *)item)->changed = 0;
 		}
@@ -444,39 +422,13 @@ bool postlistproc(BRow *item, void *_wnd)
 	else {
 		if (((ThreadItem *)item)->refreshed != wnd->iteration)
 			wnd->RemoveList.AddItem((void *)item);
-		else { /*
-			int32 ch = ((ThreadItem *)item)->changed;
-			while (ch) {
-				BRect rect(0.0, 0.0, 0.0, 0.0);
-				if (ch & ThreadItem::name_chg) {
-					rect = item->ItemColumnFrame(TeamListView::name_ndx, wnd->teamView);
-					ch &= ~(ThreadItem::name_chg);
-				}
-				else if (ch & ThreadItem::priority_chg) {
-					rect = item->ItemColumnFrame(TeamListView::priority_ndx, wnd->teamView);
-					ch &= ~(ThreadItem::priority_chg);
-				}
-				else if (ch & ThreadItem::state_chg) {
-					rect = item->ItemColumnFrame(TeamListView::state_ndx, wnd->teamView);
-					ch &= ~(ThreadItem::state_chg);
-				}
-				else ch = 0;
-
-				if (rect.right && rect.bottom) wnd->teamView->Invalidate(rect);
-			}
-			((ThreadItem *)item)->changed = 0; */
-
+		else {
 			float CPU = ((float)((ThreadItem *)item)->CPU_diff) / wnd->total_CPU_diff;
-			if ((CPU != ((ThreadItem *)item)->CPU)
-				/* && wnd->teamView->IsColumnVisible(6) */) {
-
+			if ((CPU != ((ThreadItem *)item)->CPU)) {
 			    CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
 				((ThreadItem *)item)->CPU = CPU;
-				/*
-				item->DrawItemColumn(wnd->teamView, item->ItemColumnFrame(
-					TeamListView::CPU_ndx, wnd->teamView), TeamListView::CPU_ndx, true); */
-					((BIntegerField*)(item->GetField(6)))->SetValue(CPU*100);
-					((ThreadItem *)item)->changed++;
+				((BIntegerField*)(item->GetField(6)))->SetValue(CPU*100);
+				((ThreadItem *)item)->changed++;
 			}
 			if (((ThreadItem *)item)->changed != 0){
 				wnd->teamView->UpdateRow(item);
@@ -497,6 +449,11 @@ void MainWindow::DoKill(void)
 			kill_team(((TeamItem *)selected)->team);
 		else
 			kill_thread(((ThreadItem *)selected)->thread);
+
+		if (teamView->IndexOf(selected) == teamView->CountRows() - 1)
+			teamView->MoveToRow(teamView->IndexOf(selected) - 1);
+		else
+			teamView->MoveToRow(teamView->IndexOf(selected) + 1);
 	}
 }
 
@@ -557,8 +514,6 @@ void MainWindow::SetButtonState()
 	fToolBar->FindButton(IE_MAINWINDOW_MAINKILL)->SetEnabled(is_sel);
 	fToolBar->FindButton(IE_MAINWINDOW_MAINSUSPEND)->SetEnabled(is_sel);
 	fToolBar->FindButton(IE_MAINWINDOW_MAINRESUME)->SetEnabled(is_sel);
-
-
 }
 
 
