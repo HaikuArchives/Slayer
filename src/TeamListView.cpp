@@ -132,7 +132,7 @@ void TeamListView::KeyDown(const char *bytes, int32 numBytes)
 
 void TeamListView::MoveToRow(int RowIndex)
 {
-		this->DeselectAll();
-		this->ScrollTo(this->RowAt(RowIndex));
-		this->SetFocusRow(this->RowAt(RowIndex), true);
+	DeselectAll();
+	ScrollTo(this->RowAt(RowIndex));
+	SetFocusRow(this->RowAt(RowIndex), true);
 }
