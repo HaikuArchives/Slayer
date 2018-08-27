@@ -32,7 +32,7 @@
 TeamListView::TeamListView(const char *name)
 	: BColumnListView("fileListView", B_FRAME_EVENTS|B_NAVIGABLE)
 {
-	// add Columns...
+	// add Columns
 	BColumn* column;
 	int32 i = 0;
 	AddColumn(new BBitmapColumn(B_TRANSLATE("Icon"), 16, 16, 16, B_ALIGN_CENTER), i++);
@@ -102,10 +102,8 @@ void TeamListView::FullListDoForEach(bool (*func)(BRow*, void*), void* data)
 {
 	for(int i = 0; i < CountRows(); i++) {
 		func(RowAt(i), data);
-		//printf("%s\n", ((BStringField*)(RowAt(i)->GetField(1)))->String());
-//		if (RowAt(i)->IsExpanded())
+
 		for (int j = 0; j < CountRows(RowAt(i)); j++) {
-			//printf("%s\n", ((BStringField*)(RowAt(j, RowAt(i))->GetField(1)))->String());
 			func(RowAt(j, RowAt(i)), data);
 		}
 	}
@@ -120,17 +118,21 @@ void TeamListView::KeyDown(const char *bytes, int32 numBytes)
 
 	switch (bytes[0]) {
 		case B_HOME:
-			this->DeselectAll();
-			this->ScrollTo(this->RowAt(0));
-			this->SetFocusRow(this->RowAt(0), true);
+			MoveToRow(0);
 			break;
 		case B_END:
-			this->DeselectAll();
-			this->ScrollTo(this->RowAt(indexOfLastRow));
-			this->SetFocusRow(this->RowAt(indexOfLastRow), true);
+			MoveToRow(indexOfLastRow);
 			break;
 		default: {
 			BColumnListView::KeyDown(bytes, numBytes);
 		}
 	}
+}
+
+
+void TeamListView::MoveToRow(int RowIndex)
+{
+	DeselectAll();
+	ScrollTo(this->RowAt(RowIndex));
+	SetFocusRow(this->RowAt(RowIndex), true);
 }
