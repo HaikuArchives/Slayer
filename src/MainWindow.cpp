@@ -26,9 +26,9 @@ extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
 	: BWindow(BRect(200,200,800,750), B_TRANSLATE_SYSTEM_NAME("Slayer"), B_TITLED_WINDOW, 0)
+	, fRefreshRunner(NULL)
 {
 	slayer->mainWindow = this;
-	refreshThread = NULL;
 	if (Lock()) {
 		teamView = new TeamListView("MainTeamList");
 		// Menü
@@ -68,7 +68,6 @@ MainWindow::MainWindow(void)
 		team_amount = 0;
 		iteration = 0;
 
-		refreshThread = new RefreshThread();
 		UpdateTeams();
 
 		if (slayer->options.wind_rect.IsValid()) {
@@ -107,7 +106,9 @@ MainWindow::MainWindow(void)
 
 		SetButtonState();
 
-		refreshThread->Go();
+		BMessage refreshMessage(REFRESH_TEAMS);
+		fRefreshRunner = new BMessageRunner(BMessenger(this), &refreshMessage, 1000000);
+		SetRefreshRate(slayer->options.refresh);
 		Unlock();
 	}
 	Show();
@@ -133,8 +134,7 @@ MainWindow::MenusBeginning()
 MainWindow::~MainWindow(void)
 {
 	slayer->mainWindow = NULL;
-	refreshThread->Kill();
-	delete refreshThread;
+	delete fRefreshRunner;
 	if (!slayer->docked)
 		be_app->PostMessage(B_QUIT_REQUESTED);
 }
@@ -167,6 +167,9 @@ void MainWindow::MessageReceived(BMessage *message)
 				//fItemMenu->Go(p2, true, true, true);
 			}
 			SetButtonState();
+			break;
+		case REFRESH_TEAMS:
+			UpdateTeams();
 			break;
 		case IE_MAINWINDOW_MAINMENU_ACTION_KILL:
 		case IE_MAINWINDOW_MAINKILL:
@@ -270,29 +273,17 @@ void MainWindow::Minimize(bool minimize)
 	BWindow::Minimize(minimize);
 
 	// if window is minimized, remove update thread. If window un-minimized, restart it.
-	if (minimized && refreshThread != NULL) {
+	if (minimized && fRefreshRunner != NULL) {
 		// Gotta get rid of the refresh thread
-		refreshThread->Kill();
+		delete fRefreshRunner;
+		fRefreshRunner = NULL;
 	}
-	else if (!minimized && refreshThread != NULL) {
-		refreshThread->Go();
+	else if ((!minimized) && (fRefreshRunner == NULL)) {
+		BMessage refreshMessage(REFRESH_TEAMS);
+		fRefreshRunner = new BMessageRunner(BMessenger(this), &refreshMessage, fRefreshRate);
 	}
 }
 
-// unfortunately Minimize isn't called when the window is un-minimized,
-// so here is a dirty hack around it.
-void MainWindow::WindowActivated(bool active)
-{
-	if (active) {
-		if (minimized) {
-			minimized = false;
-			// Update the teams
-			UpdateTeams();
-			// restart updating
-			if (refreshThread != NULL) refreshThread->Go();
-		}
-	}
-}
 void MainWindow::UpdateTeams()
 {
 	ThreadItem *thread_item;
@@ -378,22 +369,22 @@ void MainWindow::UpdateTeams()
 
 void MainWindow::RemoveProcessItems(BList *items)
 {
-	BRow **p = (BRow **)items->Items();
 	int32 i;
 	for (i = 0; i < items->CountItems(); i++) {
-		teamView->RemoveRow(p[i]);
-		if (p[i]->HasLatch()) {
-			team_items_list->del(((TeamItem *)p[i])->team);
-			delete ((TeamItem *)p[i]);
+		BRow* p = (BRow*)items->ItemAtFast(i);
+		teamView->RemoveRow(p);
+		if (p->HasLatch()) {
+			team_items_list->del(((TeamItem *)p)->team);
+			delete ((TeamItem *)p);
 		}
 		else {
 			// find which team this belongs to
-			TeamItem *team_item = (TeamItem *)team_items_list->get(((ThreadItem *)p[i])->team);
+			TeamItem *team_item = (TeamItem *)team_items_list->get(((ThreadItem *)p)->team);
 			// can be null if the team is already taken away
 			if (team_item != NULL)
-				team_item->thread_items_list->del(((ThreadItem *)p[i])->thread);
+				team_item->thread_items_list->del(((ThreadItem *)p)->thread);
 
-			delete ((ThreadItem *)p[i]);
+			delete ((ThreadItem *)p);
 		}
 	}
 }
@@ -402,10 +393,10 @@ void MainWindow::RemoveProcessItems(BList *items)
 bool postlistproc(BRow *item, void *_wnd)
 {
 	MainWindow *wnd = (MainWindow *)_wnd;
-	if (item->HasLatch()) {
-		if (((TeamItem *)item)->refreshed != wnd->iteration)
-			wnd->RemoveList.AddItem((void *)item);
-		else {
+	if (((TeamItem *)item)->refreshed != wnd->iteration)
+		wnd->RemoveList.AddItem((void *)item);
+	else {
+		if (item->HasLatch()) {
 			float CPU = ((float)((TeamItem *)item)->CPU_diff) / wnd->total_CPU_diff;
 			if ((CPU != ((TeamItem *)item)->CPU)) {
 				CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
@@ -418,21 +409,16 @@ bool postlistproc(BRow *item, void *_wnd)
 			}
 			((TeamItem *)item)->changed = 0;
 		}
-	}
-	else {
-		if (((ThreadItem *)item)->refreshed != wnd->iteration)
-			wnd->RemoveList.AddItem((void *)item);
 		else {
 			float CPU = ((float)((ThreadItem *)item)->CPU_diff) / wnd->total_CPU_diff;
 			if ((CPU != ((ThreadItem *)item)->CPU)) {
-			    CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
+				CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
 				((ThreadItem *)item)->CPU = CPU;
 				((BIntegerField*)(item->GetField(6)))->SetValue(CPU*100);
 				((ThreadItem *)item)->changed++;
 			}
 			if (((ThreadItem *)item)->changed != 0){
 				wnd->teamView->UpdateRow(item);
-				//item->Invalidate();
 			}
 			((ThreadItem *)item)->changed = 0;
 		}
@@ -514,6 +500,13 @@ void MainWindow::SetButtonState()
 	fToolBar->FindButton(IE_MAINWINDOW_MAINKILL)->SetEnabled(is_sel);
 	fToolBar->FindButton(IE_MAINWINDOW_MAINSUSPEND)->SetEnabled(is_sel);
 	fToolBar->FindButton(IE_MAINWINDOW_MAINRESUME)->SetEnabled(is_sel);
+}
+
+
+void MainWindow::SetRefreshRate(int32 rate)
+{
+	fRefreshRate = rate * 1000;
+	fRefreshRunner->SetInterval(fRefreshRate);
 }
 
 

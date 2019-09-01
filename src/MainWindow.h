@@ -10,7 +10,6 @@
 #include "TeamListView.h"
 
 #include "Hashtable.h"
-#include "RefreshThread.h"
 #include "PriorityMenu.h"
 
 #include <ToolBar.h>
@@ -37,8 +36,6 @@ public:
 	// used to calculate CPU usage by thread / team
 	bigtime_t total_CPU_diff;
 	
-	class RefreshThread *refreshThread;
-						
 	MainWindow(void);
 	~MainWindow(void);
 	
@@ -46,7 +43,6 @@ public:
 	virtual void MessageReceived(BMessage *message);
 	virtual void Quit();
 	virtual void Minimize(bool minimize);
-	virtual void WindowActivated(bool active);
 	virtual	void MenusBeginning();
 
 	void UpdateTeams();
@@ -59,10 +55,14 @@ public:
 	void DoResume();
 	void SetButtonState();
 
+	void SetRefreshRate(int32);
+
 	BBitmap *ResourceVectorToBitmap(const char *resName, float iconSize = 24.0);
 
 	PriorityMenu* priorityMenu;
 	BToolBar* fToolBar;
+	BMessageRunner* fRefreshRunner;
+	int32 fRefreshRate;
 };
 
 #endif

@@ -165,11 +165,8 @@ void SettingsWindow::SetRefreshDelay()
 	// lock the window so that it is certain that the threads
 	// aren't updating when we do kill
 	if (slayer->mainWindow->Lock()) {
-		// kill updater
-		slayer->mainWindow->refreshThread->Kill();
 		slayer->options.refresh = ref;
-		// run the updater again
-		slayer->mainWindow->refreshThread->Go();
+		slayer->mainWindow->SetRefreshRate(ref);
 		slayer->mainWindow->Unlock();
 	}
 }

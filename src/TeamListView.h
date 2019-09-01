@@ -26,6 +26,7 @@
 #define TEAM_INV	'tein'
 #define SELECTION_CHANGED 'sech'
 #define SET_PRIORITY 'pset'
+#define REFRESH_TEAMS 'rfsh'
 
 class TeamListView : public BColumnListView {
 public:

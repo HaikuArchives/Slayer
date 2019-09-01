@@ -41,7 +41,6 @@ SRCS= 	Hashtable.cpp \
 		Options.cpp \
 		PositiveIntegerColumn.cpp \
 		PriorityMenu.cpp \
-		RefreshThread.cpp \
 		SettingsWindow.cpp \
 		SizeColumn.cpp \
 		SlayerApp.cpp \
