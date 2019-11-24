@@ -370,21 +370,32 @@ void MainWindow::UpdateTeams()
 void MainWindow::RemoveProcessItems(BList *items)
 {
 	int32 i;
+
+	// First remove threads (they reference the team items), then we can safely
+	// remove teams once they are empty
 	for (i = 0; i < items->CountItems(); i++) {
 		BRow* p = (BRow*)items->ItemAtFast(i);
-		teamView->RemoveRow(p);
-		if (p->HasLatch()) {
-			team_items_list->del(((TeamItem *)p)->team);
-			delete ((TeamItem *)p);
-		}
-		else {
+		ThreadItem* p1 = dynamic_cast<ThreadItem*>(p);
+		if (p1) {
+			teamView->RemoveRow(p);
 			// find which team this belongs to
-			TeamItem *team_item = (TeamItem *)team_items_list->get(((ThreadItem *)p)->team);
+			TeamItem *team_item = (TeamItem *)team_items_list->get(p1->team);
 			// can be null if the team is already taken away
 			if (team_item != NULL)
-				team_item->thread_items_list->del(((ThreadItem *)p)->thread);
+				team_item->thread_items_list->del(p1->thread);
 
-			delete ((ThreadItem *)p);
+			delete p1;
+		}
+	}
+
+	for (i = 0; i < items->CountItems(); i++) {
+		BRow* p = (BRow*)items->ItemAtFast(i);
+		TeamItem* p1 = dynamic_cast<TeamItem*>(p);
+		if (p1) {
+			teamView->RemoveRow(p);
+			team_items_list->del(p1->team);
+
+			delete p1;
 		}
 	}
 }
