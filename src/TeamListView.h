@@ -30,26 +30,19 @@
 
 class TeamListView : public BColumnListView {
   public:
-	static const int expander_ndx = 0, icon_ndx = 1, name_ndx = 2, id_ndx = 3,
-					 priority_ndx = 4, state_ndx = 5, areas_ndx = 6,
-					 CPU_ndx = 7;
+	static const int expander_ndx = 0, icon_ndx = 1, name_ndx = 2, id_ndx = 3, priority_ndx = 4,
+					 state_ndx = 5, areas_ndx = 6, CPU_ndx = 7;
 
 	TeamListView(const char *name);
 
 	BPopUpMenu *operationMenu;
 	BMenu *priorityMenu;
 
-	BPopUpMenu *
-	ActionMenu();
-	virtual void
-	MakeFocus(bool focused = true);
-	virtual void
-	SelectionChanged(void);
-	void
-	FullListDoForEach(bool (*func)(BRow *, void *), void *data);
-	void
-	KeyDown(const char *bytes, int32 numBytes);
-	void
-	MoveToRow(int RowIndex);
+	BPopUpMenu *ActionMenu();
+	virtual void MakeFocus(bool focused = true);
+	virtual void SelectionChanged(void);
+	void FullListDoForEach(bool (*func)(BRow *, void *), void *data);
+	void KeyDown(const char *bytes, int32 numBytes);
+	void MoveToRow(int RowIndex);
 };
 #endif

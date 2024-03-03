@@ -30,8 +30,8 @@
 #define B_TRANSLATION_CONTEXT "PriorityMenu"
 
 PriorityMenu::PriorityMenu(TeamListView *teamListView)
-	: BMenu(B_TRANSLATE("Set priority")), fTeamListView(teamListView),
-	  fPriority(-2), fEnabled(false) {}
+	: BMenu(B_TRANSLATE("Set priority")), fTeamListView(teamListView), fPriority(-2),
+	  fEnabled(false) {}
 
 void
 PriorityMenu::Update() {
@@ -39,8 +39,7 @@ PriorityMenu::Update() {
 	int32 priority;
 	bool enabled = selected != NULL;
 
-	if (enabled && fTeamListView->CurrentSelection(selected) == NULL &&
-		!selected->HasLatch())
+	if (enabled && fTeamListView->CurrentSelection(selected) == NULL && !selected->HasLatch())
 		priority = ((ThreadItem *)selected)->priority;
 	else
 		priority = -1;
@@ -94,10 +93,7 @@ PriorityMenu::BuildMenu() {
 		message->AddInt32("priority", priority->priority);
 		BString name;
 		const size_t size = B_OS_NAME_LENGTH * 4;
-		snprintf(
-			name.LockBuffer(size), size, "%s [%d]", priority->name,
-			(int)priority->priority
-		);
+		snprintf(name.LockBuffer(size), size, "%s [%d]", priority->name, (int)priority->priority);
 		name.UnlockBuffer();
 		item = new BMenuItem(name.String(), message);
 		item->SetTarget(slayer->mainWindow);

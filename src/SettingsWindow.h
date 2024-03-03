@@ -16,19 +16,15 @@ class SettingsWindow : public BWindow {
 	BRadioButton *current_workspace, *all_workspaces, *saved_workspace;
 	BMenuField *workspaces_field;
 	Options saved_options;
-	void
-	OptionsToDialog();
-	void
-	SetRefreshDelay();
+	void OptionsToDialog();
+	void SetRefreshDelay();
 
   public:
 	SettingsWindow(const char *title);
 	~SettingsWindow(void);
 
-	virtual void
-	MessageReceived(BMessage *message);
-	virtual void
-	Quit();
+	virtual void MessageReceived(BMessage *message);
+	virtual void Quit();
 };
 
 #endif

@@ -33,13 +33,10 @@ class MiniSlayer : public BView {
 	virtual ~MiniSlayer();
 
 	// archiving overrides
-	static MiniSlayer *
-	Instantiate(BMessage *data);
-	virtual status_t
-	Archive(BMessage *data, bool deep = true) const;
+	static MiniSlayer *Instantiate(BMessage *data);
+	virtual status_t Archive(BMessage *data, bool deep = true) const;
 
-	virtual void
-	AttachedToWindow();
+	virtual void AttachedToWindow();
 	virtual void MouseDown(BPoint);
 	virtual void Draw(BRect);
 };

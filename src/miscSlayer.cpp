@@ -46,8 +46,7 @@ get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName) {
 			BPrivate::get_app_ref(team, &appInfo.ref);
 	}
 
-	BBitmap *icon =
-		new BBitmap(BRect(0, 0, B_MINI_ICON - 1, B_MINI_ICON - 1), B_RGBA32);
+	BBitmap *icon = new BBitmap(BRect(0, 0, B_MINI_ICON - 1, B_MINI_ICON - 1), B_RGBA32);
 
 	status = BNodeInfo::GetTrackerIcon(&appInfo.ref, icon, B_MINI_ICON);
 	if (status != B_OK) {

@@ -25,10 +25,7 @@
 extern const char *slayer_signature;
 
 MainWindow::MainWindow(void)
-	: BWindow(
-		  BRect(200, 200, 800, 750), B_TRANSLATE_SYSTEM_NAME("Slayer"),
-		  B_TITLED_WINDOW, 0
-	  ),
+	: BWindow(BRect(200, 200, 800, 750), B_TRANSLATE_SYSTEM_NAME("Slayer"), B_TITLED_WINDOW, 0),
 	  fRefreshRunner(NULL) {
 	slayer->mainWindow = this;
 	if (Lock()) {
@@ -38,29 +35,24 @@ MainWindow::MainWindow(void)
 		BMenu *menu;
 		menu = new BMenu(B_TRANSLATE_SYSTEM_NAME("Slayer"));
 		menuBar->AddItem(menu);
-		menu->AddItem(new BMenuItem(
-			B_TRANSLATE("About Slayer..."), new BMessage(B_ABOUT_REQUESTED)
-		));
+		menu->AddItem(new BMenuItem(B_TRANSLATE("About Slayer..."), new BMessage(B_ABOUT_REQUESTED))
+		);
 		menu->AddSeparatorItem();
 		menu->AddItem(new BMenuItem(
-			B_TRANSLATE("Settings..."),
-			new BMessage(IE_MAINWINDOW_MAINMENU_WINDOWS_SETTINGS)
+			B_TRANSLATE("Settings..."), new BMessage(IE_MAINWINDOW_MAINMENU_WINDOWS_SETTINGS)
 		));
 		menu->AddSeparatorItem();
-		menu->AddItem(new BMenuItem(
-			B_TRANSLATE("Quit"), new BMessage(B_QUIT_REQUESTED), 'Q'
-		));
+		menu->AddItem(new BMenuItem(B_TRANSLATE("Quit"), new BMessage(B_QUIT_REQUESTED), 'Q'));
 
 		menu = new BMenu(B_TRANSLATE("Action"));
-		menu->AddItem(new BMenuItem(
-			B_TRANSLATE("Kill"), new BMessage(IE_MAINWINDOW_MAINKILL), 'K'
-		));
-		menu->AddItem(new BMenuItem(
-			B_TRANSLATE("Suspend"), new BMessage(IE_MAINWINDOW_MAINSUSPEND), 'S'
-		));
-		menu->AddItem(new BMenuItem(
-			B_TRANSLATE("Resume"), new BMessage(IE_MAINWINDOW_MAINRESUME), 'R'
-		));
+		menu->AddItem(new BMenuItem(B_TRANSLATE("Kill"), new BMessage(IE_MAINWINDOW_MAINKILL), 'K')
+		);
+		menu->AddItem(
+			new BMenuItem(B_TRANSLATE("Suspend"), new BMessage(IE_MAINWINDOW_MAINSUSPEND), 'S')
+		);
+		menu->AddItem(
+			new BMenuItem(B_TRANSLATE("Resume"), new BMessage(IE_MAINWINDOW_MAINRESUME), 'R')
+		);
 		menu->AddSeparatorItem();
 		priorityMenu = new PriorityMenu(teamView);
 		menu->AddItem(priorityMenu);
@@ -70,15 +62,13 @@ MainWindow::MainWindow(void)
 
 		fToolBar = new BToolBar(B_HORIZONTAL);
 
-		BGroupLayout *topBox = BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
-								   .Add(menuBar)
-								   .Add(fToolBar)
-								   .AddGroup(B_VERTICAL)
-								   .SetInsets(
-									   B_USE_WINDOW_INSETS, 0,
-									   B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS
-								   )
-								   .Add(teamView);
+		BGroupLayout *topBox =
+			BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
+				.Add(menuBar)
+				.Add(fToolBar)
+				.AddGroup(B_VERTICAL)
+				.SetInsets(B_USE_WINDOW_INSETS, 0, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS)
+				.Add(teamView);
 
 		teamView->LoadState(&(slayer->options.columnsState));
 
@@ -89,13 +79,8 @@ MainWindow::MainWindow(void)
 		UpdateTeams();
 
 		if (slayer->options.wind_rect.IsValid()) {
-			MoveTo(
-				slayer->options.wind_rect.left, slayer->options.wind_rect.top
-			);
-			ResizeTo(
-				slayer->options.wind_rect.Width(),
-				slayer->options.wind_rect.Height()
-			);
+			MoveTo(slayer->options.wind_rect.left, slayer->options.wind_rect.top);
+			ResizeTo(slayer->options.wind_rect.Width(), slayer->options.wind_rect.Height());
 		}
 		minimized = false;
 		if (slayer->options.workspace_activation == Options::all_workspaces)
@@ -114,20 +99,19 @@ MainWindow::MainWindow(void)
 		}
 
 		fToolBar->AddAction(
-			new BMessage(IE_MAINWINDOW_MAINKILL), this,
-			ResourceVectorToBitmap("KILL"), B_TRANSLATE("Kill"), "", false
+			new BMessage(IE_MAINWINDOW_MAINKILL), this, ResourceVectorToBitmap("KILL"),
+			B_TRANSLATE("Kill"), "", false
 		);
 		fToolBar->AddAction(
-			new BMessage(IE_MAINWINDOW_MAINSUSPEND), this,
-			ResourceVectorToBitmap("SUSPEND"), B_TRANSLATE("Suspend"), "", false
+			new BMessage(IE_MAINWINDOW_MAINSUSPEND), this, ResourceVectorToBitmap("SUSPEND"),
+			B_TRANSLATE("Suspend"), "", false
 		);
 		fToolBar->AddAction(
-			new BMessage(IE_MAINWINDOW_MAINRESUME), this,
-			ResourceVectorToBitmap("RESUME"), B_TRANSLATE("Resume"), "", false
+			new BMessage(IE_MAINWINDOW_MAINRESUME), this, ResourceVectorToBitmap("RESUME"),
+			B_TRANSLATE("Resume"), "", false
 		);
 		fToolBar->AddAction(
-			new BMessage(IE_MAINWINDOW_MAINUPDATE), this,
-			ResourceVectorToBitmap("FORCED_RELOAD"),
+			new BMessage(IE_MAINWINDOW_MAINUPDATE), this, ResourceVectorToBitmap("FORCED_RELOAD"),
 			B_TRANSLATE("Forced reload"), "", false
 		);
 		fToolBar->GetLayout()->AddItem(BSpaceLayoutItem::CreateGlue());
@@ -137,8 +121,7 @@ MainWindow::MainWindow(void)
 		SetButtonState();
 
 		BMessage refreshMessage(REFRESH_TEAMS);
-		fRefreshRunner =
-			new BMessageRunner(BMessenger(this), &refreshMessage, 1000000);
+		fRefreshRunner = new BMessageRunner(BMessenger(this), &refreshMessage, 1000000);
 		SetRefreshRate(slayer->options.refresh);
 		Unlock();
 	}
@@ -181,8 +164,7 @@ MainWindow::MessageReceived(BMessage *message) {
 		BRow *row;
 		row = teamView->RowAt(message->FindInt32("index"));
 
-		if (row != NULL &&
-			message->FindInt32("buttons") == B_SECONDARY_MOUSE_BUTTON) {
+		if (row != NULL && message->FindInt32("buttons") == B_SECONDARY_MOUSE_BUTTON) {
 			BPoint point;
 			uint32 state;
 			teamView->GetMouse(&point, &state);
@@ -239,9 +221,8 @@ MainWindow::MessageReceived(BMessage *message) {
 		break;
 	case B_ABOUT_REQUESTED: // "About…" is selected from menu…
 	{
-		BAboutWindow *fAboutWin = new BAboutWindow(
-			B_TRANSLATE_SYSTEM_NAME("Slayer"), slayer_signature
-		);
+		BAboutWindow *fAboutWin =
+			new BAboutWindow(B_TRANSLATE_SYSTEM_NAME("Slayer"), slayer_signature);
 		fAboutWin->AddDescription(B_TRANSLATE("A thread manager for Haiku"));
 		fAboutWin->SetVersion(SLAYER_VERSION);
 		fAboutWin->AddCopyright(1999, "Arto Jalkanen");
@@ -282,9 +263,8 @@ MainWindow::Quit() {
 	// What follows is a really ugly hack to detect if the user closed
 	// the window with close button, or if Application wants to close
 	// all windows:
-	BMessage *msg = CurrentMessage(
-	); // this is null if called outside BMessageReceived loop
-	   // -> message from application
+	BMessage *msg = CurrentMessage(); // this is null if called outside BMessageReceived loop
+									  // -> message from application
 	if (slayer->docked && msg != NULL)
 		Minimize(true);
 	else
@@ -304,8 +284,7 @@ MainWindow::Minimize(bool minimize) {
 		fRefreshRunner = NULL;
 	} else if ((!minimized) && (fRefreshRunner == NULL)) {
 		BMessage refreshMessage(REFRESH_TEAMS);
-		fRefreshRunner =
-			new BMessageRunner(BMessenger(this), &refreshMessage, fRefreshRate);
+		fRefreshRunner = new BMessageRunner(BMessenger(this), &refreshMessage, fRefreshRate);
 	}
 }
 
@@ -342,14 +321,12 @@ MainWindow::UpdateTeams() {
 
 			team_item->CPU_diff = 0;
 			for (th_cookie = 0;
-				 get_next_thread_info(team_item->team, &th_cookie, &thinf) ==
-				 B_OK;) {
+				 get_next_thread_info(team_item->team, &th_cookie, &thinf) == B_OK;) {
 				thread_item = new ThreadItem(&thinf);
 				thread_item->refreshed = iteration;
 				team_item->thread_items_list->put(thinf.thread, thread_item);
 				teamView->AddRow(thread_item, team_item);
-				if (teinf.team != 1 ||
-					strncmp(thinf.name, "idle thread ", 12) != 0) {
+				if (teinf.team != 1 || strncmp(thinf.name, "idle thread ", 12) != 0) {
 					team_item->CPU_diff += thread_item->CPU_diff;
 				} else
 					idle_CPU_diff += thread_item->CPU_diff;
@@ -362,15 +339,12 @@ MainWindow::UpdateTeams() {
 
 			team_item->CPU_diff = 0;
 			for (th_cookie = 0;
-				 get_next_thread_info(team_item->team, &th_cookie, &thinf) ==
-				 B_OK;) {
-				if (!(thread_item = (ThreadItem *)team_item->thread_items_list
-										->get(thinf.thread))) {
+				 get_next_thread_info(team_item->team, &th_cookie, &thinf) == B_OK;) {
+				if (!(thread_item =
+						  (ThreadItem *)team_item->thread_items_list->get(thinf.thread))) {
 					thread_item = new ThreadItem(&thinf);
 					thread_item->refreshed = iteration;
-					team_item->thread_items_list->put(
-						thinf.thread, thread_item
-					);
+					team_item->thread_items_list->put(thinf.thread, thread_item);
 					teamView->AddRow(thread_item, team_item);
 				}
 				// update thread
@@ -378,8 +352,7 @@ MainWindow::UpdateTeams() {
 					thread_item->update(&thinf);
 					thread_item->refreshed = iteration;
 				}
-				if (teinf.team != 1 ||
-					strncmp(thinf.name, "idle thread ", 12) != 0) {
+				if (teinf.team != 1 || strncmp(thinf.name, "idle thread ", 12) != 0) {
 					team_item->CPU_diff += thread_item->CPU_diff;
 				} else
 					idle_CPU_diff += thread_item->CPU_diff;
@@ -442,8 +415,7 @@ postlistproc(BRow *item, void *_wnd) {
 		wnd->RemoveList.AddItem((void *)item);
 	else {
 		if (item->HasLatch()) {
-			float CPU =
-				((float)((TeamItem *)item)->CPU_diff) / wnd->total_CPU_diff;
+			float CPU = ((float)((TeamItem *)item)->CPU_diff) / wnd->total_CPU_diff;
 			if ((CPU != ((TeamItem *)item)->CPU)) {
 				CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
 				((TeamItem *)item)->CPU = CPU;
@@ -455,8 +427,7 @@ postlistproc(BRow *item, void *_wnd) {
 			}
 			((TeamItem *)item)->changed = 0;
 		} else {
-			float CPU =
-				((float)((ThreadItem *)item)->CPU_diff) / wnd->total_CPU_diff;
+			float CPU = ((float)((ThreadItem *)item)->CPU_diff) / wnd->total_CPU_diff;
 			if ((CPU != ((ThreadItem *)item)->CPU)) {
 				CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);
 				((ThreadItem *)item)->CPU = CPU;
@@ -495,10 +466,7 @@ MainWindow::DoPriority(int32 priority) {
 		// is a team or thread?
 		if (selected->HasLatch())
 			for (int i = 0; i < teamView->CountRows(selected); i++)
-				set_thread_priority(
-					((ThreadItem *)teamView->RowAt(i, selected))->thread,
-					priority
-				);
+				set_thread_priority(((ThreadItem *)teamView->RowAt(i, selected))->thread, priority);
 		else
 			set_thread_priority(((ThreadItem *)selected)->thread, priority);
 	}
@@ -521,9 +489,7 @@ MainWindow::DoSuspend(void) {
 		// is a team or thread?
 		if (selected->HasLatch())
 			for (int i = 0; i < teamView->CountRows(selected); i++)
-				suspend_thread(
-					((ThreadItem *)teamView->RowAt(i, selected))->thread
-				);
+				suspend_thread(((ThreadItem *)teamView->RowAt(i, selected))->thread);
 		else
 			suspend_thread(((ThreadItem *)selected)->thread);
 	}
@@ -536,9 +502,7 @@ MainWindow::DoResume(void) {
 		// is a team or thread?
 		if (selected->HasLatch())
 			for (int i = 0; i < teamView->CountRows(selected); i++)
-				resume_thread(
-					((ThreadItem *)teamView->RowAt(i, selected))->thread
-				);
+				resume_thread(((ThreadItem *)teamView->RowAt(i, selected))->thread);
 		else
 			resume_thread(((ThreadItem *)selected)->thread);
 	}
@@ -570,8 +534,7 @@ MainWindow::ResourceVectorToBitmap(const char *resName, float iconSize) {
 	BFile appFile(&appInfo.ref, B_READ_ONLY);
 	res.SetTo(&appFile);
 	BBitmap *aBmp = NULL;
-	const uint8 *iconData =
-		(const uint8 *)res.LoadResource('VICN', resName, &size);
+	const uint8 *iconData = (const uint8 *)res.LoadResource('VICN', resName, &size);
 
 	if (size > 0) {
 		aBmp = new BBitmap(BRect(0, 0, iconSize, iconSize), 0, B_RGBA32);
