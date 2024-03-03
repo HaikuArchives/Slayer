@@ -16,13 +16,11 @@
 
 SettingsWindow::SettingsWindow(const char *title)
 	: BWindow(
-		  BRect(300, 300, 400, 400), title, B_TITLED_WINDOW_LOOK,
-		  B_MODAL_APP_WINDOW_FEEL,
+		  BRect(300, 300, 400, 400), title, B_TITLED_WINDOW_LOOK, B_MODAL_APP_WINDOW_FEEL,
 		  B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
 	  ) {
 	current_workspace = new BRadioButton(
-		"SettingsCurrentWorkspace",
-		B_TRANSLATE("Open window in current workspace"),
+		"SettingsCurrentWorkspace", B_TRANSLATE("Open window in current workspace"),
 		new BMessage(IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE)
 	);
 	all_workspaces = new BRadioButton(
@@ -40,12 +38,10 @@ SettingsWindow::SettingsWindow(const char *title)
 
 	BPopUpMenu *workspaces_list = new BPopUpMenu("Workspace");
 
-	workspaces_field =
-		new BMenuField("Worspaces", B_EMPTY_STRING, workspaces_list);
+	workspaces_field = new BMenuField("Worspaces", B_EMPTY_STRING, workspaces_list);
 	workspaces_field->SetAlignment(B_ALIGN_RIGHT);
 	for (int i = 1; i <= count_workspaces(); i++) {
-		BMessage *message =
-			new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE);
+		BMessage *message = new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE);
 		BMenuItem *menu_item;
 		message->AddInt32("workspace_number", i);
 		BString numberStr;
@@ -58,8 +54,7 @@ SettingsWindow::SettingsWindow(const char *title)
 	BGroupLayout *workspaceBox =
 		BLayoutBuilder::Group<>(B_VERTICAL)
 			.SetInsets(
-				B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS,
-				B_USE_WINDOW_INSETS
+				B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS
 			)
 			.Add(current_workspace)
 			.Add(all_workspaces)
@@ -85,21 +80,17 @@ SettingsWindow::SettingsWindow(const char *title)
 	BButton *deskbarButton;
 	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_SMALL_INSETS)
 		.SetInsets(
-			B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS,
-			B_USE_WINDOW_INSETS
+			B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS
 		)
 		.Add(top, 100)
 		.Add(refresh)
 
 		.AddGroup(B_HORIZONTAL)
-		.Add(new BButton(
-			"", B_TRANSLATE("Revert"),
-			new BMessage(IE_SETTINGSWINDOW_SETTINGSREVERT)
-		))
+		.Add(new BButton("", B_TRANSLATE("Revert"), new BMessage(IE_SETTINGSWINDOW_SETTINGSREVERT)))
 		.AddGlue();
 	//			.Add(deskbarButton = new BButton("SettingsDeskbar",
-	//B_TRANSLATE("Dock to deskbar"), new
-	//BMessage(IE_SETTINGSWINDOW_SETTINGSDESKBAR)));
+	// B_TRANSLATE("Dock to deskbar"), new
+	// BMessage(IE_SETTINGSWINDOW_SETTINGSDESKBAR)));
 	// read options
 	if (Lock()) {
 		OptionsToDialog();

@@ -57,8 +57,7 @@ ThreadItem::ThreadItem(thread_info *info) : BRow() {
 void
 ThreadItem::update(thread_info *info) {
 	char str[21], *strp;
-	CPU_diff =
-		(info->user_time - user_time) + (info->kernel_time - kernel_time);
+	CPU_diff = (info->user_time - user_time) + (info->kernel_time - kernel_time);
 	user_time = info->user_time;
 	kernel_time = info->kernel_time;
 
@@ -117,9 +116,7 @@ ThreadItem::RetrieveStateString(thread_state state) {
 }
 
 void
-ThreadItem::DrawItemColumn(
-	BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete
-) {
+ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete) {
 	/*
 		if (columnIndex != TeamListView::CPU_ndx)
 			return CLVEasyItem::DrawItemColumn(owner, itemColumnRect,

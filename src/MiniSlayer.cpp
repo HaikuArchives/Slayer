@@ -25,13 +25,10 @@
 extern const char *slayer_signature;
 
 MiniSlayer::MiniSlayer()
-	: BView(
-		  BRect(0, 0, 15, 15), "MiniSlayer", B_FOLLOW_LEFT | B_FOLLOW_TOP,
-		  B_WILL_DRAW
-	  ) {
+	: BView(BRect(0, 0, 15, 15), "MiniSlayer", B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW) {
 	SetViewColor(255, 255, 0);
 	//	AddChild(new BDragger(BRect(0,0,16,16), this, B_FOLLOW_RIGHT |
-	//B_FOLLOW_BOTTOM));
+	// B_FOLLOW_BOTTOM));
 }
 
 MiniSlayer::MiniSlayer(BMessage *msg) : BView(msg) {
@@ -107,8 +104,7 @@ MiniSlayer::MouseDown(BPoint point) {
 			uint32 saved_flags = slayer->mainWindow->Flags();
 
 			// open up in current workspace
-			if (slayer->options.workspace_activation ==
-				Options::current_workspace)
+			if (slayer->options.workspace_activation == Options::current_workspace)
 				slayer->mainWindow->SetFlags(
 					slayer->mainWindow->Flags() | B_NOT_ANCHORED_ON_ACTIVATE |
 					B_NO_WORKSPACE_ACTIVATION

@@ -27,8 +27,7 @@
 class SlayerOpt {
   public:
 	Options options;
-	BWindow *
-	FindWindow(const char *name);
+	BWindow *FindWindow(const char *name);
 	class MainWindow *mainWindow;
 
 	bool docked;

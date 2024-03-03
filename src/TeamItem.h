@@ -48,17 +48,11 @@ class TeamItem : public BRow {
 	TeamItem();
 
 	TeamItem(team_info *info);
-	int32
-	update(team_info *info);
-	size_t
-	CountMemory(); // counts memory usage
+	int32 update(team_info *info);
+	size_t CountMemory(); // counts memory usage
+	virtual void Update(BView *owner, const BFont *font);
 	virtual void
-	Update(BView *owner, const BFont *font);
-	virtual void
-	DrawItemColumn(
-		BView *owner, BRect itemColumnRect, int32 columnIndex,
-		bool complete = false
-	);
+	DrawItemColumn(BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete = false);
 	virtual ~TeamItem();
 };
 

@@ -25,11 +25,7 @@
 struct Options {
 	int32 refresh;
 
-	enum workspace_type {
-		current_workspace,
-		all_workspaces,
-		saved_workspace
-	} workspace_activation;
+	enum workspace_type { current_workspace, all_workspaces, saved_workspace } workspace_activation;
 
 	int32 workspaces;
 	bool wind_minimized;
@@ -61,10 +57,8 @@ struct Options {
 		BRect	set_wind_rect();
 	*/
 	Options();
-	void
-	Save();
-	void
-	Load();
+	void Save();
+	void Load();
 };
 
 #endif

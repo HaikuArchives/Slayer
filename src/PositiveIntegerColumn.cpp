@@ -1,8 +1,7 @@
 #include "PositiveIntegerColumn.h"
 
 PositiveIntegerColumn::PositiveIntegerColumn(
-	const char *title, float width, float minWidth, float maxWidth,
-	alignment align
+	const char *title, float width, float minWidth, float maxWidth, alignment align
 )
 	: BIntegerColumn(title, width, minWidth, maxWidth, align) {}
 

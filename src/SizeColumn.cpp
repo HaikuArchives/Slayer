@@ -1,8 +1,7 @@
 #include "SizeColumn.h"
 
 SizeColumn::SizeColumn(
-	const char *title, float width, float minWidth, float maxWidth,
-	alignment align
+	const char *title, float width, float minWidth, float maxWidth, alignment align
 )
 	: BSizeColumn(title, width, minWidth, maxWidth, align) {}
 
@@ -18,8 +17,7 @@ SizeColumn::DrawField(BField *field, BRect rect, BView *parent) {
 
 int
 SizeColumn::CompareFields(BField *field1, BField *field2) {
-	off_t diff =
-		((BSizeField *)field1)->Size() - ((BSizeField *)field2)->Size();
+	off_t diff = ((BSizeField *)field1)->Size() - ((BSizeField *)field2)->Size();
 	if (diff > 0)
 		return 1;
 	else if (diff < 0)
