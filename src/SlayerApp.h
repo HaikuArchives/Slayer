@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #ifndef _SLAYER_APP_H
 #define _SLAYER_APP_H
 
@@ -25,21 +25,22 @@
 #define SLAYER_VERSION "v1.0"
 
 class SlayerOpt {
-public:
+  public:
 	Options options;
-	BWindow *FindWindow(const char *name);
+	BWindow *
+	FindWindow(const char *name);
 	class MainWindow *mainWindow;
-	
+
 	bool docked;
 };
 
 class SlayerApp : public BApplication, public SlayerOpt {
-public:
+  public:
 	SlayerApp(bool dock = false);
 	virtual ~SlayerApp();
-//	class MainWindow *mainWindow;
-//	Options options;
-//	BWindow *FindWindow(const char *name);
+	//	class MainWindow *mainWindow;
+	//	Options options;
+	//	BWindow *FindWindow(const char *name);
 };
 
 #ifdef _INIT_SLAYER_APP_H

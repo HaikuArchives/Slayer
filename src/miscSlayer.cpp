@@ -15,27 +15,25 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #include "miscSlayer.h"
-#include <string.h>
-#include <stdio.h>
 #include <AppMisc.h>
+#include <stdio.h>
+#include <string.h>
 
-
-void get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName)
-{
+void
+get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName) {
 	// code from the debugger
 	app_info appInfo;
-    *name = NULL;
-    *fullName = NULL;
-	status_t status = be_roster->GetRunningAppInfo(team,
-		&appInfo);
+	*name = NULL;
+	*fullName = NULL;
+	status_t status = be_roster->GetRunningAppInfo(team, &appInfo);
 	if (status != B_OK) {
 		// Not an application known to be_roster
 
 		if (team == B_SYSTEM_TEAM) {
 			// Get icon and name from kernel image
-			system_info	systemInfo;
+			system_info systemInfo;
 			get_system_info(&systemInfo);
 
 			BPath kernelPath;
@@ -48,23 +46,22 @@ void get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName)
 			BPrivate::get_app_ref(team, &appInfo.ref);
 	}
 
-	BBitmap* icon = new BBitmap(BRect(0, 0, B_MINI_ICON - 1, B_MINI_ICON - 1),
-		B_RGBA32);
+	BBitmap *icon =
+		new BBitmap(BRect(0, 0, B_MINI_ICON - 1, B_MINI_ICON - 1), B_RGBA32);
 
 	status = BNodeInfo::GetTrackerIcon(&appInfo.ref, icon, B_MINI_ICON);
 	if (status != B_OK) {
-			BMimeType genericAppType(B_APP_MIME_TYPE);
-			status = genericAppType.GetIcon(icon, B_MINI_ICON);
+		BMimeType genericAppType(B_APP_MIME_TYPE);
+		status = genericAppType.GetIcon(icon, B_MINI_ICON);
 	}
 
 	if (status != B_OK) {
 		delete icon;
 		icon = NULL;
-	} else 	{
+	} else {
 		*name = strdup(appInfo.ref.name);
 		BPath appFullName(&appInfo.ref);
-		if (appFullName.InitCheck() == B_OK)
-		{
+		if (appFullName.InitCheck() == B_OK) {
 			*fullName = strdup(appFullName.Path());
 		}
 	}

@@ -15,26 +15,25 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #include "Options.h"
 #include <StorageKit.h>
 
 #define SETTINGS_FILE "Slayer_settings"
 
-Options::Options()
-{
+Options::Options() {
 	refresh = 250;
 	workspace_activation = current_workspace;
 	workspaces = 1;
 	wind_minimized = false;
 	wind_rect.Set(1.0, 1.0, 0.0, 0.0);
-//	shown_columns = id_col|priority_col|state_col|cpu_col|name_col;
+	//	shown_columns = id_col|priority_col|state_col|cpu_col|name_col;
 }
 
-void Options::Save()
-{
+void
+Options::Save() {
 	BPath path;
-	
+
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path, true) != B_OK) {
 		printf("Couldn't save options\n");
 		return;
@@ -56,16 +55,16 @@ void Options::Save()
 	message.Flatten(&file);
 }
 
-void Options::Load()
-{
+void
+Options::Load() {
 	BPath path;
-	
+
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path, true)) {
 		printf("Couldn't load options (user settings dir not found)\n");
 		return;
 	}
 	path.SetTo(path.Path(), SETTINGS_FILE);
-	
+
 	BFile file(path.Path(), B_READ_ONLY);
 	if (file.InitCheck() != B_NO_ERROR)
 		return;

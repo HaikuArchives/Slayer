@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #include "Hashtable.h"
 
 /*
@@ -27,8 +27,7 @@ _hash_node::_hash_node(int32 _key, void *_item)
 }
 */
 
-Hashtable::Hashtable(int32 size)
-{
+Hashtable::Hashtable(int32 size) {
 	array_size = size;
 	items = 0;
 	array = new _hash_node *[array_size];
@@ -37,9 +36,9 @@ Hashtable::Hashtable(int32 size)
 		array[size] = NULL;
 }
 
-Hashtable::~Hashtable()
-{
-	if (array) delete [] array;
+Hashtable::~Hashtable() {
+	if (array)
+		delete[] array;
 }
 
 /*
@@ -47,15 +46,15 @@ void *Hashtable::put(int32 key, void *item)
 {
 	_hash_node *node = array[key % array_size],
 		*last = NULL;
-	
+
 	for (; node; last = node, node = node->next);
 
 	node = new _hash_node(key, item);
 	if (last) last->next = node;
 	else array[key % array_size] = node;
-	
+
 	items++;
-	
+
 	return item;
 }
 
@@ -64,7 +63,7 @@ void *Hashtable::get(int32 key)
 	_hash_node *node = array[key % array_size];
 	for (; node; node = node->next)
 		if (node->key == key) return node->item;
-		
+
 	return NULL;
 }
 
@@ -74,7 +73,7 @@ void *Hashtable::del(int32 key)
 		*last = NULL;
 	for (; node; last = node, node = node->next)
 		if (node->key == key) {
-			if (last) 
+			if (last)
 				last->next = node->next;
 			else
 				array[key % array_size] = node->next;
@@ -83,17 +82,17 @@ void *Hashtable::del(int32 key)
 			delete node;
 			return item;
 		}
-	
+
 	return NULL;
 }
 */
 
-void Hashtable::forEachDo(bool (*func)(void *))
-{
+void
+Hashtable::forEachDo(bool (*func)(void *)) {
 	_hash_node *node;
 	int32 i;
-	
+
 	for (i = 0; i < array_size; i++)
 		for (node = array[i]; node; node = node->next)
-			func(node->item);		
+			func(node->item);
 }

@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #ifndef _MINI_SLAYER_H
 #define _MINI_SLAYER_H
 
@@ -25,17 +25,21 @@ class _EXPORT MiniSlayer;
 
 class MiniSlayer : public BView {
 	BBitmap *miniIcon;
-	const char *signature;  // the loaded apps signature (should be equal to slayer_signature usually)
-public:
+	const char *signature; // the loaded apps signature (should be equal to
+						   // slayer_signature usually)
+  public:
 	MiniSlayer();
 	MiniSlayer(BMessage *);
 	virtual ~MiniSlayer();
-	
+
 	// archiving overrides
-	static MiniSlayer *Instantiate(BMessage *data);
-	virtual status_t Archive(BMessage *data, bool deep = true) const;
-	
-	virtual void AttachedToWindow();
+	static MiniSlayer *
+	Instantiate(BMessage *data);
+	virtual status_t
+	Archive(BMessage *data, bool deep = true) const;
+
+	virtual void
+	AttachedToWindow();
 	virtual void MouseDown(BPoint);
 	virtual void Draw(BRect);
 };

@@ -5,9 +5,9 @@
 #include <Catalog.h>
 #include <LayoutBuilder.h>
 
+#include "MiniSlayer.h"
 #include "SettingsWindow.h"
 #include "SlayerApp.h"
-#include "MiniSlayer.h"
 
 #include <stdlib.h>
 
@@ -15,62 +15,91 @@
 #define B_TRANSLATION_CONTEXT "SettingsWindow"
 
 SettingsWindow::SettingsWindow(const char *title)
-	: BWindow(BRect(300,300,400,400), title, B_TITLED_WINDOW_LOOK, B_MODAL_APP_WINDOW_FEEL, B_NOT_ZOOMABLE | B_NOT_RESIZABLE |B_AUTO_UPDATE_SIZE_LIMITS )
-{
-	current_workspace = new BRadioButton("SettingsCurrentWorkspace",
+	: BWindow(
+		  BRect(300, 300, 400, 400), title, B_TITLED_WINDOW_LOOK,
+		  B_MODAL_APP_WINDOW_FEEL,
+		  B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
+	  ) {
+	current_workspace = new BRadioButton(
+		"SettingsCurrentWorkspace",
 		B_TRANSLATE("Open window in current workspace"),
-		new BMessage(IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE));
-	all_workspaces = new BRadioButton("SettingsAllWorkspaces",
-		B_TRANSLATE("Open window in all workspaces"),
-		new BMessage(IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES));
-	saved_workspace = new BRadioButton("SettingsSavedWorkspace",
-		B_TRANSLATE_COMMENT("Open window in workspace:",
-			"After 'workspace' follows a popup menu with the workspace number"),
-		new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEDWORKSPACE));
+		new BMessage(IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE)
+	);
+	all_workspaces = new BRadioButton(
+		"SettingsAllWorkspaces", B_TRANSLATE("Open window in all workspaces"),
+		new BMessage(IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES)
+	);
+	saved_workspace = new BRadioButton(
+		"SettingsSavedWorkspace",
+		B_TRANSLATE_COMMENT(
+			"Open window in workspace:",
+			"After 'workspace' follows a popup menu with the workspace number"
+		),
+		new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEDWORKSPACE)
+	);
 
-	BPopUpMenu* workspaces_list = new BPopUpMenu("Workspace");
+	BPopUpMenu *workspaces_list = new BPopUpMenu("Workspace");
 
-	workspaces_field = new BMenuField("Worspaces", B_EMPTY_STRING, workspaces_list);
+	workspaces_field =
+		new BMenuField("Worspaces", B_EMPTY_STRING, workspaces_list);
 	workspaces_field->SetAlignment(B_ALIGN_RIGHT);
-	for (int i = 1 ; i<= count_workspaces(); i++) {
-		BMessage* message = new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE);
-		BMenuItem* menu_item;
+	for (int i = 1; i <= count_workspaces(); i++) {
+		BMessage *message =
+			new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE);
+		BMenuItem *menu_item;
 		message->AddInt32("workspace_number", i);
 		BString numberStr;
 		numberStr << i;
 		workspaces_list->AddItem(menu_item = new BMenuItem(numberStr, message));
-		if (i ==  slayer->options.workspaces)
+		if (i == slayer->options.workspaces)
 			menu_item->SetMarked(true);
 	}
 
-	BGroupLayout* workspaceBox = BLayoutBuilder::Group<>(B_VERTICAL)
-		.SetInsets(B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS,
-			B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS)
-		.Add(current_workspace)
-		.Add(all_workspaces)
-		.AddGroup(B_HORIZONTAL)
+	BGroupLayout *workspaceBox =
+		BLayoutBuilder::Group<>(B_VERTICAL)
+			.SetInsets(
+				B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS,
+				B_USE_WINDOW_INSETS
+			)
+			.Add(current_workspace)
+			.Add(all_workspaces)
+			.AddGroup(B_HORIZONTAL)
 			.Add(saved_workspace)
 			.Add(workspaces_field)
-		.End();
-	BBox* top = new BBox("top");
+			.End();
+	BBox *top = new BBox("top");
 	top->AddChild(workspaceBox->View());
-	top->SetLabel( B_TRANSLATE("Workspace"));
-	refresh = new BDecimalSpinner(NULL, B_TRANSLATE_COMMENT("Refresh display (seconds):",
-		"After 'seconds' follows a text field and spinner widget to set the number of seconds"), NULL);
+	top->SetLabel(B_TRANSLATE("Workspace"));
+	refresh = new BDecimalSpinner(
+		NULL,
+		B_TRANSLATE_COMMENT(
+			"Refresh display (seconds):",
+			"After 'seconds' follows a text field and spinner widget to set "
+			"the number of seconds"
+		),
+		NULL
+	);
 	refresh->SetStep(0.250);
 	refresh->SetRange(0, 60);
 
-	BButton* deskbarButton;
+	BButton *deskbarButton;
 	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_SMALL_INSETS)
-		.SetInsets(B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS,
-			B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS)
+		.SetInsets(
+			B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS,
+			B_USE_WINDOW_INSETS
+		)
 		.Add(top, 100)
 		.Add(refresh)
 
 		.AddGroup(B_HORIZONTAL)
-			.Add(new BButton("", B_TRANSLATE("Revert"), new BMessage(IE_SETTINGSWINDOW_SETTINGSREVERT)))
-			.AddGlue();
-//			.Add(deskbarButton = new BButton("SettingsDeskbar", B_TRANSLATE("Dock to deskbar"), new BMessage(IE_SETTINGSWINDOW_SETTINGSDESKBAR)));
+		.Add(new BButton(
+			"", B_TRANSLATE("Revert"),
+			new BMessage(IE_SETTINGSWINDOW_SETTINGSREVERT)
+		))
+		.AddGlue();
+	//			.Add(deskbarButton = new BButton("SettingsDeskbar",
+	//B_TRANSLATE("Dock to deskbar"), new
+	//BMessage(IE_SETTINGSWINDOW_SETTINGSDESKBAR)));
 	// read options
 	if (Lock()) {
 		OptionsToDialog();
@@ -88,80 +117,87 @@ SettingsWindow::SettingsWindow(const char *title)
 	Show();
 }
 
-
-SettingsWindow::~SettingsWindow(void)
-{
-}
-
+SettingsWindow::~SettingsWindow(void) {}
 
 // Handling of user interface and other events
-void SettingsWindow::MessageReceived(BMessage *message)
-{
+void
+SettingsWindow::MessageReceived(BMessage *message) {
 
-	switch(message->what){
-		case IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE:
-			slayer->options.workspace_activation = Options::current_workspace; workspaces_field->SetEnabled(false); break;
-		case IE_SETTINGSWINDOW_SETTINGSSAVEDWORKSPACE:
-			slayer->options.workspace_activation = Options::saved_workspace; workspaces_field->SetEnabled(true); break;
-		case IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES:
-			slayer->options.workspace_activation = Options::all_workspaces; workspaces_field->SetEnabled(false); break;
-		case IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE:	// 'SettingsSaveWorkspace' is pressed...
-			message->FindInt32("workspace_number", &slayer->options.workspaces);
-			break;
-		case IE_SETTINGSWINDOW_SETTINGSREFRESH:	// Enter is pressed in 'SettingsRefresh'...
-			SetRefreshDelay();
-			break;
-		case IE_SETTINGSWINDOW_SETTINGSREVERT:
-			slayer->options = saved_options;
-			OptionsToDialog();
-			// well this fucker..
-			PostMessage(IE_SETTINGSWINDOW_SETTINGSREFRESH);
-			break;
-		case IE_SETTINGSWINDOW_SETTINGSDESKBAR:
-		{
-			// Dock to deskbar
-			MiniSlayer *replicant =
-				new MiniSlayer();
-			BMessage archiveMsg(B_ARCHIVED_OBJECT);
-			replicant->Archive(&archiveMsg);
-			BMessenger messenger("application/x-vnd.Be-TSKB", -1, NULL);
-			messenger.SendMessage(&archiveMsg);
-			be_app->PostMessage(B_QUIT_REQUESTED);						
-		}
-			break;
-		default:
-			BWindow::MessageReceived(message);
+	switch (message->what) {
+	case IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE:
+		slayer->options.workspace_activation = Options::current_workspace;
+		workspaces_field->SetEnabled(false);
+		break;
+	case IE_SETTINGSWINDOW_SETTINGSSAVEDWORKSPACE:
+		slayer->options.workspace_activation = Options::saved_workspace;
+		workspaces_field->SetEnabled(true);
+		break;
+	case IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES:
+		slayer->options.workspace_activation = Options::all_workspaces;
+		workspaces_field->SetEnabled(false);
+		break;
+	case IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE: // 'SettingsSaveWorkspace' is
+												  // pressed...
+		message->FindInt32("workspace_number", &slayer->options.workspaces);
+		break;
+	case IE_SETTINGSWINDOW_SETTINGSREFRESH: // Enter is pressed in
+											// 'SettingsRefresh'...
+		SetRefreshDelay();
+		break;
+	case IE_SETTINGSWINDOW_SETTINGSREVERT:
+		slayer->options = saved_options;
+		OptionsToDialog();
+		// well this fucker..
+		PostMessage(IE_SETTINGSWINDOW_SETTINGSREFRESH);
+		break;
+	case IE_SETTINGSWINDOW_SETTINGSDESKBAR: {
+		// Dock to deskbar
+		MiniSlayer *replicant = new MiniSlayer();
+		BMessage archiveMsg(B_ARCHIVED_OBJECT);
+		replicant->Archive(&archiveMsg);
+		BMessenger messenger("application/x-vnd.Be-TSKB", -1, NULL);
+		messenger.SendMessage(&archiveMsg);
+		be_app->PostMessage(B_QUIT_REQUESTED);
+	} break;
+	default:
+		BWindow::MessageReceived(message);
 
-			break;
+		break;
 	}
-
 }
 
-void SettingsWindow::Quit()
-{
+void
+SettingsWindow::Quit() {
 	SetRefreshDelay();
-	
+
 	BWindow::Quit();
 }
 
-void SettingsWindow::OptionsToDialog()
-{
-	refresh->SetValue(((float)slayer->options.refresh)/1000);
+void
+SettingsWindow::OptionsToDialog() {
+	refresh->SetValue(((float)slayer->options.refresh) / 1000);
 
 	switch (slayer->options.workspace_activation) {
 	case Options::current_workspace:
-		current_workspace->SetValue(1); workspaces_field->SetEnabled(false); break;
+		current_workspace->SetValue(1);
+		workspaces_field->SetEnabled(false);
+		break;
 	case Options::all_workspaces:
-		all_workspaces->SetValue(1); workspaces_field->SetEnabled(false); break;
+		all_workspaces->SetValue(1);
+		workspaces_field->SetEnabled(false);
+		break;
 	default:
-		saved_workspace->SetValue(1); workspaces_field->SetEnabled(true); break;
+		saved_workspace->SetValue(1);
+		workspaces_field->SetEnabled(true);
+		break;
 	}
 }
 
-void SettingsWindow::SetRefreshDelay()
-{
+void
+SettingsWindow::SetRefreshDelay() {
 	int32 ref = (int32)(refresh->Value() * 1000);
-	if (ref < 0) ref = 0;
+	if (ref < 0)
+		ref = 0;
 	// lock the window so that it is certain that the threads
 	// aren't updating when we do kill
 	if (slayer->mainWindow->Lock()) {

@@ -3,7 +3,6 @@
 // Do not modify this file!
 
 
-
 /*
 
 Views in MainWindow:
