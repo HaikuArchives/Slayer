@@ -15,23 +15,26 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #ifndef _OPTIONS_H
 #define _OPTIONS_H
 
-#include <SupportKit.h>
 #include <InterfaceKit.h>
+#include <SupportKit.h>
 
 struct Options {
 	int32 refresh;
+
 	enum workspace_type {
 		current_workspace,
 		all_workspaces,
 		saved_workspace
 	} workspace_activation;
+
 	int32 workspaces;
 	bool wind_minimized;
 	BRect wind_rect;
+
 	enum {
 		id_col = 0x1,
 		priority_col = 0x2,
@@ -40,25 +43,28 @@ struct Options {
 		cpu_col = 0x10,
 		name_col = 0x20
 	};
-//	int32 shown_columns;
+
+	//	int32 shown_columns;
 	BMessage columnsState;
-		
-/*
-public:
-	int32 get_refresh();
-	int32 set_refresh(int32);
-	bool	get_save_wind_pos();
-	bool	set_save_wind_pos(bool);
-	bool	get_save_workspace();
-	bool	set_save_workspace(bool);
-	bool	get_wind_minimized();
-	bool	set_wind_minimized(bool);	
-	BRect	get_wind_rect();
-	BRect	set_wind_rect();
-*/
+
+	/*
+	public:
+		int32 get_refresh();
+		int32 set_refresh(int32);
+		bool	get_save_wind_pos();
+		bool	set_save_wind_pos(bool);
+		bool	get_save_workspace();
+		bool	set_save_workspace(bool);
+		bool	get_wind_minimized();
+		bool	set_wind_minimized(bool);
+		BRect	get_wind_rect();
+		BRect	set_wind_rect();
+	*/
 	Options();
-	void Save();
-	void Load();
+	void
+	Save();
+	void
+	Load();
 };
 
 #endif

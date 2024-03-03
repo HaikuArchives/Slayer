@@ -15,17 +15,18 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 // miscSlayer.h
 
 #ifndef _MISC_SLAYER_H
 #define _MISC_SLAYER_H
 
 #include <AppKit.h>
+#include <InterfaceKit.h>
 #include <KernelKit.h>
 #include <StorageKit.h>
-#include <InterfaceKit.h>
 
-void get_app_info(team_id, BBitmap **icon, char **name, char **fullName);
+void
+get_app_info(team_id, BBitmap **icon, char **name, char **fullName);
 
 #endif

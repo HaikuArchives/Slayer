@@ -3,7 +3,6 @@
 // Do not modify this file!
 
 
-
 /*
 
 Views in SettingsWindow:
@@ -32,4 +31,3 @@ enum {
 	IE_SETTINGSWINDOW_SETTINGSALLWORKSPACES = 0x5CL,
 	IE_SETTINGSWINDOW_SETTINGSDESKBAR = 0x68L
 };
-

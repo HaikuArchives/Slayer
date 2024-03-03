@@ -15,39 +15,39 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #include "TeamItem.h"
 #include "MainWindow.h"
-#include <stdlib.h>
-#include <private/shared/StringForSize.h>
 #include <ColumnTypes.h>
+#include <private/shared/StringForSize.h>
+#include <stdlib.h>
 
 TeamItem::TeamItem() : BRow() { thread_items_list = 0; }
-	
-TeamItem::TeamItem(team_info *info) : BRow()
-{
+
+TeamItem::TeamItem(team_info *info) : BRow() {
 	team_icon = NULL;
-//	thread_items_list = new ThreadItemList;
+	//	thread_items_list = new ThreadItemList;
 	thread_items_list = new Hashtable;
-	
+
 	team = info->team;
 	area_count = info->area_count;
 	// memory_usage = 0;
-//	if (slayer->options.shown_columns & Options::memory_col)
-		memory_usage = CountMemory();
-//	else
-//		memory_usage = 0;
+	//	if (slayer->options.shown_columns & Options::memory_col)
+	memory_usage = CountMemory();
+	//	else
+	//		memory_usage = 0;
 
 	get_app_info(team, &team_icon, &name, &fullName);
 	if (name == NULL) {
 		// if couldn't get app name from BRoster, use args
 		strcpy(args, info->args);
-	// remove path from team name
+		// remove path from team name
 		char *tmp;
 		for (name = tmp = args; *tmp != 0; tmp++)
-			if (*tmp == '/') name = tmp + 1;
-	}
-	else args[0] = 0;
+			if (*tmp == '/')
+				name = tmp + 1;
+	} else
+		args[0] = 0;
 
 	int32 i = 0;
 	SetField(new BBitmapField(team_icon), i++);
@@ -61,84 +61,87 @@ TeamItem::TeamItem(team_info *info) : BRow()
 	changed = 0;
 }
 
-int32 TeamItem::update(team_info *info)
-{
+int32
+TeamItem::update(team_info *info) {
 	// team id is always the same, no checking done for that
-/*	if (strcmp(args, info->args)) {
-		strcpy(args, info->args);
-		// remove path from team name
-		char *tmp;
-		for (name = tmp = args; *tmp != 0; tmp++)
-			if (*tmp == '/') name = tmp + 1;
-	
-		SetColumnContent(TeamListView::name_ndx, name, false);
-		
-		changed |= name_chg;
-	} */
-	
+	/*	if (strcmp(args, info->args)) {
+			strcpy(args, info->args);
+			// remove path from team name
+			char *tmp;
+			for (name = tmp = args; *tmp != 0; tmp++)
+				if (*tmp == '/') name = tmp + 1;
+
+			SetColumnContent(TeamListView::name_ndx, name, false);
+
+			changed |= name_chg;
+		} */
+
 	// no updating unless necessary
-//	if (slayer->options.shown_columns & Options::memory_col) {
-		size_t mem = CountMemory();
-		if (mem != memory_usage) {
-	
-			area_count = info->area_count;
-			memory_usage = mem;
-/*
-			char str[21];
-			string_for_size(memory_usage, str, sizeof(str));
-	
-			SetColumnContent(TeamListView::areas_ndx, str, false);
-*/
-			//SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), 5);
-			BSizeField* memoryField = (BSizeField*)GetField(5);
-			if (memoryField->Size() != memory_usage) {
-				memoryField->SetSize(memory_usage < 0 ? 0 : memory_usage);
-				changed |= areas_chg;
-			}
+	//	if (slayer->options.shown_columns & Options::memory_col) {
+	size_t mem = CountMemory();
+	if (mem != memory_usage) {
+
+		area_count = info->area_count;
+		memory_usage = mem;
+		/*
+					char str[21];
+					string_for_size(memory_usage, str, sizeof(str));
+
+					SetColumnContent(TeamListView::areas_ndx, str, false);
+		*/
+		// SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), 5);
+		BSizeField *memoryField = (BSizeField *)GetField(5);
+		if (memoryField->Size() != memory_usage) {
+			memoryField->SetSize(memory_usage < 0 ? 0 : memory_usage);
+			changed |= areas_chg;
 		}
-//	}
+	}
+	//	}
 
 	return changed;
 }
 
-size_t TeamItem::CountMemory() {
+size_t
+TeamItem::CountMemory() {
 	area_info info;
 	ssize_t cookie = 0;
 	size_t mem = 0;
 
 	while (get_next_area_info(team, &cookie, &info) == B_OK)
 		mem += info.ram_size;
-		
+
 	return mem;
 }
 
-void TeamItem::Update(BView *owner, const BFont *font)
-{
+void
+TeamItem::Update(BView *owner, const BFont *font) {}
 
-}
+void
+TeamItem::DrawItemColumn(
+	BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete
+) { /*
+	  if (columnIndex != TeamListView::CPU_ndx)
+		  return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
+			  complete);
 
-void TeamItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
-		columnIndex, bool complete)
-{ /*
-	if (columnIndex != TeamListView::CPU_ndx)
-		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
-			complete);
-			
-	BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
-	float sright = colRect.right;
-	colRect.bottom -= 1.0;
-	colRect.right = colRect.left + (colRect.right - colRect.left) * CPU;
-	owner->SetHighColor(200 * CPU, 200 * (1.0 - CPU), 0);
-	owner->FillRect(colRect & itemColumnRect);
-	if (complete) {
-		owner->SetHighColor(255, 255, 255);
-		owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright, colRect.bottom) &
-			itemColumnRect);
-	} */
+	  BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
+	  float sright = colRect.right;
+	  colRect.bottom -= 1.0;
+	  colRect.right = colRect.left + (colRect.right - colRect.left) * CPU;
+	  owner->SetHighColor(200 * CPU, 200 * (1.0 - CPU), 0);
+	  owner->FillRect(colRect & itemColumnRect);
+	  if (complete) {
+		  owner->SetHighColor(255, 255, 255);
+		  owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright,
+	  colRect.bottom) & itemColumnRect);
+	  } */
 }
 
 TeamItem::~TeamItem() {
-	if (thread_items_list) delete thread_items_list;
-	if (!args[0]) free(name);
-	if (team_icon) delete team_icon;
+	if (thread_items_list)
+		delete thread_items_list;
+	if (!args[0])
+		free(name);
+	if (team_icon)
+		delete team_icon;
 }

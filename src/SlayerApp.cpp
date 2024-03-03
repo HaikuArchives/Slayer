@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #define _INIT_SLAYER_APP_H
 #include "SlayerApp.h"
 #undef _INIT_SLAYER_APP_H
@@ -23,9 +23,10 @@
 
 const char *slayer_signature = "application/x-vnd.AJ-Slayer2";
 
-int main(int argc, char *argv[]) {
+int
+main(int argc, char *argv[]) {
 	bool dock = false;
-	
+
 	for (argv++; argc > 1; argc--, argv++) {
 		if (!strcmp(argv[0], "--deskbar"))
 			dock = true;
@@ -36,8 +37,7 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature)
-{
+SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature) {
 	slayer = this;
 	docked = false;
 	mainWindow = NULL;
@@ -45,35 +45,33 @@ SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature)
 	if (!dock) {
 		options.Load();
 		new MainWindow;
-	}
-	else {
-		MiniSlayer *replicant =
-			new MiniSlayer();
+	} else {
+		MiniSlayer *replicant = new MiniSlayer();
 		BMessage archiveMsg(B_ARCHIVED_OBJECT);
 		replicant->Archive(&archiveMsg);
 		BMessenger messenger("application/x-vnd.Be-TSKB", -1, NULL);
 		messenger.SendMessage(&archiveMsg);
 		docked = true;
-		be_app->PostMessage(B_QUIT_REQUESTED);						
+		be_app->PostMessage(B_QUIT_REQUESTED);
 	}
 }
 
-SlayerApp::~SlayerApp()
-{
-	if (!docked) options.Save();
+SlayerApp::~SlayerApp() {
+	if (!docked)
+		options.Save();
 }
 
-BWindow *SlayerOpt::FindWindow(const char *name)
-{
+BWindow *
+SlayerOpt::FindWindow(const char *name) {
 	BWindow *window, *fwindow = NULL;
 	int32 i = 0;
-	
+
 	while ((window = be_app->WindowAt(i++)) && !fwindow)
 		if (window->Lock()) {
 			if (!strcmp(name, window->Name()))
 				fwindow = window;
 			window->Unlock();
 		}
-		
+
 	return fwindow;
 }

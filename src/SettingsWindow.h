@@ -5,28 +5,30 @@
 #ifndef _SETTINGSWINDOW_H_
 #define _SETTINGSWINDOW_H_
 
-#include "SettingsWindowDefs.h"
 #include "Options.h"
+#include "SettingsWindowDefs.h"
 #include <DecimalSpinner.h>
 #include <InterfaceKit.h>
 
-class SettingsWindow : public BWindow
-{
+class SettingsWindow : public BWindow {
 	BDecimalSpinner *refresh;
 
-	BRadioButton *current_workspace,
-		*all_workspaces,
-		*saved_workspace;
-	BMenuField* workspaces_field;
+	BRadioButton *current_workspace, *all_workspaces, *saved_workspace;
+	BMenuField *workspaces_field;
 	Options saved_options;
-	void OptionsToDialog();
-	void SetRefreshDelay();
-public:
-	SettingsWindow(const char* title);
+	void
+	OptionsToDialog();
+	void
+	SetRefreshDelay();
+
+  public:
+	SettingsWindow(const char *title);
 	~SettingsWindow(void);
 
-	virtual void MessageReceived(BMessage *message);
-	virtual void Quit();
+	virtual void
+	MessageReceived(BMessage *message);
+	virtual void
+	Quit();
 };
 
 #endif

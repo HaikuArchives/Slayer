@@ -15,11 +15,11 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Slayer.  If not, see <http://www.gnu.org/licenses/>
-**/
+ **/
 #include "ThreadItem.h"
 
-#include "SlayerApp.h"
 #include "Options.h"
+#include "SlayerApp.h"
 
 #include <Catalog.h>
 #include <ColumnTypes.h>
@@ -29,8 +29,7 @@
 
 ThreadItem::ThreadItem() : BRow() {}
 
-ThreadItem::ThreadItem(thread_info *info) : BRow()
-{
+ThreadItem::ThreadItem(thread_info *info) : BRow() {
 	thread = info->thread;
 	team = info->team;
 	state = info->state;
@@ -55,10 +54,11 @@ ThreadItem::ThreadItem(thread_info *info) : BRow()
 	changed = 0;
 }
 
-void ThreadItem::update(thread_info *info)
-{
+void
+ThreadItem::update(thread_info *info) {
 	char str[21], *strp;
-	CPU_diff = (info->user_time-user_time)+(info->kernel_time-kernel_time);
+	CPU_diff =
+		(info->user_time - user_time) + (info->kernel_time - kernel_time);
 	user_time = info->user_time;
 	kernel_time = info->kernel_time;
 
@@ -66,68 +66,75 @@ void ThreadItem::update(thread_info *info)
 	    (slayer->options.shown_columns & Options::name_col) */) {
 
 		strcpy(name, info->name);
-		((BStringField*)GetField(1))->SetString(name);
+		((BStringField *)GetField(1))->SetString(name);
 		changed |= name_chg;
 	}
 	if ((priority != info->priority) /* &&
 		(slayer->options.shown_columns & Options::priority_col) */) {
 
 		priority = info->priority;
-		((BIntegerField*)GetField(3))->SetValue(priority);
+		((BIntegerField *)GetField(3))->SetValue(priority);
 		changed |= priority_chg;
 	}
 	if ((state != info->state) /*&&
 	    (slayer->options.shown_columns & Options::state_col)*/) {
 
 		state = info->state;
-		((BStringField*)GetField(4))->SetString(RetrieveStateString(state));
+		((BStringField *)GetField(4))->SetString(RetrieveStateString(state));
 		changed |= state_chg;
 	}
-	//SetField(new BIntegerField(CPU * 100.0), 6);
-//TODO	//((BIntegerField*)GetField(6))->SetValue(CPU*100);
+	// SetField(new BIntegerField(CPU * 100.0), 6);
+	// TODO	//((BIntegerField*)GetField(6))->SetValue(CPU*100);
 }
 
-const char*
-ThreadItem::RetrieveStateString(thread_state state)
-{
+const char *
+ThreadItem::RetrieveStateString(thread_state state) {
 	const char *strp;
 	switch (state) {
 	case B_THREAD_RUNNING:
-		strp = B_TRANSLATE("Running"); break;
+		strp = B_TRANSLATE("Running");
+		break;
 	case B_THREAD_READY:
-		strp = B_TRANSLATE("Ready"); break;
+		strp = B_TRANSLATE("Ready");
+		break;
 	case B_THREAD_SUSPENDED:
-		strp = B_TRANSLATE("Suspended"); break;
+		strp = B_TRANSLATE("Suspended");
+		break;
 	case B_THREAD_WAITING:
-		strp = B_TRANSLATE("Waiting"); break;
+		strp = B_TRANSLATE("Waiting");
+		break;
 	case B_THREAD_RECEIVING:
-		strp = B_TRANSLATE("Receiving"); break;
+		strp = B_TRANSLATE("Receiving");
+		break;
 	case B_THREAD_ASLEEP:
-		strp = B_TRANSLATE("Sleeping"); break;
+		strp = B_TRANSLATE("Sleeping");
+		break;
 	default:
-		strp = B_TRANSLATE("Undefined"); break;
+		strp = B_TRANSLATE("Undefined");
+		break;
 	}
 	return strp;
 }
 
-void ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32
-		columnIndex, bool complete)
-{
-/*
-	if (columnIndex != TeamListView::CPU_ndx)
-		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
-			complete);
+void
+ThreadItem::DrawItemColumn(
+	BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete
+) {
+	/*
+		if (columnIndex != TeamListView::CPU_ndx)
+			return CLVEasyItem::DrawItemColumn(owner, itemColumnRect,
+	   columnIndex, complete);
 
-	BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
-	float sright = colRect.right;
-	colRect.bottom -= 1.0;
-	colRect.right = colRect.left + (colRect.right - colRect.left) * CPU;
-	owner->SetHighColor(200 * CPU, 200 * (1.0 - CPU), 0);
-	owner->FillRect(colRect & itemColumnRect);
-	if (complete) {
-		owner->SetHighColor(255, 255, 255);
-		owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright, colRect.bottom) &
-			itemColumnRect);
-	}
-*/
+		BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
+		float sright = colRect.right;
+		colRect.bottom -= 1.0;
+		colRect.right = colRect.left + (colRect.right - colRect.left) * CPU;
+		owner->SetHighColor(200 * CPU, 200 * (1.0 - CPU), 0);
+		owner->FillRect(colRect & itemColumnRect);
+		if (complete) {
+			owner->SetHighColor(255, 255, 255);
+			owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright,
+	   colRect.bottom) & itemColumnRect);
+		}
+	*/
 }
