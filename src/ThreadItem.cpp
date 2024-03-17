@@ -29,7 +29,8 @@
 
 ThreadItem::ThreadItem() : BRow() {}
 
-ThreadItem::ThreadItem(thread_info *info) : BRow() {
+ThreadItem::ThreadItem(thread_info* info) : BRow()
+{
 	thread = info->thread;
 	team = info->team;
 	state = info->state;
@@ -55,7 +56,8 @@ ThreadItem::ThreadItem(thread_info *info) : BRow() {
 }
 
 void
-ThreadItem::update(thread_info *info) {
+ThreadItem::update(thread_info* info)
+{
 	char str[21], *strp;
 	CPU_diff = (info->user_time - user_time) + (info->kernel_time - kernel_time);
 	user_time = info->user_time;
@@ -65,30 +67,31 @@ ThreadItem::update(thread_info *info) {
 	    (slayer->options.shown_columns & Options::name_col) */) {
 
 		strcpy(name, info->name);
-		((BStringField *)GetField(1))->SetString(name);
+		((BStringField*)GetField(1))->SetString(name);
 		changed |= name_chg;
 	}
 	if ((priority != info->priority) /* &&
 		(slayer->options.shown_columns & Options::priority_col) */) {
 
 		priority = info->priority;
-		((BIntegerField *)GetField(3))->SetValue(priority);
+		((BIntegerField*)GetField(3))->SetValue(priority);
 		changed |= priority_chg;
 	}
 	if ((state != info->state) /*&&
 	    (slayer->options.shown_columns & Options::state_col)*/) {
 
 		state = info->state;
-		((BStringField *)GetField(4))->SetString(RetrieveStateString(state));
+		((BStringField*)GetField(4))->SetString(RetrieveStateString(state));
 		changed |= state_chg;
 	}
 	// SetField(new BIntegerField(CPU * 100.0), 6);
 	// TODO	//((BIntegerField*)GetField(6))->SetValue(CPU*100);
 }
 
-const char *
-ThreadItem::RetrieveStateString(thread_state state) {
-	const char *strp;
+const char*
+ThreadItem::RetrieveStateString(thread_state state)
+{
+	const char* strp;
 	switch (state) {
 	case B_THREAD_RUNNING:
 		strp = B_TRANSLATE("Running");
@@ -116,7 +119,8 @@ ThreadItem::RetrieveStateString(thread_state state) {
 }
 
 void
-ThreadItem::DrawItemColumn(BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete) {
+ThreadItem::DrawItemColumn(BView* owner, BRect itemColumnRect, int32 columnIndex, bool complete)
+{
 	/*
 		if (columnIndex != TeamListView::CPU_ndx)
 			return CLVEasyItem::DrawItemColumn(owner, itemColumnRect,

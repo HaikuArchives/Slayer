@@ -14,11 +14,12 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "SettingsWindow"
 
-SettingsWindow::SettingsWindow(const char *title)
+SettingsWindow::SettingsWindow(const char* title)
 	: BWindow(
 		  BRect(300, 300, 400, 400), title, B_TITLED_WINDOW_LOOK, B_MODAL_APP_WINDOW_FEEL,
 		  B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
-	  ) {
+	  )
+{
 	current_workspace = new BRadioButton(
 		"SettingsCurrentWorkspace", B_TRANSLATE("Open window in current workspace"),
 		new BMessage(IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE)
@@ -36,13 +37,13 @@ SettingsWindow::SettingsWindow(const char *title)
 		new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEDWORKSPACE)
 	);
 
-	BPopUpMenu *workspaces_list = new BPopUpMenu("Workspace");
+	BPopUpMenu* workspaces_list = new BPopUpMenu("Workspace");
 
 	workspaces_field = new BMenuField("Worspaces", B_EMPTY_STRING, workspaces_list);
 	workspaces_field->SetAlignment(B_ALIGN_RIGHT);
 	for (int i = 1; i <= count_workspaces(); i++) {
-		BMessage *message = new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE);
-		BMenuItem *menu_item;
+		BMessage* message = new BMessage(IE_SETTINGSWINDOW_SETTINGSSAVEWORKSPACE);
+		BMenuItem* menu_item;
 		message->AddInt32("workspace_number", i);
 		BString numberStr;
 		numberStr << i;
@@ -51,7 +52,7 @@ SettingsWindow::SettingsWindow(const char *title)
 			menu_item->SetMarked(true);
 	}
 
-	BGroupLayout *workspaceBox =
+	BGroupLayout* workspaceBox =
 		BLayoutBuilder::Group<>(B_VERTICAL)
 			.SetInsets(
 				B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS
@@ -62,7 +63,7 @@ SettingsWindow::SettingsWindow(const char *title)
 			.Add(saved_workspace)
 			.Add(workspaces_field)
 			.End();
-	BBox *top = new BBox("top");
+	BBox* top = new BBox("top");
 	top->AddChild(workspaceBox->View());
 	top->SetLabel(B_TRANSLATE("Workspace"));
 	refresh = new BDecimalSpinner(
@@ -77,7 +78,7 @@ SettingsWindow::SettingsWindow(const char *title)
 	refresh->SetStep(0.250);
 	refresh->SetRange(0, 60);
 
-	BButton *deskbarButton;
+	BButton* deskbarButton;
 	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_SMALL_INSETS)
 		.SetInsets(
 			B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS, B_USE_WINDOW_INSETS
@@ -112,7 +113,8 @@ SettingsWindow::~SettingsWindow(void) {}
 
 // Handling of user interface and other events
 void
-SettingsWindow::MessageReceived(BMessage *message) {
+SettingsWindow::MessageReceived(BMessage* message)
+{
 
 	switch (message->what) {
 	case IE_SETTINGSWINDOW_SETTINGSCURRENTWORKSPACE:
@@ -143,7 +145,7 @@ SettingsWindow::MessageReceived(BMessage *message) {
 		break;
 	case IE_SETTINGSWINDOW_SETTINGSDESKBAR: {
 		// Dock to deskbar
-		MiniSlayer *replicant = new MiniSlayer();
+		MiniSlayer* replicant = new MiniSlayer();
 		BMessage archiveMsg(B_ARCHIVED_OBJECT);
 		replicant->Archive(&archiveMsg);
 		BMessenger messenger("application/x-vnd.Be-TSKB", -1, NULL);
@@ -158,14 +160,16 @@ SettingsWindow::MessageReceived(BMessage *message) {
 }
 
 void
-SettingsWindow::Quit() {
+SettingsWindow::Quit()
+{
 	SetRefreshDelay();
 
 	BWindow::Quit();
 }
 
 void
-SettingsWindow::OptionsToDialog() {
+SettingsWindow::OptionsToDialog()
+{
 	refresh->SetValue(((float)slayer->options.refresh) / 1000);
 
 	switch (slayer->options.workspace_activation) {
@@ -185,7 +189,8 @@ SettingsWindow::OptionsToDialog() {
 }
 
 void
-SettingsWindow::SetRefreshDelay() {
+SettingsWindow::SetRefreshDelay()
+{
 	int32 ref = (int32)(refresh->Value() * 1000);
 	if (ref < 0)
 		ref = 0;

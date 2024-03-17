@@ -29,18 +29,21 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "PriorityMenu"
 
-PriorityMenu::PriorityMenu(TeamListView *teamListView)
+PriorityMenu::PriorityMenu(TeamListView* teamListView)
 	: BMenu(B_TRANSLATE("Set priority")), fTeamListView(teamListView), fPriority(-2),
-	  fEnabled(false) {}
+	  fEnabled(false)
+{
+}
 
 void
-PriorityMenu::Update() {
-	BRow *selected = fTeamListView->CurrentSelection(NULL);
+PriorityMenu::Update()
+{
+	BRow* selected = fTeamListView->CurrentSelection(NULL);
 	int32 priority;
 	bool enabled = selected != NULL;
 
 	if (enabled && fTeamListView->CurrentSelection(selected) == NULL && !selected->HasLatch())
-		priority = ((ThreadItem *)selected)->priority;
+		priority = ((ThreadItem*)selected)->priority;
 	else
 		priority = -1;
 
@@ -55,7 +58,7 @@ PriorityMenu::Update() {
 }
 
 typedef struct {
-	const char *name;
+	const char* name;
 	long priority;
 } PriorityRec;
 
@@ -75,13 +78,14 @@ static PriorityRec priorities[] = {
 PriorityRec customPriority = {B_TRANSLATE("Custom priority"), 0};
 
 void
-PriorityMenu::BuildMenu() {
-	BMenuItem *item;
-	BMessage *message;
+PriorityMenu::BuildMenu()
+{
+	BMenuItem* item;
+	BMessage* message;
 	long found = false;
 
 	for (long index = 0;; index++) {
-		PriorityRec *priority = &priorities[index];
+		PriorityRec* priority = &priorities[index];
 		if (priority->priority < 0)
 			break;
 		if (!found && fPriority < priority->priority && fPriority >= 0) {

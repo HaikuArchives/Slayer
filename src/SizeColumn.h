@@ -6,11 +6,11 @@
 class SizeColumn : public BSizeColumn {
   public:
 	SizeColumn(
-		const char *title, float width, float minWidth, float maxWidth,
+		const char* title, float width, float minWidth, float maxWidth,
 		alignment align = B_ALIGN_RIGHT
 	);
-	virtual void DrawField(BField *field, BRect rect, BView *parent);
-	virtual int CompareFields(BField *field1, BField *field2);
+	virtual void DrawField(BField* field, BRect rect, BView* parent);
+	virtual int CompareFields(BField* field1, BField* field2);
 };
 
 #endif

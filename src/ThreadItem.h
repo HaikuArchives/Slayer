@@ -43,11 +43,11 @@ class ThreadItem : public BRow {
 
 	ThreadItem();
 
-	ThreadItem(thread_info *info);
-	void update(thread_info *info);
+	ThreadItem(thread_info* info);
+	void update(thread_info* info);
 	virtual void
-	DrawItemColumn(BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete = false);
-	const char *RetrieveStateString(thread_state state);
+	DrawItemColumn(BView* owner, BRect itemColumnRect, int32 columnIndex, bool complete = false);
+	const char* RetrieveStateString(thread_state state);
 };
 
 #endif

@@ -27,8 +27,8 @@
 class SlayerOpt {
   public:
 	Options options;
-	BWindow *FindWindow(const char *name);
-	class MainWindow *mainWindow;
+	BWindow* FindWindow(const char* name);
+	class MainWindow* mainWindow;
 
 	bool docked;
 };
@@ -43,9 +43,9 @@ class SlayerApp : public BApplication, public SlayerOpt {
 };
 
 #ifdef _INIT_SLAYER_APP_H
-SlayerOpt *slayer;
+SlayerOpt* slayer;
 #else
-extern SlayerOpt *slayer;
+extern SlayerOpt* slayer;
 #endif
 
 #endif // _SLAYER_APP_H

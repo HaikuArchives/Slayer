@@ -11,19 +11,19 @@
 #include <InterfaceKit.h>
 
 class SettingsWindow : public BWindow {
-	BDecimalSpinner *refresh;
+	BDecimalSpinner* refresh;
 
 	BRadioButton *current_workspace, *all_workspaces, *saved_workspace;
-	BMenuField *workspaces_field;
+	BMenuField* workspaces_field;
 	Options saved_options;
 	void OptionsToDialog();
 	void SetRefreshDelay();
 
   public:
-	SettingsWindow(const char *title);
+	SettingsWindow(const char* title);
 	~SettingsWindow(void);
 
-	virtual void MessageReceived(BMessage *message);
+	virtual void MessageReceived(BMessage* message);
 	virtual void Quit();
 };
 

@@ -29,10 +29,11 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "TeamListView"
 
-TeamListView::TeamListView(const char *name)
-	: BColumnListView("fileListView", B_FRAME_EVENTS | B_NAVIGABLE) {
+TeamListView::TeamListView(const char* name)
+	: BColumnListView("fileListView", B_FRAME_EVENTS | B_NAVIGABLE)
+{
 	// add Columns
-	BColumn *column;
+	BColumn* column;
 	int32 i = 0;
 	AddColumn(new BBitmapColumn(B_TRANSLATE("Icon"), 16, 16, 16, B_ALIGN_CENTER), i++);
 	AddColumn(new BStringColumn(B_TRANSLATE("Name"), 180, 10, 600, 0), i++);
@@ -47,7 +48,7 @@ TeamListView::TeamListView(const char *name)
 	SetInvocationMessage(new BMessage(TEAM_INV));
 
 	// create the PopUpMenu
-	BMenuItem *inv;
+	BMenuItem* inv;
 	operationMenu = new BPopUpMenu("operationMenu", false, false);
 	operationMenu->AddItem(
 		(inv = new BMenuItem(B_TRANSLATE("Kill"), new BMessage(IE_MAINWINDOW_MAINKILL)))
@@ -65,9 +66,9 @@ TeamListView::TeamListView(const char *name)
 	operationMenu->AddSeparatorItem();
 	priorityMenu = new PriorityMenu(this);
 	operationMenu->AddItem(priorityMenu);
-	((PriorityMenu *)priorityMenu)->BuildMenu();
+	((PriorityMenu*)priorityMenu)->BuildMenu();
 
-	BMessage *selected = new BMessage(SELECTION_CHANGED);
+	BMessage* selected = new BMessage(SELECTION_CHANGED);
 	selected->AddInt32("buttons", 0);
 	SetSelectionMessage(selected);
 
@@ -75,32 +76,36 @@ TeamListView::TeamListView(const char *name)
 }
 
 void
-TeamListView::MakeFocus(bool focused) {
+TeamListView::MakeFocus(bool focused)
+{
 	BColumnListView::MakeFocus(focused);
 }
 
 void
-TeamListView::SelectionChanged() {
+TeamListView::SelectionChanged()
+{
 	uint32 buttons;
 
-	BMessage *msg = Window()->CurrentMessage();
+	BMessage* msg = Window()->CurrentMessage();
 
 	if (msg)
-		msg->FindInt32("buttons", (int32 *)&buttons);
+		msg->FindInt32("buttons", (int32*)&buttons);
 
 	SelectionMessage()->ReplaceInt32("buttons", buttons);
 
 	BColumnListView::SelectionChanged();
 }
 
-BPopUpMenu *
-TeamListView::ActionMenu() {
-	((PriorityMenu *)priorityMenu)->Update();
+BPopUpMenu*
+TeamListView::ActionMenu()
+{
+	((PriorityMenu*)priorityMenu)->Update();
 	return operationMenu;
 }
 
 void
-TeamListView::FullListDoForEach(bool (*func)(BRow *, void *), void *data) {
+TeamListView::FullListDoForEach(bool (*func)(BRow*, void*), void* data)
+{
 	for (int i = 0; i < CountRows(); i++) {
 		func(RowAt(i), data);
 
@@ -111,7 +116,8 @@ TeamListView::FullListDoForEach(bool (*func)(BRow *, void *), void *data) {
 }
 
 void
-TeamListView::KeyDown(const char *bytes, int32 numBytes) {
+TeamListView::KeyDown(const char* bytes, int32 numBytes)
+{
 	if (numBytes <= 0)
 		return;
 
@@ -131,7 +137,8 @@ TeamListView::KeyDown(const char *bytes, int32 numBytes) {
 }
 
 void
-TeamListView::MoveToRow(int RowIndex) {
+TeamListView::MoveToRow(int RowIndex)
+{
 	DeselectAll();
 	ScrollTo(this->RowAt(RowIndex));
 	SetFocusRow(this->RowAt(RowIndex), true);

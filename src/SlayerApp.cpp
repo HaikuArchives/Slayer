@@ -21,23 +21,25 @@
 #undef _INIT_SLAYER_APP_H
 #include "MiniSlayer.h"
 
-const char *slayer_signature = "application/x-vnd.AJ-Slayer2";
+const char* slayer_signature = "application/x-vnd.AJ-Slayer2";
 
 int
-main(int argc, char *argv[]) {
+main(int argc, char* argv[])
+{
 	bool dock = false;
 
 	for (argv++; argc > 1; argc--, argv++) {
 		if (!strcmp(argv[0], "--deskbar"))
 			dock = true;
 	}
-	SlayerApp *me = new SlayerApp(dock);
+	SlayerApp* me = new SlayerApp(dock);
 	me->Run();
 	delete me;
 	return 0;
 }
 
-SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature) {
+SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature)
+{
 	slayer = this;
 	docked = false;
 	mainWindow = NULL;
@@ -45,8 +47,9 @@ SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature) {
 	if (!dock) {
 		options.Load();
 		new MainWindow;
-	} else {
-		MiniSlayer *replicant = new MiniSlayer();
+	}
+	else {
+		MiniSlayer* replicant = new MiniSlayer();
 		BMessage archiveMsg(B_ARCHIVED_OBJECT);
 		replicant->Archive(&archiveMsg);
 		BMessenger messenger("application/x-vnd.Be-TSKB", -1, NULL);
@@ -56,13 +59,15 @@ SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature) {
 	}
 }
 
-SlayerApp::~SlayerApp() {
+SlayerApp::~SlayerApp()
+{
 	if (!docked)
 		options.Save();
 }
 
-BWindow *
-SlayerOpt::FindWindow(const char *name) {
+BWindow*
+SlayerOpt::FindWindow(const char* name)
+{
 	BWindow *window, *fwindow = NULL;
 	int32 i = 0;
 

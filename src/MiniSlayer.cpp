@@ -22,16 +22,18 @@
 #include <AppKit.h>
 #include <StorageKit.h>
 
-extern const char *slayer_signature;
+extern const char* slayer_signature;
 
 MiniSlayer::MiniSlayer()
-	: BView(BRect(0, 0, 15, 15), "MiniSlayer", B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW) {
+	: BView(BRect(0, 0, 15, 15), "MiniSlayer", B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW)
+{
 	SetViewColor(255, 255, 0);
 	//	AddChild(new BDragger(BRect(0,0,16,16), this, B_FOLLOW_RIGHT |
 	// B_FOLLOW_BOTTOM));
 }
 
-MiniSlayer::MiniSlayer(BMessage *msg) : BView(msg) {
+MiniSlayer::MiniSlayer(BMessage* msg) : BView(msg)
+{
 	// Oh well, we're instantiated from Deskbar.
 	// Find the mini icon for Slayer.
 
@@ -55,20 +57,23 @@ MiniSlayer::MiniSlayer(BMessage *msg) : BView(msg) {
 	}
 }
 
-MiniSlayer::~MiniSlayer() {
+MiniSlayer::~MiniSlayer()
+{
 	if (miniIcon != NULL)
 		delete miniIcon;
 }
 
-MiniSlayer *
-MiniSlayer::Instantiate(BMessage *data) {
+MiniSlayer*
+MiniSlayer::Instantiate(BMessage* data)
+{
 	if (!validate_instantiation(data, "MiniSlayer"))
 		return NULL;
 	return new MiniSlayer(data);
 }
 
 status_t
-MiniSlayer::Archive(BMessage *data, bool deep) const {
+MiniSlayer::Archive(BMessage* data, bool deep) const
+{
 	BView::Archive(data, deep);
 	data->AddString("add_on", slayer_signature);
 
@@ -76,7 +81,8 @@ MiniSlayer::Archive(BMessage *data, bool deep) const {
 }
 
 void
-MiniSlayer::AttachedToWindow() {
+MiniSlayer::AttachedToWindow()
+{
 	// Set background color to match parent's
 
 	if (Parent())
@@ -92,14 +98,16 @@ MiniSlayer::AttachedToWindow() {
 }
 
 void
-MiniSlayer::MouseDown(BPoint point) {
+MiniSlayer::MouseDown(BPoint point)
+{
 	if (slayer->mainWindow == NULL) {
 		new MainWindow;
 		if (slayer->mainWindow->Lock())
 			if (slayer->mainWindow->minimized)
 				slayer->mainWindow->Minimize(false);
 		slayer->mainWindow->Unlock();
-	} else {
+	}
+	else {
 		if (slayer->mainWindow->Lock()) {
 			uint32 saved_flags = slayer->mainWindow->Flags();
 
@@ -122,7 +130,8 @@ MiniSlayer::MouseDown(BPoint point) {
 }
 
 void
-MiniSlayer::Draw(BRect rect) {
+MiniSlayer::Draw(BRect rect)
+{
 	BView::Draw(rect);
 
 	SetDrawingMode(B_OP_OVER);
