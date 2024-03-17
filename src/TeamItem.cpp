@@ -24,7 +24,8 @@
 
 TeamItem::TeamItem() : BRow() { thread_items_list = 0; }
 
-TeamItem::TeamItem(team_info *info) : BRow() {
+TeamItem::TeamItem(team_info* info) : BRow()
+{
 	team_icon = NULL;
 	//	thread_items_list = new ThreadItemList;
 	thread_items_list = new Hashtable;
@@ -42,11 +43,12 @@ TeamItem::TeamItem(team_info *info) : BRow() {
 		// if couldn't get app name from BRoster, use args
 		strcpy(args, info->args);
 		// remove path from team name
-		char *tmp;
+		char* tmp;
 		for (name = tmp = args; *tmp != 0; tmp++)
 			if (*tmp == '/')
 				name = tmp + 1;
-	} else
+	}
+	else
 		args[0] = 0;
 
 	int32 i = 0;
@@ -62,7 +64,8 @@ TeamItem::TeamItem(team_info *info) : BRow() {
 }
 
 int32
-TeamItem::update(team_info *info) {
+TeamItem::update(team_info* info)
+{
 	// team id is always the same, no checking done for that
 	/*	if (strcmp(args, info->args)) {
 			strcpy(args, info->args);
@@ -90,7 +93,7 @@ TeamItem::update(team_info *info) {
 					SetColumnContent(TeamListView::areas_ndx, str, false);
 		*/
 		// SetField(new BSizeField(memory_usage < 0 ? 0 : memory_usage), 5);
-		BSizeField *memoryField = (BSizeField *)GetField(5);
+		BSizeField* memoryField = (BSizeField*)GetField(5);
 		if (memoryField->Size() != memory_usage) {
 			memoryField->SetSize(memory_usage < 0 ? 0 : memory_usage);
 			changed |= areas_chg;
@@ -102,7 +105,8 @@ TeamItem::update(team_info *info) {
 }
 
 size_t
-TeamItem::CountMemory() {
+TeamItem::CountMemory()
+{
 	area_info info;
 	ssize_t cookie = 0;
 	size_t mem = 0;
@@ -114,30 +118,32 @@ TeamItem::CountMemory() {
 }
 
 void
-TeamItem::Update(BView *owner, const BFont *font) {}
-
-void
-TeamItem::DrawItemColumn(
-	BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete
-) { /*
-	  if (columnIndex != TeamListView::CPU_ndx)
-		  return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
-			  complete);
-
-	  BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
-	  float sright = colRect.right;
-	  colRect.bottom -= 1.0;
-	  colRect.right = colRect.left + (colRect.right - colRect.left) * CPU;
-	  owner->SetHighColor(200 * CPU, 200 * (1.0 - CPU), 0);
-	  owner->FillRect(colRect & itemColumnRect);
-	  if (complete) {
-		  owner->SetHighColor(255, 255, 255);
-		  owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright,
-	  colRect.bottom) & itemColumnRect);
-	  } */
+TeamItem::Update(BView* owner, const BFont* font)
+{
 }
 
-TeamItem::~TeamItem() {
+void
+TeamItem::DrawItemColumn(BView* owner, BRect itemColumnRect, int32 columnIndex, bool complete)
+{ /*
+	if (columnIndex != TeamListView::CPU_ndx)
+		return CLVEasyItem::DrawItemColumn(owner, itemColumnRect, columnIndex,
+			complete);
+
+	BRect colRect = ItemColumnFrame(columnIndex, (ColumnListView *)owner);
+	float sright = colRect.right;
+	colRect.bottom -= 1.0;
+	colRect.right = colRect.left + (colRect.right - colRect.left) * CPU;
+	owner->SetHighColor(200 * CPU, 200 * (1.0 - CPU), 0);
+	owner->FillRect(colRect & itemColumnRect);
+	if (complete) {
+		owner->SetHighColor(255, 255, 255);
+		owner->FillRect(BRect(colRect.right + 1.0, colRect.top, sright,
+	colRect.bottom) & itemColumnRect);
+	} */
+}
+
+TeamItem::~TeamItem()
+{
 	if (thread_items_list)
 		delete thread_items_list;
 	if (!args[0])

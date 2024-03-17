@@ -33,26 +33,26 @@ class TeamItem : public BRow {
 
 	team_id team;
 	char args[64];
-	char *name;
-	char *fullName;
+	char* name;
+	char* fullName;
 	int32 area_count;
 	size_t memory_usage;
 	bigtime_t CPU_diff;
 	float CPU;
 
-	BBitmap *team_icon;
+	BBitmap* team_icon;
 
 	//	ThreadItemList	*thread_items_list;
-	Hashtable *thread_items_list;
+	Hashtable* thread_items_list;
 
 	TeamItem();
 
-	TeamItem(team_info *info);
-	int32 update(team_info *info);
+	TeamItem(team_info* info);
+	int32 update(team_info* info);
 	size_t CountMemory(); // counts memory usage
-	virtual void Update(BView *owner, const BFont *font);
+	virtual void Update(BView* owner, const BFont* font);
 	virtual void
-	DrawItemColumn(BView *owner, BRect itemColumnRect, int32 columnIndex, bool complete = false);
+	DrawItemColumn(BView* owner, BRect itemColumnRect, int32 columnIndex, bool complete = false);
 	virtual ~TeamItem();
 };
 

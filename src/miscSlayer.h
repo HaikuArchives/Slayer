@@ -27,6 +27,6 @@
 #include <StorageKit.h>
 
 void
-get_app_info(team_id, BBitmap **icon, char **name, char **fullName);
+get_app_info(team_id, BBitmap** icon, char** name, char** fullName);
 
 #endif

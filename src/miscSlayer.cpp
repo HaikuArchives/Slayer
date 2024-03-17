@@ -22,7 +22,8 @@
 #include <string.h>
 
 void
-get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName) {
+get_app_info(team_id team, BBitmap** a_icon, char** name, char** fullName)
+{
 	// code from the debugger
 	app_info appInfo;
 	*name = NULL;
@@ -41,12 +42,12 @@ get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName) {
 			kernelPath.Append(systemInfo.kernel_name);
 
 			get_ref_for_path(kernelPath.Path(), &appInfo.ref);
-
-		} else
+		}
+		else
 			BPrivate::get_app_ref(team, &appInfo.ref);
 	}
 
-	BBitmap *icon = new BBitmap(BRect(0, 0, B_MINI_ICON - 1, B_MINI_ICON - 1), B_RGBA32);
+	BBitmap* icon = new BBitmap(BRect(0, 0, B_MINI_ICON - 1, B_MINI_ICON - 1), B_RGBA32);
 
 	status = BNodeInfo::GetTrackerIcon(&appInfo.ref, icon, B_MINI_ICON);
 	if (status != B_OK) {
@@ -57,7 +58,8 @@ get_app_info(team_id team, BBitmap **a_icon, char **name, char **fullName) {
 	if (status != B_OK) {
 		delete icon;
 		icon = NULL;
-	} else {
+	}
+	else {
 		*name = strdup(appInfo.ref.name);
 		BPath appFullName(&appInfo.ref);
 		if (appFullName.InitCheck() == B_OK) {

@@ -21,7 +21,8 @@
 
 #define SETTINGS_FILE "Slayer_settings"
 
-Options::Options() {
+Options::Options()
+{
 	refresh = 250;
 	workspace_activation = current_workspace;
 	workspaces = 1;
@@ -31,7 +32,8 @@ Options::Options() {
 }
 
 void
-Options::Save() {
+Options::Save()
+{
 	BPath path;
 
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path, true) != B_OK) {
@@ -56,7 +58,8 @@ Options::Save() {
 }
 
 void
-Options::Load() {
+Options::Load()
+{
 	BPath path;
 
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path, true)) {

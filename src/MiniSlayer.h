@@ -24,17 +24,17 @@
 class _EXPORT MiniSlayer;
 
 class MiniSlayer : public BView {
-	BBitmap *miniIcon;
-	const char *signature; // the loaded apps signature (should be equal to
+	BBitmap* miniIcon;
+	const char* signature; // the loaded apps signature (should be equal to
 						   // slayer_signature usually)
   public:
 	MiniSlayer();
-	MiniSlayer(BMessage *);
+	MiniSlayer(BMessage*);
 	virtual ~MiniSlayer();
 
 	// archiving overrides
-	static MiniSlayer *Instantiate(BMessage *data);
-	virtual status_t Archive(BMessage *data, bool deep = true) const;
+	static MiniSlayer* Instantiate(BMessage* data);
+	virtual status_t Archive(BMessage* data, bool deep = true) const;
 
 	virtual void AttachedToWindow();
 	virtual void MouseDown(BPoint);

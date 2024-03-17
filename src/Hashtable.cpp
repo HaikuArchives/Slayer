@@ -27,16 +27,18 @@ _hash_node::_hash_node(int32 _key, void *_item)
 }
 */
 
-Hashtable::Hashtable(int32 size) {
+Hashtable::Hashtable(int32 size)
+{
 	array_size = size;
 	items = 0;
-	array = new _hash_node *[array_size];
+	array = new _hash_node*[array_size];
 	// initialize to zero
 	for (size = 0; size < array_size; size++)
 		array[size] = NULL;
 }
 
-Hashtable::~Hashtable() {
+Hashtable::~Hashtable()
+{
 	if (array)
 		delete[] array;
 }
@@ -88,8 +90,9 @@ void *Hashtable::del(int32 key)
 */
 
 void
-Hashtable::forEachDo(bool (*func)(void *)) {
-	_hash_node *node;
+Hashtable::forEachDo(bool (*func)(void*))
+{
+	_hash_node* node;
 	int32 i;
 
 	for (i = 0; i < array_size; i++)

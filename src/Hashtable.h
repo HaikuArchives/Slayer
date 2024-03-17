@@ -26,10 +26,11 @@
 // Hashtable that can has only one instance of a key
 struct _hash_node {
 	int32 key;
-	void *item;
-	struct _hash_node *next;
+	void* item;
+	struct _hash_node* next;
 
-	inline _hash_node(int32 _key = -1, void *_item = NULL) {
+	inline _hash_node(int32 _key = -1, void* _item = NULL)
+	{
 		key = _key;
 		item = _item;
 		next = NULL;
@@ -40,13 +41,14 @@ class Hashtable {
   protected:
 	int32 array_size;
 	int32 items;
-	_hash_node **array;
+	_hash_node** array;
 
   public:
 	Hashtable(int32 size = 50);
 	~Hashtable();
 
-	inline void *put(int32 key, void *item) {
+	inline void* put(int32 key, void* item)
+	{
 		_hash_node *node = array[key % array_size], *last = NULL;
 
 		for (; node; last = node, node = node->next)
@@ -63,8 +65,9 @@ class Hashtable {
 		return item;
 	}
 
-	inline void *get(int32 key) {
-		_hash_node *node = array[key % array_size];
+	inline void* get(int32 key)
+	{
+		_hash_node* node = array[key % array_size];
 		for (; node; node = node->next)
 			if (node->key == key)
 				return node->item;
@@ -72,7 +75,8 @@ class Hashtable {
 		return NULL;
 	}
 
-	inline void *del(int32 key) {
+	inline void* del(int32 key)
+	{
 		_hash_node *node = array[key % array_size], *last = NULL;
 		for (; node; last = node, node = node->next)
 			if (node->key == key) {
@@ -81,7 +85,7 @@ class Hashtable {
 				else
 					array[key % array_size] = node->next;
 				items--;
-				void *item = node->item;
+				void* item = node->item;
 				delete node;
 				return item;
 			}
@@ -89,7 +93,7 @@ class Hashtable {
 		return NULL;
 	}
 
-	void forEachDo(bool (*)(void *item));
+	void forEachDo(bool (*)(void* item));
 	// not implemented yet
 	// void rehash(void);
 };

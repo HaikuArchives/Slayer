@@ -31,13 +31,13 @@
 
 class PriorityMenu : public BMenu {
   public:
-	PriorityMenu(TeamListView *teamListView);
+	PriorityMenu(TeamListView* teamListView);
 
 	void Update();
 	void BuildMenu();
 
   private:
-	TeamListView *fTeamListView;
+	TeamListView* fTeamListView;
 	int32 fPriority;
 	bool fEnabled;
 };
