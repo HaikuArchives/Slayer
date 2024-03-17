@@ -36,11 +36,11 @@ TeamListView::TeamListView(const char *name)
 	int32 i = 0;
 	AddColumn(new BBitmapColumn(B_TRANSLATE("Icon"), 16, 16, 16, B_ALIGN_CENTER), i++);
 	AddColumn(new BStringColumn(B_TRANSLATE("Name"), 180, 10, 600, 0), i++);
-	AddColumn(new BIntegerColumn(B_TRANSLATE("ID"), 50, 10, 100, B_ALIGN_RIGHT), i++);
+	AddColumn(new BIntegerColumn(B_TRANSLATE("ID"), 50, 50, 100, B_ALIGN_RIGHT), i++);
 	AddColumn(new PositiveIntegerColumn(B_TRANSLATE("Priority"), 60, 10, 600), i++);
 	AddColumn(new BStringColumn(B_TRANSLATE("State"), 70, 10, 600, 0), i++);
 	AddColumn(new SizeColumn(B_TRANSLATE("Memory"), 80, 10, 600), i++);
-	AddColumn(new GraphColumn(B_TRANSLATE("CPU"), 80.0, 10, 100.0), i++);
+	AddColumn(new GraphColumn(B_TRANSLATE("CPU"), 80.0, 50, 100.0), i++);
 	AddColumn(column = new BStringColumn(B_TRANSLATE("Path"), 180, 10, 600, 0), i++);
 	column->SetVisible(false);
 
