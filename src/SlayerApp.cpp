@@ -47,8 +47,7 @@ SlayerApp::SlayerApp(bool dock) : BApplication(slayer_signature)
 	if (!dock) {
 		options.Load();
 		new MainWindow;
-	}
-	else {
+	} else {
 		MiniSlayer* replicant = new MiniSlayer();
 		BMessage archiveMsg(B_ARCHIVED_OBJECT);
 		replicant->Archive(&archiveMsg);

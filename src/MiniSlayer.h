@@ -23,7 +23,8 @@
 
 class _EXPORT MiniSlayer;
 
-class MiniSlayer : public BView {
+class MiniSlayer : public BView
+{
 	BBitmap* miniIcon;
 	const char* signature; // the loaded apps signature (should be equal to
 						   // slayer_signature usually)

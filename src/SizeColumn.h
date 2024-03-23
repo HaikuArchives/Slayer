@@ -3,7 +3,8 @@
 
 #include <ColumnTypes.h>
 
-class SizeColumn : public BSizeColumn {
+class SizeColumn : public BSizeColumn
+{
   public:
 	SizeColumn(
 		const char* title, float width, float minWidth, float maxWidth,

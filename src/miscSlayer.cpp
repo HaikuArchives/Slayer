@@ -42,8 +42,7 @@ get_app_info(team_id team, BBitmap** a_icon, char** name, char** fullName)
 			kernelPath.Append(systemInfo.kernel_name);
 
 			get_ref_for_path(kernelPath.Path(), &appInfo.ref);
-		}
-		else
+		} else
 			BPrivate::get_app_ref(team, &appInfo.ref);
 	}
 
@@ -58,8 +57,7 @@ get_app_info(team_id team, BBitmap** a_icon, char** name, char** fullName)
 	if (status != B_OK) {
 		delete icon;
 		icon = NULL;
-	}
-	else {
+	} else {
 		*name = strdup(appInfo.ref.name);
 		BPath appFullName(&appInfo.ref);
 		if (appFullName.InitCheck() == B_OK) {

@@ -28,7 +28,8 @@
 #define SET_PRIORITY 'pset'
 #define REFRESH_TEAMS 'rfsh'
 
-class TeamListView : public BColumnListView {
+class TeamListView : public BColumnListView
+{
   public:
 	static const int expander_ndx = 0, icon_ndx = 1, name_ndx = 2, id_ndx = 3, priority_ndx = 4,
 					 state_ndx = 5, areas_ndx = 6, CPU_ndx = 7;

@@ -57,7 +57,8 @@ PriorityMenu::Update()
 	}
 }
 
-typedef struct {
+typedef struct
+{
 	const char* name;
 	long priority;
 } PriorityRec;

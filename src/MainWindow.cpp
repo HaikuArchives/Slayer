@@ -292,8 +292,7 @@ MainWindow::Minimize(bool minimize)
 		// Gotta get rid of the refresh thread
 		delete fRefreshRunner;
 		fRefreshRunner = NULL;
-	}
-	else if ((!minimized) && (fRefreshRunner == NULL)) {
+	} else if ((!minimized) && (fRefreshRunner == NULL)) {
 		BMessage refreshMessage(REFRESH_TEAMS);
 		fRefreshRunner = new BMessageRunner(BMessenger(this), &refreshMessage, fRefreshRate);
 	}
@@ -340,8 +339,7 @@ MainWindow::UpdateTeams()
 				teamView->AddRow(thread_item, team_item);
 				if (teinf.team != 1 || strncmp(thinf.name, "idle thread ", 12) != 0) {
 					team_item->CPU_diff += thread_item->CPU_diff;
-				}
-				else
+				} else
 					idle_CPU_diff += thread_item->CPU_diff;
 			}
 		}
@@ -366,8 +364,7 @@ MainWindow::UpdateTeams()
 				}
 				if (teinf.team != 1 || strncmp(thinf.name, "idle thread ", 12) != 0) {
 					team_item->CPU_diff += thread_item->CPU_diff;
-				}
-				else
+				} else
 					idle_CPU_diff += thread_item->CPU_diff;
 			}
 		}
@@ -441,8 +438,7 @@ postlistproc(BRow* item, void* _wnd)
 				wnd->teamView->UpdateRow(item);
 			}
 			((TeamItem*)item)->changed = 0;
-		}
-		else {
+		} else {
 			float CPU = ((float)((ThreadItem*)item)->CPU_diff) / wnd->total_CPU_diff;
 			if ((CPU != ((ThreadItem*)item)->CPU)) {
 				CPU = (CPU > 1.0 ? 1.0 : CPU < 0.0 ? 0.0 : CPU);

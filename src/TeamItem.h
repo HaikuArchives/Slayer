@@ -25,7 +25,8 @@
 #include "miscSlayer.h"
 #include <stdio.h>
 
-class TeamItem : public BRow {
+class TeamItem : public BRow
+{
   public:
 	int32 refreshed;
 	int32 changed;
