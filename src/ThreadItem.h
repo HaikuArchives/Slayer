@@ -24,7 +24,8 @@
 #include <stdio.h>
 #include <string.h>
 
-class ThreadItem : public BRow {
+class ThreadItem : public BRow
+{
   public:
 	int32 refreshed;
 	int32 changed;

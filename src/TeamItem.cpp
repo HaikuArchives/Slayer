@@ -47,8 +47,7 @@ TeamItem::TeamItem(team_info* info) : BRow()
 		for (name = tmp = args; *tmp != 0; tmp++)
 			if (*tmp == '/')
 				name = tmp + 1;
-	}
-	else
+	} else
 		args[0] = 0;
 
 	int32 i = 0;

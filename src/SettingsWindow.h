@@ -10,7 +10,8 @@
 #include <DecimalSpinner.h>
 #include <InterfaceKit.h>
 
-class SettingsWindow : public BWindow {
+class SettingsWindow : public BWindow
+{
 	BDecimalSpinner* refresh;
 
 	BRadioButton *current_workspace, *all_workspaces, *saved_workspace;

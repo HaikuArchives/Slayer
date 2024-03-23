@@ -106,8 +106,7 @@ MiniSlayer::MouseDown(BPoint point)
 			if (slayer->mainWindow->minimized)
 				slayer->mainWindow->Minimize(false);
 		slayer->mainWindow->Unlock();
-	}
-	else {
+	} else {
 		if (slayer->mainWindow->Lock()) {
 			uint32 saved_flags = slayer->mainWindow->Flags();
 

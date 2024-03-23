@@ -20,7 +20,8 @@ postlistproc(BRow*, void*);
 static const BString ProjectWebsite =
 	"https://github.com/HaikuArchives/Slayer/blob/master/DOCS.txt";
 
-class MainWindow : public BWindow {
+class MainWindow : public BWindow
+{
   public:
 	// true if window minimized
 	bool minimized;

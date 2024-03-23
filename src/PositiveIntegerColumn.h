@@ -3,7 +3,8 @@
 
 #include <ColumnTypes.h>
 
-class PositiveIntegerColumn : public BIntegerColumn {
+class PositiveIntegerColumn : public BIntegerColumn
+{
   public:
 	PositiveIntegerColumn(
 		const char* title, float width, float minWidth, float maxWidth,

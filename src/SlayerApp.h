@@ -24,7 +24,8 @@
 
 #define SLAYER_VERSION "v1.0"
 
-class SlayerOpt {
+class SlayerOpt
+{
   public:
 	Options options;
 	BWindow* FindWindow(const char* name);
@@ -33,7 +34,8 @@ class SlayerOpt {
 	bool docked;
 };
 
-class SlayerApp : public BApplication, public SlayerOpt {
+class SlayerApp : public BApplication, public SlayerOpt
+{
   public:
 	SlayerApp(bool dock = false);
 	virtual ~SlayerApp();

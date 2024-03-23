@@ -29,7 +29,8 @@
 
 #include "TeamListView.h"
 
-class PriorityMenu : public BMenu {
+class PriorityMenu : public BMenu
+{
   public:
 	PriorityMenu(TeamListView* teamListView);
 

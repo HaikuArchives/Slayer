@@ -24,7 +24,8 @@ Views in MainWindow:
 
 
 // Message constants:
-enum {
+enum
+{
 	IE_MAINWINDOW_MAINMENU_FILE_QUIT = 0x6L,
 	IE_MAINWINDOW_MAINMENU_FILE_DOCS__ = 0x7L,
 	IE_MAINWINDOW_MAINMENU_ACTION_KILL = 0x149L,

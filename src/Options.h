@@ -22,16 +22,23 @@
 #include <InterfaceKit.h>
 #include <SupportKit.h>
 
-struct Options {
+struct Options
+{
 	int32 refresh;
 
-	enum workspace_type { current_workspace, all_workspaces, saved_workspace } workspace_activation;
+	enum workspace_type
+	{
+		current_workspace,
+		all_workspaces,
+		saved_workspace
+	} workspace_activation;
 
 	int32 workspaces;
 	bool wind_minimized;
 	BRect wind_rect;
 
-	enum {
+	enum
+	{
 		id_col = 0x1,
 		priority_col = 0x2,
 		state_col = 0x4,

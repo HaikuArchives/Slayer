@@ -24,7 +24,8 @@
 #include <SupportKit.h>
 
 // Hashtable that can has only one instance of a key
-struct _hash_node {
+struct _hash_node
+{
 	int32 key;
 	void* item;
 	struct _hash_node* next;
@@ -37,7 +38,8 @@ struct _hash_node {
 	}
 };
 
-class Hashtable {
+class Hashtable
+{
   protected:
 	int32 array_size;
 	int32 items;
