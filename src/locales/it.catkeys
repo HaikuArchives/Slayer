@@ -1,52 +1,47 @@
-1	Italian	application/x-vnd.AJ-Slayer2	3387393906
-Suspend	TeamListView		Sospendi
-Id	TeamListView		Id
-Forced reload	MainWindow		Aggiornamento forzato
-Settings...	MainWindow		Impostazioni...
-Open window in current workspace	SettingsWindow		Apri la finestra nel workspace corrente
-Real-time display priority	PriorityMenu		Priorità video in tempo reale
-Refresh display (seconds)	SettingsWindow		Aggiornamento dati (in secondi)
-About Slayer...	MainWindow		Informazioni su Slayer...
-Display priority	PriorityMenu		Priorità visualizzazione
-Resume	MainWindow		Ripristina
-Full name	TeamListView		Nome completo
-CPU	TeamListView		CPU
+1	Italian	application/x-vnd.AJ-Slayer2	1781542493
 A thread manager for Haiku	MainWindow		Un gestore di thread per Haiku
-Lowest active priority	PriorityMenu		Priorità più bassa attiva
-Priority	TeamListView		Priorità
-Window	MainWindow		Finestra
-File	MainWindow		File
-Receiving	ThreadItem		Ricevendo
-Urgent display priority	PriorityMenu		Priorità video urgente
-Kill	MainWindow		Uccidi
-Undefined	ThreadItem		Indefinito
-Save window position on exit	SettingsWindow		Salva la posizione della finestra all'uscita
-Normal priority	PriorityMenu		Priorità normale
-Ready	ThreadItem		Pronto
-Quit	MainWindow		Esci
-Open window in saved workspace	SettingsWindow		Apri la finesta nel workspace salvato
-Name	TeamListView		Nome
-Revert	SettingsWindow		Ripristina
-Dock to deskbar	SettingsWindow		Ancora alla deskbar
-Suspend	MainWindow		Sospendi
-Running	ThreadItem		In esecuzione
-Icon	TeamListView		Icona
-Idle priority	PriorityMenu		Priorità inattivo
-Save workspace	SettingsWindow		Salva workspace
-Urgent priority	PriorityMenu		Priorità urgente
-Resume	TeamListView		Ripristina
-Slayer	System name		Slayer
-Low priority	PriorityMenu		Bassa priorità
-Real-time priority	PriorityMenu		Priorità in tempo reale
+About Slayer…	MainWindow		Informazioni su Slayer...
 Action	MainWindow		Azione
-Custom priority	PriorityMenu		Priorità personalizzata
-Memory	TeamListView		Memoria
-Open window in all workspaces	SettingsWindow		Apri la finestra in tutti i workspace
-Workspace	SettingsWindow		Workspace
-Kill	TeamListView		Uccidi
-State	TeamListView		Stato
+Forced reload	MainWindow		Aggiornamento forzato
+Kill	MainWindow		Uccidi
+Quit	MainWindow		Esci
+Resume	MainWindow		Ripristina
 Settings	MainWindow		Impostazioni
-Suspended	ThreadItem		Sospeso
-Waiting	ThreadItem		In attesa
+Settings…	MainWindow		Impostazioni...
+Suspend	MainWindow		Sospendi
+CPU	TeamListView		CPU
+Icon	TeamListView		Icona
+ID	TeamListView		Id
+Kill	TeamListView		Uccidi
+Memory	TeamListView		Memoria
+Name	TeamListView		Nome
+Path	TeamListView		Percorso
+Priority	TeamListView		Priorità
+Resume	TeamListView		Ripristina
+State	TeamListView		Stato
+Suspend	TeamListView		Sospendi
+Custom priority	PriorityMenu		Priorità personalizzata
+Display priority	PriorityMenu		Priorità visualizzazione
+Idle priority	PriorityMenu		Priorità inattivo
+Low priority	PriorityMenu		Bassa priorità
+Lowest active priority	PriorityMenu		Priorità più bassa attiva
+Normal priority	PriorityMenu		Priorità normale
+Real-time display priority	PriorityMenu		Priorità video in tempo reale
+Real-time priority	PriorityMenu		Priorità in tempo reale
 Set priority	PriorityMenu		Imposta priorità
+Urgent display priority	PriorityMenu		Priorità video urgente
+Urgent priority	PriorityMenu		Priorità urgente
+Open window in all workspaces	SettingsWindow		Apri la finestra in tutti i workspace
+Open window in current workspace	SettingsWindow		Apri la finestra nel workspace corrente
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Apri la finestra nel workspace:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Aggiornamento dati (in secondi):
+Revert	SettingsWindow		Ripristina
+Workspace	SettingsWindow		Workspace
+Ready	ThreadItem		Pronto
+Receiving	ThreadItem		Ricevendo
+Running	ThreadItem		In esecuzione
 Sleeping	ThreadItem		Dormendo
+Suspended	ThreadItem		Sospeso
+Undefined	ThreadItem		Indefinito
+Waiting	ThreadItem		In attesa
+Slayer	System name		Slayer

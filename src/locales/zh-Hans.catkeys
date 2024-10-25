@@ -1,0 +1,47 @@
+1	Chinese (simplified)	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Haiku的线程管理器
+About Slayer…	MainWindow		关于Slayer...
+Action	MainWindow		动作
+Forced reload	MainWindow		强制重新加载
+Kill	MainWindow		杀死
+Quit	MainWindow		退出
+Resume	MainWindow		继续
+Settings	MainWindow		设置
+Settings…	MainWindow		设置...
+Suspend	MainWindow		挂起
+CPU	TeamListView		CPU
+Icon	TeamListView		图标
+ID	TeamListView		ID
+Kill	TeamListView		杀死
+Memory	TeamListView		内存
+Name	TeamListView		名称
+Path	TeamListView		路径
+Priority	TeamListView		优先级
+Resume	TeamListView		继续
+State	TeamListView		状态
+Suspend	TeamListView		挂起
+Custom priority	PriorityMenu		自定义优先级
+Display priority	PriorityMenu		显示优先级
+Idle priority	PriorityMenu		空闲优先级
+Low priority	PriorityMenu		低优先级
+Lowest active priority	PriorityMenu		最低活动优先级
+Normal priority	PriorityMenu		正常优先级
+Real-time display priority	PriorityMenu		实时显示优先级
+Real-time priority	PriorityMenu		实时优先级
+Set priority	PriorityMenu		设置优先级
+Urgent display priority	PriorityMenu		紧急显示优先级
+Urgent priority	PriorityMenu		紧急优先级
+Open window in all workspaces	SettingsWindow		在所有工作区中打开窗口
+Open window in current workspace	SettingsWindow		在当前工作区中打开窗口
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	打开窗口在工作区:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	刷新显示（秒）：
+Revert	SettingsWindow		还原
+Workspace	SettingsWindow		工作区
+Ready	ThreadItem		准备
+Receiving	ThreadItem		接收中
+Running	ThreadItem		运行中
+Sleeping	ThreadItem		休眠中
+Suspended	ThreadItem		已挂起
+Undefined	ThreadItem		未定义
+Waiting	ThreadItem		等待中
+Slayer	System name		Slayer

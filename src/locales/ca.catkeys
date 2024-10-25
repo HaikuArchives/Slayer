@@ -1,0 +1,47 @@
+1	Catalan	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Un gestor de fils per al Haiku
+About Slayer…	MainWindow		Quant a l'Slayer...
+Action	MainWindow		Acció
+Forced reload	MainWindow		Recàrrega forçada
+Kill	MainWindow		Mata
+Quit	MainWindow		Surt
+Resume	MainWindow		Reprèn
+Settings	MainWindow		Paràmetres
+Settings…	MainWindow		Paràmetres...
+Suspend	MainWindow		Suspèn
+CPU	TeamListView		CPU
+Icon	TeamListView		Icona
+ID	TeamListView		ID
+Kill	TeamListView		Mata
+Memory	TeamListView		Memòria
+Name	TeamListView		Nom
+Path	TeamListView		Camí
+Priority	TeamListView		Prioritat
+Resume	TeamListView		Reprèn
+State	TeamListView		Estat
+Suspend	TeamListView		Suspèn
+Custom priority	PriorityMenu		Prioritat personalitzada
+Display priority	PriorityMenu		Mostra'n la prioritat
+Idle priority	PriorityMenu		Prioritat inactiva
+Low priority	PriorityMenu		Prioritat baixa
+Lowest active priority	PriorityMenu		La prioritat activa més baixa
+Normal priority	PriorityMenu		Prioritat normal
+Real-time display priority	PriorityMenu		Visualització de prioritat en temps real
+Real-time priority	PriorityMenu		Prioritat en temps real
+Set priority	PriorityMenu		Estableix-ne la prioritat
+Urgent display priority	PriorityMenu		Visualització de la prioritat urgent
+Urgent priority	PriorityMenu		Prioritat urgent
+Open window in all workspaces	SettingsWindow		Obre la finestra a tots els espais de treball.
+Open window in current workspace	SettingsWindow		Obre la finestra a l’espai de treball actual.
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Obre la finestra a l'espai de treball:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Actualitza la visualització (segons):
+Revert	SettingsWindow		Reverteix
+Workspace	SettingsWindow		Espai de treball
+Ready	ThreadItem		Llest
+Receiving	ThreadItem		Rebent
+Running	ThreadItem		Funcionant
+Sleeping	ThreadItem		Dormint
+Suspended	ThreadItem		Suspès
+Undefined	ThreadItem		No definit
+Waiting	ThreadItem		Esperant
+Slayer	System name		Slayer

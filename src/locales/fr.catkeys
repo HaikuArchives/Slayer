@@ -1,0 +1,47 @@
+1	French	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Un gestionnaire de tâches pour Haiku
+About Slayer…	MainWindow		À propos de Slayer...
+Action	MainWindow		Action
+Forced reload	MainWindow		Rechargement forcé
+Kill	MainWindow		Tuer
+Quit	MainWindow		Quitter
+Resume	MainWindow		Reprendre
+Settings	MainWindow		Réglages
+Settings…	MainWindow		Réglages...
+Suspend	MainWindow		Suspendre
+CPU	TeamListView		Processeur
+Icon	TeamListView		Icône
+ID	TeamListView		Identifiant
+Kill	TeamListView		Tuer
+Memory	TeamListView		Mémoire
+Name	TeamListView		Nom
+Path	TeamListView		Chemin
+Priority	TeamListView		Priorité
+Resume	TeamListView		Reprendre
+State	TeamListView		État
+Suspend	TeamListView		Suspendre
+Custom priority	PriorityMenu		Priorité personnalisée
+Display priority	PriorityMenu		Priorité affichage
+Idle priority	PriorityMenu		Priorité inactive
+Low priority	PriorityMenu		Priorité basse
+Lowest active priority	PriorityMenu		Priorité active la plus basse
+Normal priority	PriorityMenu		Priorité normale
+Real-time display priority	PriorityMenu		Priorité affichage temps-réel
+Real-time priority	PriorityMenu		Priorité temps-réel
+Set priority	PriorityMenu		Définir la priorité
+Urgent display priority	PriorityMenu		Priorité affichage urgent
+Urgent priority	PriorityMenu		Priorité urgente
+Open window in all workspaces	SettingsWindow		Ouvrir la fenêtre dans tous les espaces de travail
+Open window in current workspace	SettingsWindow		Ouvrir la fenêtre dans l'espace de travail courant
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Ouvrir la fenêtre dans cet espace de travail :
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Actualisation de l’affichage (secondes) :
+Revert	SettingsWindow		Réinitialiser
+Workspace	SettingsWindow		Espace de travail
+Ready	ThreadItem		Prêt
+Receiving	ThreadItem		Hôte
+Running	ThreadItem		En cours
+Sleeping	ThreadItem		Endormi
+Suspended	ThreadItem		Suspendu
+Undefined	ThreadItem		Indéfini
+Waiting	ThreadItem		En attente
+Slayer	System name		Slayer

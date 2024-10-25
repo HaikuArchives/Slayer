@@ -1,0 +1,47 @@
+1	Swedish	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		En trådhanterare för Haiku
+About Slayer…	MainWindow		Om Slayer...
+Action	MainWindow		Handling
+Forced reload	MainWindow		Tvingad omstart
+Kill	MainWindow		Döda
+Quit	MainWindow		Avsluta
+Resume	MainWindow		Återuppta
+Settings	MainWindow		Inställningar
+Settings…	MainWindow		Inställningar...
+Suspend	MainWindow		Stäng av
+CPU	TeamListView		CPU
+Icon	TeamListView		Ikon
+ID	TeamListView		Id
+Kill	TeamListView		Döda
+Memory	TeamListView		Minne
+Name	TeamListView		Namn
+Path	TeamListView		Sökväg
+Priority	TeamListView		Prioritet
+Resume	TeamListView		Återuppta
+State	TeamListView		Tillstånd
+Suspend	TeamListView		Stäng av
+Custom priority	PriorityMenu		Skräddarsydd prioritet
+Display priority	PriorityMenu		Visningsprioritet
+Idle priority	PriorityMenu		Vilande prioritet
+Low priority	PriorityMenu		Låg prioritet
+Lowest active priority	PriorityMenu		Lägsta aktiva prioritet
+Normal priority	PriorityMenu		Normal prioritet
+Real-time display priority	PriorityMenu		Realtidsprioritet för visning
+Real-time priority	PriorityMenu		Realtidsprioritet
+Set priority	PriorityMenu		Sätt prioritet
+Urgent display priority	PriorityMenu		Brådskande visningsprioritet
+Urgent priority	PriorityMenu		Brådskande prioritet
+Open window in all workspaces	SettingsWindow		Öppna fönster i alla arbetsytor
+Open window in current workspace	SettingsWindow		Öppna fönstret i nuvarande arbetsyta
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Öppna fönster på arbetsyta:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Uppdatera visning (sekunder):
+Revert	SettingsWindow		Återgå
+Workspace	SettingsWindow		Arbetsyta
+Ready	ThreadItem		Redo
+Receiving	ThreadItem		Tar emot
+Running	ThreadItem		Kör
+Sleeping	ThreadItem		Sover
+Suspended	ThreadItem		Stäng av
+Undefined	ThreadItem		Odefinierad
+Waiting	ThreadItem		Väntar
+Slayer	System name		Slayer

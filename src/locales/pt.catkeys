@@ -1,0 +1,47 @@
+1	Portuguese	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Um gestor de threads para Haiku
+About Slayer…	MainWindow		Acerca de Slayer...
+Action	MainWindow		Ação
+Forced reload	MainWindow		Forçar recarregar
+Kill	MainWindow		Terminar
+Quit	MainWindow		Sair
+Resume	MainWindow		Retomar
+Settings	MainWindow		Definições
+Settings…	MainWindow		Definições...
+Suspend	MainWindow		Suspender
+CPU	TeamListView		CPU
+Icon	TeamListView		Ícone
+ID	TeamListView		Id
+Kill	TeamListView		Terminar
+Memory	TeamListView		Memória
+Name	TeamListView		Nome
+Path	TeamListView		Caminho
+Priority	TeamListView		Prioridade
+Resume	TeamListView		Retomar
+State	TeamListView		Estado
+Suspend	TeamListView		Suspender
+Custom priority	PriorityMenu		Prioridade personalizada
+Display priority	PriorityMenu		Mostrar prioridade
+Idle priority	PriorityMenu		Prioridade ociosa
+Low priority	PriorityMenu		Baixa prioridade
+Lowest active priority	PriorityMenu		Menor prioridade ativa
+Normal priority	PriorityMenu		Prioridade normal
+Real-time display priority	PriorityMenu		Prioridade de exibição em tempo real
+Real-time priority	PriorityMenu		Prioridade de tempo real
+Set priority	PriorityMenu		Definir prioridade
+Urgent display priority	PriorityMenu		Prioridade de exibição urgente
+Urgent priority	PriorityMenu		Prioridade urgente
+Open window in all workspaces	SettingsWindow		Abrir janela em todos os ambientes de trabalho
+Open window in current workspace	SettingsWindow		Abrir janela no ambiente de trabalho atual
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Abrir janela no ambiente de trabalho:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Atualizar ecrã (segundos):
+Revert	SettingsWindow		Reverter
+Workspace	SettingsWindow		Ambiente de trabalho
+Ready	ThreadItem		Pronta
+Receiving	ThreadItem		A receber
+Running	ThreadItem		Em execução
+Sleeping	ThreadItem		Adormecida
+Suspended	ThreadItem		Suspensa
+Undefined	ThreadItem		Indefinida
+Waiting	ThreadItem		A aguardar
+Slayer	System name		Slayer

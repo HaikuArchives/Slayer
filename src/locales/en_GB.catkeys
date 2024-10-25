@@ -1,0 +1,47 @@
+1	English (British)	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		A thread manager for Haiku
+About Slayer…	MainWindow		About Slayer...
+Action	MainWindow		Action
+Forced reload	MainWindow		Forced reload
+Kill	MainWindow		Kill
+Quit	MainWindow		Quit
+Resume	MainWindow		Resume
+Settings	MainWindow		Settings
+Settings…	MainWindow		Settings...
+Suspend	MainWindow		Suspend
+CPU	TeamListView		CPU
+Icon	TeamListView		Icon
+ID	TeamListView		ID
+Kill	TeamListView		Kill
+Memory	TeamListView		Memory
+Name	TeamListView		Name
+Path	TeamListView		Path
+Priority	TeamListView		Priority
+Resume	TeamListView		Resume
+State	TeamListView		State
+Suspend	TeamListView		Suspend
+Custom priority	PriorityMenu		Custom priority
+Display priority	PriorityMenu		Display priority
+Idle priority	PriorityMenu		Idle priority
+Low priority	PriorityMenu		Low priority
+Lowest active priority	PriorityMenu		Lowest active priority
+Normal priority	PriorityMenu		Normal priority
+Real-time display priority	PriorityMenu		Real-time display priority
+Real-time priority	PriorityMenu		Real-time priority
+Set priority	PriorityMenu		Set priority
+Urgent display priority	PriorityMenu		Urgent display priority
+Urgent priority	PriorityMenu		Urgent priority
+Open window in all workspaces	SettingsWindow		Open window in all workspaces
+Open window in current workspace	SettingsWindow		Open window in current workspace
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Open window in workspace:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Refresh display (seconds):
+Revert	SettingsWindow		Revert
+Workspace	SettingsWindow		Workspace
+Ready	ThreadItem		Ready
+Receiving	ThreadItem		Receiving
+Running	ThreadItem		Running
+Sleeping	ThreadItem		Sleeping
+Suspended	ThreadItem		Suspended
+Undefined	ThreadItem		Undefined
+Waiting	ThreadItem		Waiting
+Slayer	System name		Slayer

@@ -1,0 +1,47 @@
+1	Russian	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Менеджер потоков для Haiku
+About Slayer…	MainWindow		О Slayer...
+Action	MainWindow		Действие
+Forced reload	MainWindow		Перезапустить принудительно
+Kill	MainWindow		Убить
+Quit	MainWindow		Выйти
+Resume	MainWindow		Возобновить
+Settings	MainWindow		Настройки
+Settings…	MainWindow		Настройки...
+Suspend	MainWindow		Приостановить
+CPU	TeamListView		ЦП
+Icon	TeamListView		Значок
+ID	TeamListView		ID
+Kill	TeamListView		Убить
+Memory	TeamListView		Память
+Name	TeamListView		Имя
+Path	TeamListView		Путь
+Priority	TeamListView		Приоритет
+Resume	TeamListView		Возобновить
+State	TeamListView		Состояние
+Suspend	TeamListView		Приостановить
+Custom priority	PriorityMenu		Пользовательский приоритет
+Display priority	PriorityMenu		Приоритет отображения
+Idle priority	PriorityMenu		Приоритет простоя
+Low priority	PriorityMenu		Низкий приоритет
+Lowest active priority	PriorityMenu		Низший приоритет
+Normal priority	PriorityMenu		Нормальный приоритет
+Real-time display priority	PriorityMenu		Приоритет отображения реального времени
+Real-time priority	PriorityMenu		Приоритет реального времени
+Set priority	PriorityMenu		Установить приоритет
+Urgent display priority	PriorityMenu		Срочный приоритет отображения
+Urgent priority	PriorityMenu		Срочный приоритет
+Open window in all workspaces	SettingsWindow		Открыть окно на всех рабочих столах
+Open window in current workspace	SettingsWindow		Открыть окно на текущем рабочем столе
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Открыть окно на рабочем столе:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Обновлять экран (секунд):
+Revert	SettingsWindow		Вернуть
+Workspace	SettingsWindow		Рабочий стол
+Ready	ThreadItem		Готов
+Receiving	ThreadItem		Принимает
+Running	ThreadItem		Выполняется
+Sleeping	ThreadItem		Спит
+Suspended	ThreadItem		Приостановлен
+Undefined	ThreadItem		Не определено
+Waiting	ThreadItem		Ожидает
+Slayer	System name		Slayer

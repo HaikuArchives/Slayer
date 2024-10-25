@@ -1,0 +1,47 @@
+1	Friulian	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Un gjestôr di thread par Haiku
+About Slayer…	MainWindow		Informazions su Slayer…
+Action	MainWindow		Azion
+Forced reload	MainWindow		Sfuarce tornâ a cjariâ
+Kill	MainWindow		Cope
+Quit	MainWindow		Jes
+Resume	MainWindow		Ripie
+Settings	MainWindow		Impostazions
+Settings…	MainWindow		Impostazions…
+Suspend	MainWindow		Sospint
+CPU	TeamListView		CPU
+Icon	TeamListView		Icone
+ID	TeamListView		ID
+Kill	TeamListView		Cope
+Memory	TeamListView		Memorie
+Name	TeamListView		Non
+Path	TeamListView		Percors
+Priority	TeamListView		Prioritât
+Resume	TeamListView		Ripie
+State	TeamListView		Stât
+Suspend	TeamListView		Sospint
+Custom priority	PriorityMenu		Prioritât personalizade
+Display priority	PriorityMenu		Prioritât visualizazion
+Idle priority	PriorityMenu		Prioritât inatîf
+Low priority	PriorityMenu		Prioritât basse
+Lowest active priority	PriorityMenu		Prioritât ative plui basse
+Normal priority	PriorityMenu		Prioritât normâl
+Real-time display priority	PriorityMenu		Prioritât visualizazion in timp reâl
+Real-time priority	PriorityMenu		Prioritât in timp reâl
+Set priority	PriorityMenu		Stabilìs prioritât
+Urgent display priority	PriorityMenu		Prioritât visualizazion urgjente
+Urgent priority	PriorityMenu		Prioritât urgjente
+Open window in all workspaces	SettingsWindow		Vierç il barcon in ducj i spazis di lavôr
+Open window in current workspace	SettingsWindow		Vierç il barcon tal spazi di lavôr atuâl
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Vierç il barcon tal spazi di lavôr:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Inzorne i dâts (seconts):
+Revert	SettingsWindow		Torne indaûr
+Workspace	SettingsWindow		Spazi di lavôr
+Ready	ThreadItem		Pront
+Receiving	ThreadItem		Daûr a ricevi
+Running	ThreadItem		In esecuzion
+Sleeping	ThreadItem		In polse
+Suspended	ThreadItem		Sospindût
+Undefined	ThreadItem		No definît
+Waiting	ThreadItem		In spiete
+Slayer	System name		Slayer

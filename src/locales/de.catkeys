@@ -1,0 +1,47 @@
+1	German	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Ein Thread-Manager für Haiku
+About Slayer…	MainWindow		Über Slayer …
+Action	MainWindow		Aktion
+Forced reload	MainWindow		Erzwungener Reload
+Kill	MainWindow		Beenden
+Quit	MainWindow		Beenden
+Resume	MainWindow		Fortsetzen
+Settings	MainWindow		Einstellungen
+Settings…	MainWindow		Einstellungen …
+Suspend	MainWindow		Anhalten
+CPU	TeamListView		CPU
+Icon	TeamListView		Icon
+ID	TeamListView		ID
+Kill	TeamListView		Beenden
+Memory	TeamListView		Speicher
+Name	TeamListView		Name
+Path	TeamListView		Pfad
+Priority	TeamListView		Priorität
+Resume	TeamListView		Fortsetzen
+State	TeamListView		Status
+Suspend	TeamListView		Anhalten
+Custom priority	PriorityMenu		Anwendungsspezifische Priorität
+Display priority	PriorityMenu		Anzeigen-Priorität
+Idle priority	PriorityMenu		Leerlauf-Priorität
+Low priority	PriorityMenu		Niedrige Priorität
+Lowest active priority	PriorityMenu		Niedrigste aktive Priorität
+Normal priority	PriorityMenu		Normale Priorität
+Real-time display priority	PriorityMenu		Echtzeit-Anzeigen-Priorität
+Real-time priority	PriorityMenu		Echtzeit-Priorität
+Set priority	PriorityMenu		Priorität setzen
+Urgent display priority	PriorityMenu		Hohe Anzeigen-Priorität
+Urgent priority	PriorityMenu		Hohe Priorität
+Open window in all workspaces	SettingsWindow		Fenster in allen Arbeitsflächen öffnen
+Open window in current workspace	SettingsWindow		Fenster in aktueller Arbeitsfläche öffnen
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Fenster öffnen in Arbeitsfläche:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Anzeige aktualisieren (Sekunden):
+Revert	SettingsWindow		Anfangswerte
+Workspace	SettingsWindow		Arbeitsfläche
+Ready	ThreadItem		Bereit
+Receiving	ThreadItem		Empfängt
+Running	ThreadItem		Läuft
+Sleeping	ThreadItem		Schläft
+Suspended	ThreadItem		Angehalten
+Undefined	ThreadItem		Undefiniert
+Waiting	ThreadItem		Wartet
+Slayer	System name		Slayer

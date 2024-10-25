@@ -1,0 +1,47 @@
+1	Turkish	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Haiku için bir iş parçacığı yöneticisi
+About Slayer…	MainWindow		Slayer hakkında…
+Action	MainWindow		Eylem
+Forced reload	MainWindow		Zorlanan yeniden yükleme
+Kill	MainWindow		Sonlandır
+Quit	MainWindow		Çık
+Resume	MainWindow		Sürdür
+Settings	MainWindow		Ayarlar
+Settings…	MainWindow		Ayarlar…
+Suspend	MainWindow		Askıya al
+CPU	TeamListView		CPU
+Icon	TeamListView		Simge
+ID	TeamListView		Kimlik
+Kill	TeamListView		Sonlandır
+Memory	TeamListView		Bellek
+Name	TeamListView		Ad
+Path	TeamListView		Yol
+Priority	TeamListView		Öncelik
+Resume	TeamListView		Sürdür
+State	TeamListView		Durum
+Suspend	TeamListView		Askıya al
+Custom priority	PriorityMenu		Özel öncelik
+Display priority	PriorityMenu		Görüntüleme önceliği
+Idle priority	PriorityMenu		Boşta öncelik
+Low priority	PriorityMenu		Düşük öncelik
+Lowest active priority	PriorityMenu		En düşük etkin öncelik
+Normal priority	PriorityMenu		Olağan öncelik
+Real-time display priority	PriorityMenu		Gerçek zamanlı görüntüleme önceliği
+Real-time priority	PriorityMenu		Gerçek zamanlı öncelik
+Set priority	PriorityMenu		Öncelik ayarla
+Urgent display priority	PriorityMenu		Acil görüntüleme önceliği
+Urgent priority	PriorityMenu		Acil öncelik
+Open window in all workspaces	SettingsWindow		Pencereyi tüm çalışma alanlarında aç
+Open window in current workspace	SettingsWindow		Pencereyi geçerli çalışma alanında aç
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Pencereyi çalışma alanında aç:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Yenileme aralığı (saniye):
+Revert	SettingsWindow		Eski haline döndür
+Workspace	SettingsWindow		Çalışma alanı
+Ready	ThreadItem		Hazır
+Receiving	ThreadItem		Alıyor
+Running	ThreadItem		Çalışıyor
+Sleeping	ThreadItem		Uyuyor
+Suspended	ThreadItem		Askıya alındı
+Undefined	ThreadItem		Tanımsız
+Waiting	ThreadItem		Bekliyor
+Slayer	System name		Slayer

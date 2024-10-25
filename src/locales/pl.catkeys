@@ -1,0 +1,47 @@
+1	Polish	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Menedżer wątków dla Haiku
+About Slayer…	MainWindow		O Slayerze...
+Action	MainWindow		Akcja
+Forced reload	MainWindow		Wymuszone przeładowanie
+Kill	MainWindow		Zabij
+Quit	MainWindow		Zakończ
+Resume	MainWindow		Wznów
+Settings	MainWindow		Ustawienia
+Settings…	MainWindow		Ustawienia...
+Suspend	MainWindow		Wstrzymaj
+CPU	TeamListView		Procesor
+Icon	TeamListView		Ikona
+ID	TeamListView		Identyfikator
+Kill	TeamListView		Zabij
+Memory	TeamListView		Pamięć
+Name	TeamListView		Nazwa
+Path	TeamListView		Ścieżka
+Priority	TeamListView		Priorytet
+Resume	TeamListView		Wznów
+State	TeamListView		Stan
+Suspend	TeamListView		Wstrzymaj
+Custom priority	PriorityMenu		Własny priorytet
+Display priority	PriorityMenu		Priorytet wyświetlania
+Idle priority	PriorityMenu		Priorytet bezczynności
+Low priority	PriorityMenu		Niski priorytet
+Lowest active priority	PriorityMenu		Najniższy aktywny priorytet
+Normal priority	PriorityMenu		Normalny priorytet
+Real-time display priority	PriorityMenu		Priorytet wyświetlania w czasie rzeczywistym
+Real-time priority	PriorityMenu		Priorytet czasu rzeczywistego
+Set priority	PriorityMenu		Ustaw priorytet
+Urgent display priority	PriorityMenu		Pilny priorytet wyświetlania
+Urgent priority	PriorityMenu		Pilny priorytet
+Open window in all workspaces	SettingsWindow		Otwórz okno na wszystkich obszarach roboczych
+Open window in current workspace	SettingsWindow		Otwórz okno na aktualnym obszarze roboczym
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Otwórz okno na obszarze roboczym:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Częstotliwość odświeżania (w sekundach):
+Revert	SettingsWindow		Cofnij
+Workspace	SettingsWindow		Obszar roboczy
+Ready	ThreadItem		Gotowy
+Receiving	ThreadItem		Odbierający
+Running	ThreadItem		Aktywny
+Sleeping	ThreadItem		Uśpiony
+Suspended	ThreadItem		Wstrzymany
+Undefined	ThreadItem		Niezdefiniowane
+Waiting	ThreadItem		Oczekujący
+Slayer	System name		Slayer

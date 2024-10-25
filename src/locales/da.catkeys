@@ -1,0 +1,47 @@
+1	Danish	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Trådhåndtering for Haiku
+About Slayer…	MainWindow		Om Slayer...
+Action	MainWindow		Handling
+Forced reload	MainWindow		Tvungen genindlæsning
+Kill	MainWindow		Dræb
+Quit	MainWindow		Afslut
+Resume	MainWindow		Genoptag
+Settings	MainWindow		Indstillinger
+Settings…	MainWindow		Indstillinger...
+Suspend	MainWindow		Gå i dvale
+CPU	TeamListView		CPU
+Icon	TeamListView		Ikon
+ID	TeamListView		Id
+Kill	TeamListView		Dræb
+Memory	TeamListView		Hukommelse
+Name	TeamListView		Navn
+Path	TeamListView		Sti
+Priority	TeamListView		Prioritet
+Resume	TeamListView		Genoptag
+State	TeamListView		Tilstand
+Suspend	TeamListView		Gå i dvale
+Custom priority	PriorityMenu		Tilpasset prioritet
+Display priority	PriorityMenu		Skærmprioritet
+Idle priority	PriorityMenu		Tomgangsprioritet
+Low priority	PriorityMenu		Lav prioritet
+Lowest active priority	PriorityMenu		Laveste aktive prioritet
+Normal priority	PriorityMenu		Normal prioritet
+Real-time display priority	PriorityMenu		Realtidsprioritet for skærm
+Real-time priority	PriorityMenu		Realtidsprioritet
+Set priority	PriorityMenu		Sæt prioritet
+Urgent display priority	PriorityMenu		Hastende skærmprioritet
+Urgent priority	PriorityMenu		Hastende prioritet
+Open window in all workspaces	SettingsWindow		Åbn vindue i alle arbejdsområder
+Open window in current workspace	SettingsWindow		Åbn vindue i nuværende arbejdsområde
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Åbn vindue i arbejdsområde:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Genopfrisk visning (sekunder):
+Revert	SettingsWindow		Omgør
+Workspace	SettingsWindow		Arbejdsområde
+Ready	ThreadItem		Klar
+Receiving	ThreadItem		Modtager
+Running	ThreadItem		Kører
+Sleeping	ThreadItem		Sover
+Suspended	ThreadItem		I dvale
+Undefined	ThreadItem		Udefineret
+Waiting	ThreadItem		Afventer
+Slayer	System name		Slayer

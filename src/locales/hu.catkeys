@@ -1,0 +1,47 @@
+1	Hungarian	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Folyamatkezelő Haikuhoz
+About Slayer…	MainWindow		A Slayer névjegye...
+Action	MainWindow		Művelet
+Forced reload	MainWindow		Eröltetett újratöltés
+Kill	MainWindow		Kill
+Quit	MainWindow		Bezár
+Resume	MainWindow		Folytat
+Settings	MainWindow		Beállítások
+Settings…	MainWindow		Beállítások...
+Suspend	MainWindow		Felfüggeszt
+CPU	TeamListView		CPU
+Icon	TeamListView		Ikon
+ID	TeamListView		Azonosító
+Kill	TeamListView		Kilövés
+Memory	TeamListView		Memória
+Name	TeamListView		Név
+Path	TeamListView		Útvonal
+Priority	TeamListView		Prioritás
+Resume	TeamListView		Folytat
+State	TeamListView		Állapot
+Suspend	TeamListView		Felfüggeszt
+Custom priority	PriorityMenu		Egyedi prioritás
+Display priority	PriorityMenu		Megjelenítő prioritás
+Idle priority	PriorityMenu		Üresjárati prioritás
+Low priority	PriorityMenu		Aalcsony prioritás
+Lowest active priority	PriorityMenu		Legkisebb aktív prioritás
+Normal priority	PriorityMenu		Normál prioritás
+Real-time display priority	PriorityMenu		Valósidejű megjelenítő prioritás
+Real-time priority	PriorityMenu		Valósidejű prioritás
+Set priority	PriorityMenu		Prioritás beállítása
+Urgent display priority	PriorityMenu		Sürgős megjelenítő prioritás
+Urgent priority	PriorityMenu		Sürgős prioritás
+Open window in all workspaces	SettingsWindow		Megnyitás minden munkaasztalon
+Open window in current workspace	SettingsWindow		Megnyitás a jelenlegi munkaasztalon
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Megnyitás a következő munkaasztalon:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Frissítési időköz (másodperc):
+Revert	SettingsWindow		Visszaállít
+Workspace	SettingsWindow		Munkaasztal
+Ready	ThreadItem		Kész
+Receiving	ThreadItem		Fogad
+Running	ThreadItem		Fut
+Sleeping	ThreadItem		Alvó
+Suspended	ThreadItem		Felfüggesztett
+Undefined	ThreadItem		Ismeretlen
+Waiting	ThreadItem		Várakozó
+Slayer	System name		Slayer

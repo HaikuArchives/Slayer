@@ -1,0 +1,47 @@
+1	Romanian	application/x-vnd.AJ-Slayer2	1781542493
+A thread manager for Haiku	MainWindow		Un manager de thread pentru Haiku
+About Slayer…	MainWindow		Despre Slayer…
+Action	MainWindow		Acțiune
+Forced reload	MainWindow		Forțează reîncărcarea
+Kill	MainWindow		Terminare
+Quit	MainWindow		Ieșire
+Resume	MainWindow		Reluare
+Settings	MainWindow		Configurări
+Settings…	MainWindow		Configurări…
+Suspend	MainWindow		Suspendare
+CPU	TeamListView		CPU
+Icon	TeamListView		Pictogramă
+ID	TeamListView		ID
+Kill	TeamListView		Terminare
+Memory	TeamListView		Memorie
+Name	TeamListView		Nume
+Path	TeamListView		Cale
+Priority	TeamListView		Prioritate
+Resume	TeamListView		Reluare
+State	TeamListView		Stare
+Suspend	TeamListView		Suspendare
+Custom priority	PriorityMenu		Prioritate personalizată
+Display priority	PriorityMenu		Prioritate afișare
+Idle priority	PriorityMenu		Prioritate în așteptare
+Low priority	PriorityMenu		Prioritate scăzută
+Lowest active priority	PriorityMenu		Prioritatea activă cea mai scăzută
+Normal priority	PriorityMenu		Prioritate normală
+Real-time display priority	PriorityMenu		Prioritate afișare în timp real
+Real-time priority	PriorityMenu		Prioritate în timp real
+Set priority	PriorityMenu		Stabilește prioritatea
+Urgent display priority	PriorityMenu		Prioritate afișare urgentă
+Urgent priority	PriorityMenu		Prioritate urgentă
+Open window in all workspaces	SettingsWindow		Deschide fereastra în toate spațiile de lucru
+Open window in current workspace	SettingsWindow		Deschide fereastra în spațiul de lucru curent
+Open window in workspace:	SettingsWindow	After 'workspace' follows a popup menu with the workspace number	Deschide fereastra în spațiul de lucru:
+Refresh display (seconds):	SettingsWindow	After 'seconds' follows a text field and spinner widget to set the number of seconds	Actualizează afișarea (secunde):
+Revert	SettingsWindow		Revenire
+Workspace	SettingsWindow		Spațiu de lucru
+Ready	ThreadItem		Gata
+Receiving	ThreadItem		Primire
+Running	ThreadItem		Rulare
+Sleeping	ThreadItem		Somn
+Suspended	ThreadItem		Suspendat
+Undefined	ThreadItem		Nedefinit
+Waiting	ThreadItem		Așteptare
+Slayer	System name		Slayer
